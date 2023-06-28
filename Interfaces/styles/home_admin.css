@@ -1,0 +1,342 @@
+.macbook-air-4-child {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  background: linear-gradient(112.67deg, #964afd, #487afd);
+  width: 1280px;
+  height: 832px;
+}
+.macbook-air-4-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray);
+  width: 1280px;
+  height: 104px;
+}
+.image-1-icon1 {
+  position: absolute;
+  top: 25px;
+  left: 38px;
+  width: 51px;
+  height: 51px;
+  object-fit: cover;
+}
+.gradegenius1 {
+  position: absolute;
+  top: 35px;
+  left: 115px;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  text-align: left;
+}
+.image-2-icon1,
+.image-3-icon1 {
+  position: absolute;
+  object-fit: cover;
+}
+.image-2-icon1 {
+  top: 28px;
+  left: 1095px;
+  border-radius: var(--br-351xl);
+  width: 51px;
+  height: 52px;
+}
+.image-3-icon1 {
+  top: 36px;
+  left: 1214px;
+  width: 31px;
+  height: 31px;
+}
+.macbook-air-4-child1,
+.macbook-air-4-inner {
+  position: absolute;
+  top: 49px;
+  left: 1162.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.macbook-air-4-child1 {
+  top: 795px;
+  left: 1178.8px;
+}
+.macbook-air-4-child2 {
+  position: absolute;
+  top: 104px;
+  left: 373px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  box-shadow: 12px 12px 9px 1px rgba(0, 0, 0, 0.13);
+  width: 773px;
+  height: 673px;
+}
+.macbook-air-4-child3,
+.macbook-air-4-child4,
+.macbook-air-4-child5,
+.macbook-air-4-child6 {
+  position: absolute;
+  top: 135px;
+  left: 435px;
+  border-radius: var(--br-mini);
+  background-color: var(--color-dodgerblue);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  width: 308px;
+  height: 270px;
+}
+.macbook-air-4-child4,
+.macbook-air-4-child5,
+.macbook-air-4-child6 {
+  left: 783px;
+}
+.macbook-air-4-child5,
+.macbook-air-4-child6 {
+  top: 464px;
+  left: 435px;
+}
+.macbook-air-4-child6 {
+  left: 783px;
+}
+.label {
+  cursor: pointer;
+  position: absolute;
+  top: 159px;
+  left: 506px;
+  font-size: var(--font-size-45xl);
+  font-weight: 500;
+  display: inline-block;
+  width: 173px;
+  height: 95px;
+}
+.agost-oct {
+  margin: 0;
+}
+.agost-oct-2023,
+.label1,
+.label2 {
+  cursor: pointer;
+  position: absolute;
+  top: 492px;
+  left: 786px;
+  font-size: var(--font-size-17xl);
+  font-weight: 600;
+  display: inline-block;
+  width: 311px;
+  height: 144px;
+}
+.label1,
+.label2 {
+  top: 479px;
+  left: 503px;
+  font-size: var(--font-size-45xl);
+  font-weight: 500;
+  width: 169px;
+  height: 68px;
+}
+.label2 {
+  top: 159px;
+  left: 833px;
+  width: 217px;
+  height: 176px;
+}
+.asignaturas-totales-del,
+.secciones-totales-de,
+.trimestre-actual,
+.usuarios-totales-del {
+  position: absolute;
+  top: 285px;
+  left: 460px;
+  display: inline-block;
+  color: var(--color-black);
+  width: 265px;
+  height: 64px;
+}
+.asignaturas-totales-del,
+.secciones-totales-de,
+.trimestre-actual {
+  top: 585px;
+  left: 457px;
+}
+.asignaturas-totales-del,
+.trimestre-actual {
+  top: 619px;
+  left: 809px;
+}
+.asignaturas-totales-del {
+  top: 259px;
+  left: 822px;
+  width: 239px;
+}
+.component-9-child,
+.component-9-item,
+.macbook-air-4-child7 {
+  position: absolute;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.macbook-air-4-child7 {
+  height: 7.45%;
+  width: 20.94%;
+  top: 12.5%;
+  right: 78.98%;
+  bottom: 80.05%;
+  left: 0.08%;
+  background-color: var(--color-gray-300);
+}
+.component-9-child,
+.component-9-item {
+  right: 0;
+}
+.component-9-child {
+  margin: 0;
+  height: 100%;
+  width: 96.75%;
+  top: 0;
+  bottom: 0;
+  left: 3.25%;
+  background-color: var(--color-gray-200);
+}
+.component-9-item {
+  height: 8.65%;
+  width: 100%;
+  top: 17.03%;
+  bottom: 74.31%;
+  left: 0;
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.manejo-de-asignaturas1 {
+  position: absolute;
+  top: 31.15%;
+  left: 31.05%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.libros-3-icon1 {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 21.31%;
+  right: 72.92%;
+  bottom: 19.67%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-5-item {
+  position: absolute;
+  height: 103.28%;
+  width: 100%;
+  top: -1.64%;
+  right: 0;
+  bottom: -1.64%;
+  left: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.component-51,
+.component-61 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 8.52%;
+  right: 0;
+  bottom: 83.1%;
+  left: 0;
+}
+.component-311:hover,
+.component-51:hover,
+.component-61:hover,
+.component-71:hover,
+.component-81:hover {
+  border: 2px solid var(--color-fuchsia-100);
+  box-sizing: border-box;
+}
+.component-61 {
+  top: 17.17%;
+  bottom: 74.45%;
+}
+.capitulo-2-icon1 {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 22.95%;
+  right: 72.92%;
+  bottom: 18.03%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-71 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 25.69%;
+  right: 0;
+  bottom: 65.93%;
+  left: 0;
+}
+.inicio1 {
+  position: absolute;
+  top: 31.15%;
+  left: 45.49%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.component-311,
+.component-81 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 91.62%;
+  left: 0;
+}
+.component-311 {
+  top: 91.62%;
+  bottom: 0;
+}
+.component-9 {
+  position: absolute;
+  top: 104px;
+  left: -8px;
+  width: 277px;
+  height: 728px;
+}
+.macbook-air-4 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-6xl);
+  color: var(--color-blueviolet-200);
+  font-family: var(--font-poppins);
+}

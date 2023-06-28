@@ -1,0 +1,515 @@
+.macbook-air-6-child {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  background: linear-gradient(112.67deg, #964afd, #487afd);
+  width: 1280px;
+  height: 832px;
+}
+.macbook-air-6-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray);
+  width: 1280px;
+  height: 104px;
+}
+.image-1-icon {
+  position: absolute;
+  top: 25px;
+  left: 38px;
+  width: 51px;
+  height: 51px;
+  object-fit: cover;
+}
+.gradegenius {
+  position: absolute;
+  top: 35px;
+  left: 115px;
+}
+.image-2-icon,
+.image-3-icon {
+  position: absolute;
+  object-fit: cover;
+}
+.image-2-icon {
+  top: 28px;
+  left: 1095px;
+  border-radius: var(--br-351xl);
+  width: 51px;
+  height: 52px;
+}
+.image-3-icon {
+  top: 36px;
+  left: 1214px;
+  width: 31px;
+  height: 31px;
+}
+.macbook-air-6-inner,
+.polygon-icon,
+.rectangle-div {
+  position: absolute;
+  top: 49px;
+  left: 1162.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.polygon-icon,
+.rectangle-div {
+  top: 795px;
+  left: 1178.8px;
+}
+.rectangle-div {
+  top: 178px;
+  left: 299px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  box-shadow: 12px 12px 9px 1px rgba(0, 0, 0, 0.13);
+  width: 959px;
+  height: 583px;
+}
+.crear-asignatura {
+  position: absolute;
+  top: 197px;
+  left: 405px;
+  font-size: var(--font-size-41xl);
+  text-decoration: underline;
+  display: inline-block;
+  color: var(--color-black);
+  text-align: center;
+  width: 772px;
+  height: 92px;
+}
+.frame-div {
+  position: absolute;
+  top: 412px;
+  left: 314px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.line-div {
+  position: absolute;
+  top: 311.5px;
+  left: 365.5px;
+  border-top: 3px solid var(--color-black);
+  box-sizing: border-box;
+  width: 851px;
+  height: 3px;
+}
+.macbook-air-6-child1 {
+  position: absolute;
+  height: 7.45%;
+  width: 20.94%;
+  top: 19.95%;
+  right: 79.06%;
+  bottom: 72.6%;
+  left: 0;
+  background-color: var(--color-gray-300);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.codigo-de-la {
+  position: absolute;
+  height: 15.45%;
+  width: 14.93%;
+  top: 0;
+  left: 3.1%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-44-child {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.43%;
+  top: 0;
+  right: 51.55%;
+  bottom: 83.15%;
+  left: 20.02%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-44-child:hover {
+  border: 1px solid #f90c0c;
+  box-sizing: border-box;
+}
+.crditos-de-la {
+  position: absolute;
+  height: 15.45%;
+  width: 15.82%;
+  top: 0;
+  left: 53.76%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-44-item {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.43%;
+  top: 0;
+  right: 0;
+  bottom: 83.15%;
+  left: 71.57%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-44-item:hover {
+  border: 1px solid #f50a0a;
+  box-sizing: border-box;
+}
+.carrera-a-la,
+.nombre-de-la {
+  position: absolute;
+  height: 15.45%;
+  width: 17.26%;
+  top: 29.21%;
+  left: 52.32%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.nombre-de-la {
+  width: 17.92%;
+  left: 0;
+}
+.component-44-inner {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.43%;
+  top: 29.21%;
+  right: 51.66%;
+  bottom: 53.93%;
+  left: 19.91%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-44-inner:hover {
+  border: 1px solid var(--color-red-300);
+  box-sizing: border-box;
+}
+.asignatura-visible,
+.tipo-de-asignatura {
+  position: absolute;
+  height: 15.45%;
+  width: 17.92%;
+  top: 58.43%;
+  left: 0;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.asignatura-visible {
+  width: 17.26%;
+  top: 56.18%;
+  left: 52.32%;
+}
+.component-26-child {
+  cursor: pointer;
+  border: 2px solid var(--color-black);
+  padding: 0;
+  background-color: var(--color-lawngreen);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 25px;
+  padding-left: 50px;
+  text-align: center;
+}
+.component-26-child:hover {
+  border: 2px solid #e70909;
+  box-sizing: border-box;
+}
+.disquete-1-icon {
+  position: absolute;
+  height: 72.41%;
+  width: 21.21%;
+  top: 13.79%;
+  right: 69.7%;
+  bottom: 13.79%;
+  left: 9.09%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-26,
+.component-27-child {
+  position: absolute;
+  height: 16.29%;
+  width: 21.9%;
+  top: 83.71%;
+  right: 54.76%;
+  bottom: 0;
+  left: 23.34%;
+}
+.component-27-child {
+  cursor: pointer;
+  border: 2px solid var(--color-black);
+  padding: 0;
+  background-color: var(--color-red-700);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 25px;
+  padding-left: 50px;
+  text-align: center;
+}
+.component-27-child:hover {
+  border: 2px solid var(--color-red-500);
+  box-sizing: border-box;
+}
+.component-27,
+.component-50-child {
+  position: absolute;
+  height: 16.29%;
+  width: 21.9%;
+  top: 83.71%;
+  right: 19.91%;
+  bottom: 0;
+  left: 58.19%;
+}
+.component-50-child {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-50-child:hover {
+  border: 1px solid #f90c0c;
+  box-sizing: border-box;
+}
+.component-50-item {
+  position: absolute;
+  height: 26.25%;
+  width: 8.09%;
+  top: 38.75%;
+  right: 4.13%;
+  bottom: 35%;
+  left: 87.79%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.component-50,
+.component-51,
+.component-52 {
+  position: absolute;
+  height: 16.85%;
+  width: 28.43%;
+  top: 58.43%;
+  right: 51.55%;
+  bottom: 24.72%;
+  left: 20.02%;
+}
+.component-51,
+.component-52 {
+  top: 56.18%;
+  right: 0;
+  bottom: 26.97%;
+  left: 71.57%;
+}
+.component-52 {
+  top: 29.21%;
+  bottom: 53.93%;
+}
+.component-44 {
+  position: absolute;
+  top: 352px;
+  left: 321px;
+  width: 904px;
+  height: 356px;
+}
+.component-18-child,
+.component-18-item {
+  position: absolute;
+  right: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.component-18-child {
+  margin: 0;
+  height: 100%;
+  width: 96.75%;
+  top: 0;
+  bottom: 0;
+  left: 3.25%;
+  background-color: var(--color-gray-200);
+}
+.component-18-item {
+  height: 8.65%;
+  width: 100%;
+  top: 17.03%;
+  bottom: 74.31%;
+  left: 0;
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.manejo-de-asignaturas {
+  position: absolute;
+  top: 31.15%;
+  left: 31.05%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.libros-3-icon {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 21.31%;
+  right: 72.92%;
+  bottom: 19.67%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-5-child {
+  position: absolute;
+  height: 103.28%;
+  width: 100%;
+  top: -1.64%;
+  right: 0;
+  bottom: -1.64%;
+  left: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.component-5,
+.component-6 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 8.52%;
+  right: 0;
+  bottom: 83.1%;
+  left: 0;
+}
+.component-31:hover,
+.component-5:hover,
+.component-6:hover,
+.component-7:hover,
+.component-8:hover {
+  border: 2px solid var(--color-fuchsia-100);
+  box-sizing: border-box;
+}
+.component-6 {
+  top: 17.17%;
+  bottom: 74.45%;
+}
+.capitulo-2-icon {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 22.95%;
+  right: 72.92%;
+  bottom: 18.03%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-7 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 25.69%;
+  right: 0;
+  bottom: 65.93%;
+  left: 0;
+}
+.inicio {
+  position: absolute;
+  top: 31.15%;
+  left: 45.49%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.component-31,
+.component-8 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 91.62%;
+  left: 0;
+}
+.component-31 {
+  top: 91.62%;
+  bottom: 0;
+}
+.component-18 {
+  position: absolute;
+  top: 104px;
+  left: -9px;
+  width: 277px;
+  height: 728px;
+}
+.macbook-air-6 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}

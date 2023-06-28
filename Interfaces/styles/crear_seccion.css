@@ -1,0 +1,592 @@
+.macbook-air-8-child {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  background: linear-gradient(112.67deg, #964afd, #487afd);
+  width: 1280px;
+  height: 832px;
+}
+.macbook-air-8-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray);
+  width: 1280px;
+  height: 104px;
+}
+.image-1-icon3 {
+  position: absolute;
+  top: 25px;
+  left: 38px;
+  width: 51px;
+  height: 51px;
+  object-fit: cover;
+}
+.gradegenius3 {
+  position: absolute;
+  top: 35px;
+  left: 115px;
+}
+.image-2-icon3,
+.image-3-icon3 {
+  position: absolute;
+  object-fit: cover;
+}
+.image-2-icon3 {
+  top: 28px;
+  left: 1095px;
+  border-radius: var(--br-351xl);
+  width: 51px;
+  height: 52px;
+}
+.image-3-icon3 {
+  top: 36px;
+  left: 1214px;
+  width: 31px;
+  height: 31px;
+}
+.macbook-air-8-child1,
+.macbook-air-8-inner {
+  position: absolute;
+  top: 49px;
+  left: 1162.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.macbook-air-8-child1 {
+  top: 795px;
+  left: 1178.8px;
+}
+.macbook-air-8-child2 {
+  position: absolute;
+  top: 178px;
+  left: 299px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  box-shadow: 12px 12px 9px 1px rgba(0, 0, 0, 0.13);
+  width: 959px;
+  height: 583px;
+}
+.crear-seccin {
+  position: absolute;
+  top: 197px;
+  left: 405px;
+  font-size: var(--font-size-41xl);
+  text-decoration: underline;
+  display: inline-block;
+  color: var(--color-black);
+  text-align: center;
+  width: 772px;
+  height: 92px;
+}
+.macbook-air-8-child3 {
+  position: absolute;
+  top: 412px;
+  left: 314px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.macbook-air-8-child4 {
+  position: absolute;
+  top: 311.5px;
+  left: 365.5px;
+  border-top: 3px solid var(--color-black);
+  box-sizing: border-box;
+  width: 851px;
+  height: 3px;
+}
+.component-20-child,
+.component-20-item,
+.macbook-air-8-child5 {
+  position: absolute;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.macbook-air-8-child5 {
+  height: 7.45%;
+  width: 20.94%;
+  top: 34.98%;
+  right: 79.06%;
+  bottom: 57.57%;
+  left: 0;
+  background-color: var(--color-gray-300);
+}
+.component-20-child,
+.component-20-item {
+  right: 0;
+}
+.component-20-child {
+  margin: 0;
+  height: 100%;
+  width: 96.75%;
+  top: 0;
+  bottom: 0;
+  left: 3.25%;
+  background-color: var(--color-gray-200);
+}
+.component-20-item {
+  height: 8.65%;
+  width: 100%;
+  top: 17.03%;
+  bottom: 74.31%;
+  left: 0;
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.manejo-de-asignaturas3 {
+  position: absolute;
+  top: 31.15%;
+  left: 31.05%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.libros-3-icon3 {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 21.31%;
+  right: 72.92%;
+  bottom: 19.67%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-5-child1 {
+  position: absolute;
+  height: 103.28%;
+  width: 100%;
+  top: -1.64%;
+  right: 0;
+  bottom: -1.64%;
+  left: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.component-53,
+.component-63 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 8.52%;
+  right: 0;
+  bottom: 83.1%;
+  left: 0;
+}
+.component-313:hover,
+.component-53:hover,
+.component-63:hover,
+.component-73:hover,
+.component-83:hover {
+  border: 2px solid var(--color-fuchsia-100);
+  box-sizing: border-box;
+}
+.component-63 {
+  top: 17.17%;
+  bottom: 74.45%;
+}
+.capitulo-2-icon3 {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 22.95%;
+  right: 72.92%;
+  bottom: 18.03%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-73 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 25.69%;
+  right: 0;
+  bottom: 65.93%;
+  left: 0;
+}
+.inicio3 {
+  position: absolute;
+  top: 31.15%;
+  left: 45.49%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.component-313,
+.component-83 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 91.62%;
+  left: 0;
+}
+.component-313 {
+  top: 91.62%;
+  bottom: 0;
+}
+.component-20,
+.hora-de-inicio {
+  position: absolute;
+  top: 105px;
+  left: -9px;
+  width: 277px;
+  height: 728px;
+}
+.hora-de-inicio {
+  height: 8.71%;
+  width: 17.3%;
+  top: 34.27%;
+  left: 0;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-46-child {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.57%;
+  top: 29.21%;
+  right: 52.01%;
+  bottom: 53.93%;
+  left: 19.42%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-46-child:hover {
+  border: 1px solid #f71414;
+  box-sizing: border-box;
+}
+.component-46-item {
+  position: absolute;
+  height: 4.42%;
+  width: 2.32%;
+  top: 36.31%;
+  right: 53.75%;
+  bottom: 59.27%;
+  left: 43.93%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.hora-de-fin {
+  position: absolute;
+  height: 8.43%;
+  width: 17.3%;
+  top: 60.39%;
+  left: 0;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-46-inner {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.57%;
+  top: 56.18%;
+  right: 52.01%;
+  bottom: 26.97%;
+  left: 19.42%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-46-inner:hover {
+  border: 1px solid #f00808;
+  box-sizing: border-box;
+}
+.component-46-child1 {
+  position: absolute;
+  height: 4.42%;
+  width: 2.32%;
+  top: 63.27%;
+  right: 53.75%;
+  bottom: 32.3%;
+  left: 43.93%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.modalidad {
+  position: absolute;
+  height: 8.43%;
+  width: 17.3%;
+  top: 60.39%;
+  left: 52.01%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-46-child2 {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.57%;
+  top: 56.18%;
+  right: 0;
+  bottom: 26.97%;
+  left: 71.43%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-46-child2:hover {
+  border: 1px solid var(--color-red-600);
+  box-sizing: border-box;
+}
+.component-46-child3 {
+  position: absolute;
+  height: 4.42%;
+  width: 2.32%;
+  top: 63.27%;
+  right: 1.74%;
+  bottom: 32.3%;
+  left: 95.94%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.asignatura {
+  position: absolute;
+  height: 15.45%;
+  width: 15.07%;
+  top: 4.49%;
+  left: 1.79%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-46-child4 {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.68%;
+  top: 0;
+  right: 52.01%;
+  bottom: 83.15%;
+  left: 19.31%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-46-child4:hover {
+  border: 1px solid #fb0909;
+  box-sizing: border-box;
+}
+.component-46-child5 {
+  position: absolute;
+  height: 4.42%;
+  width: 2.32%;
+  top: 6.53%;
+  right: 53.86%;
+  bottom: 89.04%;
+  left: 43.82%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.docente {
+  position: absolute;
+  height: 10.67%;
+  width: 11.5%;
+  top: 3.65%;
+  left: 57.81%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-46-child6 {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.68%;
+  top: 0;
+  right: 0;
+  bottom: 83.15%;
+  left: 71.32%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-46-child6:hover {
+  border: 1px solid var(--color-red-400);
+  box-sizing: border-box;
+}
+.nmero-de-seccin {
+  position: absolute;
+  height: 15.45%;
+  width: 18.08%;
+  top: 29.21%;
+  left: 51.23%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.component-46-child7 {
+  border: 1px solid var(--color-black);
+  background-color: var(--color-silver);
+  position: absolute;
+  height: 16.85%;
+  width: 28.68%;
+  top: 29.21%;
+  right: 0;
+  bottom: 53.93%;
+  left: 71.32%;
+  border-radius: var(--br-xl);
+  box-sizing: border-box;
+}
+.component-46-child7:hover {
+  border: 1px solid #f70a0a;
+  box-sizing: border-box;
+}
+.component-46-child8 {
+  position: absolute;
+  height: 4.42%;
+  width: 2.42%;
+  top: 6.53%;
+  right: 1.86%;
+  bottom: 89.04%;
+  left: 95.72%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.component-32-child {
+  cursor: pointer;
+  border: 2px solid var(--color-black);
+  padding: 0;
+  background-color: var(--color-lawngreen);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 28px;
+  padding-left: 50px;
+  text-align: center;
+}
+.component-32-child:hover {
+  border: 2px solid #ff0a0a;
+  box-sizing: border-box;
+}
+.disquete-1-icon1 {
+  position: absolute;
+  height: 72.41%;
+  width: 21.21%;
+  top: 13.79%;
+  right: 69.7%;
+  bottom: 13.79%;
+  left: 9.09%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-32,
+.component-33-child {
+  position: absolute;
+  height: 16.29%;
+  width: 22.1%;
+  top: 83.71%;
+  right: 55.25%;
+  bottom: 0;
+  left: 22.66%;
+}
+.component-33-child {
+  cursor: pointer;
+  border: 2px solid var(--color-black);
+  padding: 0;
+  background-color: var(--color-red-700);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  border-radius: var(--br-3xs);
+  box-sizing: border-box;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 28px;
+  padding-left: 50px;
+  text-align: center;
+}
+.component-33-child:hover {
+  border: 2px solid #f31212;
+  box-sizing: border-box;
+}
+.component-33 {
+  position: absolute;
+  height: 16.29%;
+  width: 22.1%;
+  top: 83.71%;
+  right: 20.09%;
+  bottom: 0;
+  left: 57.81%;
+}
+.component-46 {
+  position: absolute;
+  top: 348px;
+  left: 326px;
+  width: 896px;
+  height: 356px;
+}
+.macbook-air-8 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
