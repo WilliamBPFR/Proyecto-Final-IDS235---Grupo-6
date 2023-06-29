@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
+    <script src="../script/navegacion_admin.js"> </script>
   </head>
   <body>
     <div class="macbook-air-1">
@@ -23,7 +24,7 @@
         Ingresa tus datos en los siguientes formularios
       </div>
       <b class="bienvenido">Bienvenido</b>
-      <form class="component-2" method="post" action="/inicio-sesion">
+      <form class="component-2" method="post" action="/iniciar-sesion">
         <label class="matrcula" htmlfor="matricula">Matrícula:</label>
         <input
           class="component-2-child"
@@ -33,6 +34,7 @@
           minlength
           required
           id="matricula"
+          name="matricula"
         />
 
         <label class="contrasea1" htmlfor="password">Contraseña:</label>
@@ -43,6 +45,7 @@
           maxlength
           minlength
           id="password"
+          name="password"
         />
 
         <button class="component-2-inner" id="boton">Iniciar Sesión</button>

@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
     console.log(req.method + ' : ' + req.url)
     next()
-  });
+});
 
 //Abriendo la Pantalla por Defecto
 app.listen(process.env.PORT,()=>{
@@ -32,9 +32,27 @@ app.get('/',(req,res)=>{
     res.redirect('/iniciar_sesion.html');
 });
 
-app.post('/iniciar_sesion',(req,res)=>{
-    const password = '123456789';
-    const hash = crypto.createHash('sha512').update(password).digest('hex');
+app.post('/iniciar-sesion',(req,res,next)=>{
+    const password_introducida = req.body.password;
+    const password_encriptada = crypto.createHash('sha256').update(password_introducida).digest('hex');    
 
-    console.log(hash);
+    const {correo,contrasena} = req.body;
+    prisma.credenciales_Usuario.findUnique({
+        where:{
+            :
+        }
+    }).then((usuario)=>{
+        if(usuario){
+            if(usuario.contrasena == contrasena){
+                res.redirect('/inicio.html');
+            }else{
+                res.redirect('/iniciar_sesion.html');
+            }
+        }else{
+            res.redirect('/iniciar_sesion.html');
+        }
+    }).catch((error)=>{
+        console.log(error);
+        res.redirect('/iniciar_sesion.html');
+    });
 });
