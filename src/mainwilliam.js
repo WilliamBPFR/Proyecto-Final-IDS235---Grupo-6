@@ -8,6 +8,8 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 dotenv.config();
 
+//variables globales
+var USUARIO_LOGUEADO = null;
 //Creando el Servidor
 const app = express();
 
@@ -32,16 +34,37 @@ app.get('/',(req,res)=>{
     res.redirect('/iniciar_sesion.html');
 });
 
-app.post('/iniciar-sesion',(req,res,next)=>{
+app.post('/iniciar-sesion', async (req,res,next)=>{
     const password_introducida = req.body.password;
-    const password_encriptada = crypto.createHash('sha256').update(password_introducida).digest('hex');    
-    
-    try{
-    prisma.usuario.findUnique({
-        where:{matricula:req.body.matricula},
-        include:{Credenciales_Usuario:true}
-    });
-    }catch(error){
-        console.log(error);
+    const password_encriptada = crypto.createHash('sha256').update(password_introducida).digest('hex');
+    //const password_encriptada = crypto.createHash('sha256').update(password_introducida).digest('hex');
+    var text = req.body.matricula;
+    if(text.length === 7 && isNaN(text) === false){
+        try{
+            const usuario = await prisma.usuario.findFirst({
+            where:{matricula:parseInt(req.body.matricula)},
+            include:{Credenciales_Usuario:true}
+        });
+        // console.log(usuario.Credenciales_Usuario);
+        // console.log(usuario.Credenciales_Usuario.hash_contrasena);
+        if(usuario){
+            if(usuario.Credenciales_Usuario[0].hash_contrasena === password_encriptada){
+                USUARIO_LOGUEADO = usuario;
+                res.redirect('/home_admin.html');
+            }else{
+                res.redirect('/iniciar_sesion.html?error=0'); // Redirige con el parámetro de error
+            }
+        }else{
+            res.redirect('/iniciar_sesion.html?error=1'); // Redirige con el parámetro de error
+        }
+        }catch(error){
+        }
+    }else{
+        res.redirect('/iniciar_sesion.html?error=2'); // Redirige con el parámetro de error
+
     }
+});
+
+app.get('/prueba',(req,res)=>{
+    console.log(USUARIO_LOGUEADO);
 });

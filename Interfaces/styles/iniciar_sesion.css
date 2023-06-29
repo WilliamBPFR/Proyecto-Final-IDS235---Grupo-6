@@ -24,6 +24,20 @@
   width: 471px;
   height: 866px;
 }
+
+.erroneoiniciodiv {
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 7%;
+  border-radius: 17px;
+  background: linear-gradient(to right, #A02D2D, #D41D1D);
+}
 .image-1-icon8,
 .image-17-icon {
   position: absolute;
@@ -105,6 +119,16 @@
   color: var(--color-white);
   text-align: left;
 }
+
+.errorinicio {
+  position: absolute;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+}
+
 .component-2-item {
   border: 0;
   background-color: var(--color-white);

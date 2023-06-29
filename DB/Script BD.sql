@@ -52,7 +52,8 @@ CREATE TABLE Asignatura(
 	id_tipo_asignatura int NOT NULL,
 	creditos int NOT NULL,
 	visible bit NOT NULL,
-	fecha_creacion datetime NOT NULL
+	fecha_creacion datetime NOT NULL,
+	id_carrera int NOT NULL
 );
 
 
@@ -170,8 +171,10 @@ ALTER TABLE Credenciales_Usuario ADD CONSTRAINT DF_credenciales_usuario_fecha_cr
 --Tabla Asignatura
 ALTER TABLE Asignatura ADD CONSTRAINT PK_asignatura PRIMARY KEY (id_asignatura);
 ALTER TABLE Asignatura ADD CONSTRAINT FK_asignatura_id_tipo_asignatura FOREIGN KEY (id_tipo_asignatura) REFERENCES Tipos_Asignatura(id_tipo_asignatura);
+ALTER TABLE Asignatura ADD CONSTRAINT FK_asignatura_id_carrera FOREIGN KEY (id_carrera) REFERENCES Carreras(id_carrera);
 ALTER TABLE Asignatura ADD CONSTRAINT DF_asignatura_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 ALTER TABLE Asignatura ADD CONSTRAINT UQ_asignatura_cod_asignatura UNIQUE (cod_asignatura);
+
 
 --Tabla Seccion
 ALTER TABLE Seccion ADD CONSTRAINT PK_seccion PRIMARY KEY (id_seccion);

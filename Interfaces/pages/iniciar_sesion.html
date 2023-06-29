@@ -13,6 +13,9 @@
   </head>
   <body>
     <div class="macbook-air-1">
+      <div class="erroneoiniciodiv" id="errorDiv" style="display: none;">
+      <label class="errorinicio" htmlfor="password" id="errorMSG">Acceso inválido. Por favor, inténtelo otra vez</label>
+      </div>
       <div class="macbook-air-1-child"></div>
       <img class="image-17-icon" alt="" src="../public/image-17@2x.png" />
 
@@ -46,10 +49,12 @@
           minlength
           id="password"
           name="password"
+          required
         />
 
         <button class="component-2-inner" id="boton">Iniciar Sesión</button>
-      </form>
+      </form> 
     </div>
+    <script src="../script/initsec.js"></script>
   </body>
 </html>
