@@ -29,5 +29,14 @@ app.listen(process.env.PORT,()=>{
 });
 
 app.get('/',(req,res)=>{
-    res.redirect('/iniciar_sesion.html');
+    res.redirect('/crear_seccion.html');
+});
+
+app.post('/crear_seccion', async(req,res, next)=>{
+    const asignatura = req.body.sel_cb_Asignatura;
+    const hora_inicio = req.body.sel_cb_Hora_Inicio;
+    const hora_fin = req.body.sel_cb_Hora_Fin;
+    const docente = req.body.sel_cb_Docente;
+    const num_seccion = req.body.txt_Num_Seccion;
+    const modalidad = req.body.sel_cb_Modalidad;
 });
