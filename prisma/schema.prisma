@@ -15,6 +15,8 @@ model Asignatura {
   creditos                  Int
   visible                   Boolean
   fecha_creacion            DateTime                    @default(now(), map: "DF_asignatura_fecha_creacion") @db.DateTime
+  id_carrera                Int?
+  Carreras                  Carreras?                   @relation(fields: [id_carrera], references: [id_carrera], onDelete: NoAction, onUpdate: NoAction, map: "FK__Asignatur__id_ca__6EF57B66")
   Tipos_Asignatura          Tipos_Asignatura            @relation(fields: [id_tipo_asignatura], references: [id_tipo_asignatura], onUpdate: NoAction, map: "FK_asignatura_id_tipo_asignatura")
   Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
   Seccion                   Seccion[]
@@ -35,9 +37,10 @@ model Asignaturas_Seleccionadas {
 }
 
 model Carreras {
-  id_carrera     Int       @id(map: "PK_carreras") @default(autoincrement())
-  nombre_carrera String    @db.NVarChar(200)
-  fecha_creacion DateTime  @default(now(), map: "DF_carreras_fecha_creacion") @db.DateTime
+  id_carrera     Int          @id(map: "PK_carreras") @default(autoincrement())
+  nombre_carrera String       @db.NVarChar(200)
+  fecha_creacion DateTime     @default(now(), map: "DF_carreras_fecha_creacion") @db.DateTime
+  Asignatura     Asignatura[]
   Usuario        Usuario[]
 }
 

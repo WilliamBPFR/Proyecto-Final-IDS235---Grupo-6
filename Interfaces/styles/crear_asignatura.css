@@ -133,9 +133,11 @@
   left: 20.02%;
   border-radius: var(--br-xl);
   box-sizing: border-box;
+  padding-left: 20px;
+  font-size: 20px;
 }
 .component-44-child:hover {
-  border: 1px solid #f90c0c;
+  border: 2px solid #f90c0c;
   box-sizing: border-box;
 }
 .crditos-de-la {
@@ -162,9 +164,11 @@
   left: 71.57%;
   border-radius: var(--br-xl);
   box-sizing: border-box;
+  padding-left: 20px;
+  font-size: 20px;
 }
 .component-44-item:hover {
-  border: 1px solid #f50a0a;
+  border: 2px solid #f50a0a;
   box-sizing: border-box;
 }
 .carrera-a-la,
@@ -196,9 +200,11 @@
   left: 19.91%;
   border-radius: var(--br-xl);
   box-sizing: border-box;
+  padding-left: 20px;
+  font-size: 20px;
 }
 .component-44-inner:hover {
-  border: 1px solid var(--color-red-300);
+  border: 2px solid var(--color-red-300);
   box-sizing: border-box;
 }
 .asignatura-visible,
@@ -295,6 +301,8 @@
   right: 19.91%;
   bottom: 0;
   left: 58.19%;
+  padding-left: 20px;
+  font-size: 20px;
 }
 .component-50-child {
   border: 1px solid var(--color-black);
@@ -308,7 +316,7 @@
   box-sizing: border-box;
 }
 .component-50-child:hover {
-  border: 1px solid #f90c0c;
+  border: 2px solid #f90c0c;
   box-sizing: border-box;
 }
 .component-50-item {

@@ -29,34 +29,51 @@ app.listen(process.env.PORT,()=>{
 });
 
 app.get('/',(req,res)=>{
-    res.redirect('/crear_asignatura.html');
+    res.redirect('/ver_asignaturas.html');
 });
 
 app.post('/crear-asignatura',async (req,res,next)=>{
     const codigo_asignatura = req.body.txt_Cod_Asignatura;
     const creditos_asignatura = req.body.txt_Creditos_Asignatura;
-    const carrera_asignatura = req.body.sel_Carrera_Pertenece;
+    const carrera_asignatura = req.body.sel_Carrera_Pertenence;
     const nombre_asignatura = req.body.txt_Nombre_Asignatura;
     const tipo_asignatura = req.body.sel_Asignatura_Tipo;
-    const asignatura_visible = req.body.sel_Asignatura_Visible;
+    const asignatura_visible = req.body.sel_Asignatura_Visible==='1' ? true : false;
 
     try{
-        const new_state = await prisma.asignatura.create({
+        const asignatura = await prisma.asignatura.findFirst({where:{cod_asignatura:codigo_asignatura}});
+        if(asignatura.lenght === 0){
+        const new_asignatura = await prisma.asignatura.create({
             data:
             {                    
-                codigo_asignatura:cod_asignatura,                    
-                creditos_asignatura:creditos,
-                carrera_asignatura:carrera,
-                nombre_asignatura:nombre_asignacion,
-                tipo_asignatura:id_tipo_asignatura,
-                asignatura_visible:visible
+                cod_asignatura: codigo_asignatura,
+                creditos: parseInt(creditos_asignatura),
+                id_carrera: parseInt(carrera_asignatura),
+                nombre_asignacion: nombre_asignatura,
+                id_tipo_asignatura: parseInt(tipo_asignatura),
+                visible: asignatura_visible
             }
         });
-        const estados = await prisma.estado.findMany();
-        console.log(estados);
+        const asignaturas = await prisma.asignatura.findMany();
+        console.log(asignaturas);
         res.send('Asignatura creada exitosamente');
+    }else{
+        res.send('Asignatura Con Código Ya Existente');
+    }
     }catch(error){
         console.log(error);
         res.status(500).send('Ocurrió un error al crear la asignatura');
     }
+});
+
+app.get('/cargar_crear_asignatura',async (req,res)=>{
+    const carreras = await prisma.carreras.findMany();
+    const tipos_asignatura = await prisma.tipos_Asignatura.findMany();
+    res.send(`
+    <script>
+      localStorage.setItem('carreras', JSON.stringify(${JSON.stringify(carreras)}));
+      localStorage.setItem('tipoasignatura', JSON.stringify(${JSON.stringify(tipos_asignatura)}));
+      window.location.href = '/crear_asignatura.html';
+    </script>
+    `);
 });

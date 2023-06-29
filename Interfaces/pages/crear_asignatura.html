@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/crear_asignatura.css" />
     <link
@@ -93,10 +94,10 @@
         </div>
 
         <div class="component-50">
-          <select class="component-50-child" type="text" name="sel_Asignatura_Tipo" required>
+          <select class="component-50-child" type="text" name="sel_Asignatura_Tipo" id="sel_Asignatura_Tipo" required>
             <option value="0">Seleccione</option>
             <option value="1">Virtual</option>
-          </select> />
+          </select>
 
           <img class="component-50-item" alt="" src="../public/polygon-8.svg" />
         </div>
@@ -104,16 +105,16 @@
           <select class="component-50-child" type="text" name="sel_Asignatura_Visible" required>
             <option value="0">Seleccione</option>
             <option value="1">Si</option>
-            <option value="2">No</option>
-          </select> />
+            <option value="0">No</option>
+          </select>
 
           <img class="component-50-item" alt="" src="../public/polygon-8.svg" />
         </div>
         <div class="component-52">
-          <select class="component-50-child" type="text" name="sel_Carrera_Pertenence" required>
+          <select class="component-50-child" type="text" name="sel_Carrera_Pertenence" id="sel_Carrera_Pertenence" required>
             <option value="0">Seleccione</option>
             <option value="1">Ingenieria de Sistemas</option>
-          </select> />
+          </select>
 
           <img class="component-50-item" alt="" src="../public/polygon-8.svg" />
         </div>
@@ -165,5 +166,6 @@
         </button>
       </div>
     </div>
+    <script src="../script/cargar_crear_asignatura..js"></script>
   </body>
 </html>
