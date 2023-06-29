@@ -79,71 +79,87 @@
       </div>
       <form class="component-46">
         <b class="hora-de-inicio">Hora de Inicio</b>
-        <input
+        <select
           class="component-46-child"
           type="text"
           maxlength
           minlength
           id="cb_Hora_Inicio"
-        />
+          required
+        ></select>
 
         <img class="component-46-item" alt="" src="../public/polygon-8.svg" />
 
         <b class="hora-de-fin">Hora de Fin</b>
-        <input
+        <select
           class="component-46-inner"
           type="text"
           maxlength
           minlength
           id="cb_Hora_Fin"
-        />
+          required
+        ></select>
 
         <img class="component-46-child1" alt="" src="../public/polygon-8.svg" />
 
         <b class="modalidad">Modalidad</b>
-        <input
+        <select
           class="component-46-child2"
           type="text"
           maxlength
           minlength
           id="cb_Modalidad"
-        />
+          required
+        ></select>
 
         <img class="component-46-child3" alt="" src="../public/polygon-8.svg" />
 
         <b class="asignatura">Asignatura</b>
-        <input
+        <select
           class="component-46-child4"
           type="text"
           maxlength
           minlength
           id="cb_Asignatura"
-        />
+          required
+        ></select>
 
         <img class="component-46-child5" alt="" src="../public/polygon-8.svg" />
 
         <b class="docente">Docente</b>
-        <input
+        <select
           class="component-46-child6"
           type="text"
           maxlength
           minlength
           id="cb_Docente"
-        />
+          required
+        ></select>
 
         <b class="nmero-de-seccin">Número de Sección</b>
         <input
           class="component-46-child7"
-          type="text"
-          maxlength
+          type="number"
+          min="1" step="1"
+          onkeydown="filtro()"
           minlength
           id="txt_Num_Seccion"
+          required
         />
+
+        <script>
+          function filtro()
+          {
+          var tecla = event.key;
+          if (['.','e','-','+'].includes(tecla))
+             event.preventDefault()
+          }
+        </script>
 
         <img class="component-46-child8" alt="" src="../public/polygon-9.svg" />
 
         <div class="component-32" id="div_Guardar">
-          <button class="component-32-child" id="btn_Guardar">Guardar</button>
+          <button class="component-32-child" id="btn_Guardar" type = "submit">Guardar</button>
           <img
             class="disquete-1-icon1"
             alt=""
@@ -151,7 +167,7 @@
           />
         </div>
         <div class="component-33" id="div_Cancelar">
-          <button class="component-33-child" id="btn_Cancelar">Cancelar</button>
+          <button class="component-33-child" id="btn_Cancelar" type="reset">Cancelar</button>
           <img
             class="disquete-1-icon1"
             alt=""
