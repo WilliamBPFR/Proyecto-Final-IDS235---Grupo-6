@@ -38,6 +38,6 @@ $(document).ready(function() {
         window.location.href = '/nav_admin?id=2';
       });
     $("#btn_Agregar_Usuario").click(function() {
-        window.location.href = '/crear_usuario.html';
+        window.location.href = '/cargar_crear_usuario';
     });
   });
