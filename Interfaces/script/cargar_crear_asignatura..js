@@ -3,7 +3,6 @@ $(document).ready(function() {
   console.log('La página se ha cargado completamente');
   var carrera = localStorage.getItem('carreras');
   var tipo_asignatura = localStorage.getItem('tipoasignatura');
-  
   if(carrera){
     var carreras = JSON.parse(carrera);
     var select = $("#sel_Carrera_Pertenence");

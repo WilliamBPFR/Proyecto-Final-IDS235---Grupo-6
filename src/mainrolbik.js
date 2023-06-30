@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const crypto = require('crypto');
 const { PrismaClient } = require('@prisma/client');
+const { isNull } = require('util');
 const prisma = new PrismaClient();
 dotenv.config();
 
@@ -42,7 +43,7 @@ app.post('/crear-asignatura',async (req,res,next)=>{
 
     try{
         const asignatura = await prisma.asignatura.findFirst({where:{cod_asignatura:codigo_asignatura}});
-        if(asignatura.lenght === 0){
+        if(isNull(asignatura)){
         const new_asignatura = await prisma.asignatura.create({
             data:
             {                    
