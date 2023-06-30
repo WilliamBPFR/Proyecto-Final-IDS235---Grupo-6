@@ -11,6 +11,35 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
     <script src="../script/navegacion_admin.js"> </script>
+    <script src="../script/ver_usuarios.js"> </script>
+    <style>
+      .tabla-container {
+        width: 97%;
+        height: 50%;
+        overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+        position: absolute;
+        top: 28%;
+        right: 2%;
+        border-radius: 20px;
+      }
+      table {
+        width: 100%;
+        position: absolute;
+        border-collapse: collapse;        
+
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <div class="macbook-air-10">
@@ -27,24 +56,19 @@
 
       <img class="macbook-air-10-child1" alt="" src="./../public/polygon-1.svg" />
 
-      <div class="macbook-air-10-child2"></div>
+      <div class="macbook-air-10-child2">
+        <div class="tabla-container">
+          <table id="tabla_usuario">
+            <tr>
+              <th>Matrícula o ID</th>
+              <th>Nombre</th>
+              <th>Tipo de Usuario</th>
+              <th>Estado</th>
+            </tr>
+          </table>
+        </div>
+      </div>
       <b class="usuarios-de-sistema">Usuarios de Sistema</b>
-      <div class="macbook-air-10-child3"></div>
-      <div class="macbook-air-10-child4"></div>
-      <div class="macbook-air-10-child5"></div>
-      <b class="id-o-matrcula1">ID o Matrícula</b>
-      <b class="nombre">Nombre</b>
-      <b class="tipo-de-usuario">Tipo de Usuario</b>
-      <b class="estado1">Estado</b>
-      <div class="macbook-air-10-child6"></div>
-      <div class="macbook-air-10-child7"></div>
-      <div class="macbook-air-10-child8"></div>
-      <div class="macbook-air-10-child9"></div>
-      <div class="macbook-air-10-child10"></div>
-      <div class="macbook-air-10-child11"></div>
-      <div class="macbook-air-10-child12"></div>
-      <div class="macbook-air-10-child13"></div>
-      <div class="macbook-air-10-child14"></div>
       <div class="frame-div"></div>
       <input
         class="macbook-air-10-child15"
@@ -57,15 +81,13 @@
 
       <b class="filtro">Filtro:</b>
       <div class="component-34" id="div_Agregar_Usuario">
-        <button class="component-34-child" id="btn_Agregar_Usuario"></button>
+        <button class="component-34-child" id="btn_Agregar_Usuario"> Agregar Usuario</button>
         <img
           class="boton-agregar-1-icon"
           alt=""
           src="./../public/botonagregar-1@2x.png"
         />
       </div>
-      <div class="macbook-air-10-child16"></div>
-      <div class="macbook-air-10-child17"></div>
       <div class="macbook-air-10-child18"></div>
       <div class="component-21">
         <nav class="component-21-child" id="nav_admin"></nav>
@@ -115,6 +137,5 @@
       </div>
       <img class="image-4-icon" alt="" src="./../public/image-4@2x.png" />
     </div>
-    <script src="./../script/agregar_usuario.js"></script>
   </body>
 </html>

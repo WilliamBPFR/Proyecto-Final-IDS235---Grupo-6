@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
     <script src="../script/navegacion_admin.js"> </script>
+    <script src="../script/cargar_crear_seccion.js"> </script>
   </head>
   <body>
     <div class="macbook-air-8">
@@ -78,7 +79,7 @@
           />
         </button>
       </div>
-      <form class="component-46">
+      <form class="component-46" method="post" id="component-46"action="/crear_seccion">
         <b class="hora-de-inicio">Hora de Inicio</b>
         <select
           class="component-46-child"
@@ -86,8 +87,25 @@
           maxlength
           minlength
           id="cb_Hora_Inicio"
+          name="cb_Hora_Inicio"
           required
-        ></select>
+        >
+          <option value="08">08 hrs (08 a.m.)</option>
+          <option value="09">09 hrs (09 a.m.)</option>
+          <option value="10">10 hrs (10 a.m.)</option>
+          <option value="11">11 hrs (11 a.m.)</option>
+          <option value="12">12 hrs (12 p.m.)</option>
+          <option value="13">13 hrs (01 p.m.)</option>
+          <option value="14">14 hrs (02 p.m.)</option>
+          <option value="15">15 hrs (03 p.m.)</option>
+          <option value="16">16 hrs (04 p.m.)</option>
+          <option value="17">17 hrs (05 p.m.)</option>
+          <option value="18">18 hrs (06 p.m.)</option>
+          <option value="19">19 hrs (07 p.m.)</option>
+          <option value="20">20 hrs (08 p.m.)</option>
+          <option value="21">21 hrs (09 p.m.)</option>
+          <option value="22">22 hrs (10 p.m.)</option>
+      </select>
 
         <img class="component-46-item" alt="" src="../public/polygon-8.svg" />
 
@@ -98,8 +116,25 @@
           maxlength
           minlength
           id="cb_Hora_Fin"
+          name="cb_Hora_Fin"
           required
-        ></select>
+        >
+        <option value="08">08 hrs (08 a.m.)</option>
+        <option value="09">09 hrs (09 a.m.)</option>
+        <option value="10">10 hrs (10 a.m.)</option>
+        <option value="11">11 hrs (11 a.m.)</option>
+        <option value="12">12 hrs (12 p.m.)</option>
+        <option value="13">13 hrs (01 p.m.)</option>
+        <option value="14">14 hrs (02 p.m.)</option>
+        <option value="15">15 hrs (03 p.m.)</option>
+        <option value="16">16 hrs (04 p.m.)</option>
+        <option value="17">17 hrs (05 p.m.)</option>
+        <option value="18">18 hrs (06 p.m.)</option>
+        <option value="19">19 hrs (07 p.m.)</option>
+        <option value="20">20 hrs (08 p.m.)</option>
+        <option value="21">21 hrs (09 p.m.)</option>
+        <option value="22">22 hrs (10 p.m.)</option>
+      </select>
 
         <img class="component-46-child1" alt="" src="../public/polygon-8.svg" />
 
@@ -110,6 +145,7 @@
           maxlength
           minlength
           id="cb_Modalidad"
+          name="cb_Modalidad"
           required
         ></select>
 
@@ -122,6 +158,7 @@
           maxlength
           minlength
           id="cb_Asignatura"
+          name="cb_Asignatura"
           required
         ></select>
 
@@ -134,6 +171,7 @@
           maxlength
           minlength
           id="cb_Docente"
+          name="cb_Docente"
           required
         ></select>
 
@@ -145,6 +183,7 @@
           onkeydown="filtro()"
           minlength
           id="txt_Num_Seccion"
+          name="txt_Num_Seccion"
           required
         />
 
@@ -176,6 +215,11 @@
           />
         </div>
       </form>
+      <div class="component-71" id="div_mensaje_error"style="display: none;">
+        <div class="component-71-child"></div>
+          <label class="matrcula-o-id" id="label_error"
+            >Matrícula o ID ya Existente</label>
+      </div>
     </div>
   </body>
 </html>

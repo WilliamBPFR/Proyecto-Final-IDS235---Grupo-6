@@ -540,6 +540,40 @@
   bottom: 0;
   left: 22.66%;
 }
+.component-71 {
+  position: absolute;
+  top: 118px;
+  left: 540px;
+  width: 520px;
+  height: 88px;
+  font-size: 31px;
+}
+.component-71-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  background: linear-gradient(
+    92.12deg,
+    rgba(235, 11, 11, 0.9),
+    rgba(211, 114, 0, 0.9)
+  );
+}
+.matrcula-o-id {
+  cursor: pointer;
+  position: absolute;
+  height: 61.36%;
+  width: 94.76%;
+  top: 21.59%;
+  left: 2.96%;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+}
 .component-33-child {
   cursor: pointer;
   border: 2px solid var(--color-black);

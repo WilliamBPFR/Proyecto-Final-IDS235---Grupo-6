@@ -25,6 +25,9 @@ $(document).ready(function() {
         select.append(option);
       });
   }
+  $("#bt_Cancelar").click(function() {
+    window.location.href = '/nav_admin?id=1';
+  });
   // Código jQuery adicional...
 });
 

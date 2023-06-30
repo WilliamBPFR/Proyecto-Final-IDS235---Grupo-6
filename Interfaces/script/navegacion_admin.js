@@ -7,22 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Agrega un controlador de eventos de clic a cada botón
   manejoAsignaturasBtn.addEventListener('click', function() {
-    window.location.href = 'ver_asignaturas.html';
+    window.location.href = 'nav_admin?id=1';
   });
 
   manejoUsuariosBtn.addEventListener('click', function() {
-    window.location.href = 'mac-book-air-10.html';
+    window.location.href = 'nav_admin?id=2';
   });
 
   manejoSeccionBtn.addEventListener('click', function() {
-    window.location.href = 'ver_secciones.html';
+    window.location.href = 'nav_admin?id=3';
   });
 
   inicioAdminBtn.addEventListener('click', function() {
-    window.location.href = '../pages/home_admin.html';
+    window.location.href = 'nav_admin?id=4';
   });
 
   btnConfiguracion.addEventListener('click', function() {
-    window.location.href = 'configuracion.html';
+    window.location.href = 'nav_admin?id=5';
   });
 });

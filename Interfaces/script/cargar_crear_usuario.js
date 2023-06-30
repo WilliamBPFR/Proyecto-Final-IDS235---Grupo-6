@@ -63,14 +63,8 @@ $(document).ready(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(response) {
-          // Procesar la respuesta exitosa, si es necesario
-          // ...
-  
-          // Borrar los campos del formulario, si es necesario
-          // ...
-  
-          // Mostrar el div de éxito, si es necesario
-          // ...
+          console.log(response);
+          window.location.href = '/nav_admin?id=2';
         },
         error: function(xhr, status, error) {
           var resp = parseInt(xhr.responseText);
@@ -100,6 +94,9 @@ $(document).ready(function() {
           }, 5000);
         }
       });
+    });
+    $("#btn_Cancelar").click(function() {
+      window.location.href = '/nav_admin?id=2';
     });
   });
   

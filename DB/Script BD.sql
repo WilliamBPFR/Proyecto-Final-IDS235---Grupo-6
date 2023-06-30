@@ -1,7 +1,8 @@
 -- Creando la Base de Datos
 USE master;
 
-
+DROP DATABASE IF EXISTS BD_App_Mi_Indice_Academico;
+GO
 CREATE DATABASE BD_App_Mi_Indice_Academico
 GO
 --Usando la Base de Datos
@@ -47,7 +48,7 @@ CREATE TABLE Rol(
 
 CREATE TABLE Asignatura(
 	id_asignatura int identity(1,1),
-	cod_asignatura nvarchar(6) NOT NULL,
+	cod_asignatura nvarchar(7) NOT NULL,
 	nombre_asignacion nvarchar(200) NOT NULL,
 	id_tipo_asignatura int NOT NULL,
 	creditos int NOT NULL,
@@ -63,6 +64,9 @@ CREATE TABLE Seccion(
 	id_modalidad int NOT NULL,
 	id_profesor int NOT NULL,
 	num_seccion int NOT NULL,
+	hora_inicio nvarchar(20) NOT NULL,
+	id_trimestre int,
+	hora_fin nvarchar(20) NOT NULL,
 	fecha_creacion datetime NOT NULL
 );
 
@@ -100,13 +104,19 @@ CREATE TABLE Asignaturas_Seleccionadas(
 	calificacion_num decimal(4,2) NOT NULL
 );
 
-
-CREATE TABLE Inicio_Fin_Trimestres(
+CREATE TABLE Trimestres(
 	id_trimestre int identity(1,1),
-	fecha_inicio datetime NOT NULL,
-	fecha_fin datetime NOT NULL,
 	id_tipo_trimestre int NOT NULL,
 	ano_trimestre nvarchar(6) NOT NULL,
+	activo bit NOT NULL,
+	fecha_creacion datetime NOT NULL
+);
+
+CREATE TABLE Inicio_Fin_Seleccion(
+	id_seleccion int identity(1,1),
+	fecha_inicio datetime NOT NULL,
+	fecha_fin datetime NOT NULL,
+	id_trimestre int NOT NULL,
 	fecha_creacion datetime NOT NULL
 );
 
@@ -151,6 +161,11 @@ ALTER TABLE Rol ADD CONSTRAINT DF_rol_fecha_creacion DEFAULT GETDATE() FOR fecha
 ALTER TABLE Tipo_Trimestres ADD CONSTRAINT PK_tipo_trimestres PRIMARY KEY (id_tipo_trimestre);
 ALTER TABLE Tipo_Trimestres ADD CONSTRAINT DF_tipo_trimestres_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 
+--Tabla Trimestres
+ALTER TABLE Trimestres ADD CONSTRAINT PK_trimestres PRIMARY KEY (id_trimestre);
+ALTER TABLE Trimestres ADD CONSTRAINT FK_trimestres_id_tipo_trimestre FOREIGN KEY (id_tipo_trimestre) REFERENCES Tipo_Trimestres(id_tipo_trimestre);
+ALTER TABLE Trimestres ADD CONSTRAINT DF_trimestres_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
+
 --Tabla Estado
 ALTER TABLE Estado ADD CONSTRAINT PK_estado PRIMARY KEY (id_estado);
 ALTER TABLE Estado ADD CONSTRAINT DF_estado_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
@@ -181,18 +196,74 @@ ALTER TABLE Seccion ADD CONSTRAINT PK_seccion PRIMARY KEY (id_seccion);
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_asignatura FOREIGN KEY (id_asignatura) REFERENCES Asignatura(id_asignatura);
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_modalidad FOREIGN KEY (id_modalidad) REFERENCES Modalidad(id_modalidad);
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_profesor FOREIGN KEY (id_profesor) REFERENCES Usuario(id_usuario);
+ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_trimestre FOREIGN KEY (id_trimestre) REFERENCES Trimestres(id_trimestre);
 ALTER TABLE Seccion ADD CONSTRAINT DF_seccion_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 ALTER TABLE Seccion ADD CONSTRAINT UQ_seccion_num_seccion UNIQUE (num_seccion);
 
---Tabla Inicio_Fin_Trimestres
-ALTER TABLE Inicio_Fin_Trimestres ADD CONSTRAINT PK_inicio_fin_trimestres PRIMARY KEY (id_trimestre);
-ALTER TABLE Inicio_Fin_Trimestres ADD CONSTRAINT FK_inicio_fin_trimestres_id_tipo_trimestre FOREIGN KEY (id_tipo_trimestre) REFERENCES Tipo_Trimestres(id_tipo_trimestre);
-ALTER TABLE Inicio_Fin_Trimestres ADD CONSTRAINT DF_inicio_fin_trimestres_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
+--Tabla Inicio_Fin_Seleccion
+ALTER TABLE Inicio_Fin_Seleccion ADD CONSTRAINT PK_inicio_fin_trimestres PRIMARY KEY (id_seleccion);
+ALTER TABLE Inicio_Fin_Seleccion ADD CONSTRAINT DF_inicio_fin_trimestres_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 
 --Tabla Asignaturas_Seleccionadas
 ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT PK_asignaturas_seleccionadas PRIMARY KEY (id_registro);
 ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT FK_asignaturas_seleccionadas_id_seccion FOREIGN KEY (id_seccion) REFERENCES Seccion(id_seccion);
 ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT FK_asignaturas_seleccionadas_id_asignatura FOREIGN KEY (id_asignatura) REFERENCES Asignatura(id_asignatura);
 ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT FK_asignaturas_seleccionadas_id_estudiante FOREIGN KEY (id_estudiante) REFERENCES Usuario(id_usuario);
-ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT FK_asignaturas_seleccionadas_id_trimestre FOREIGN KEY (id_trimestre) REFERENCES Inicio_Fin_Trimestres(id_trimestre);
+ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT FK_asignaturas_seleccionadas_id_trimestre FOREIGN KEY (id_trimestre) REFERENCES Trimestres(id_trimestre);
 ALTER TABLE Asignaturas_Seleccionadas ADD CONSTRAINT DF_asignaturas_seleccionadas_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
+
+
+
+GO
+
+
+--INSERTS INICIALES
+INSERT INTO Estado (nombre_estado) VALUES ('Activo'),('Inactivo');
+GO
+INSERT INTO Carreras (nombre_carrera) VALUES ('No Aplica');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería Civil'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Arquitectura'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Medicina'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Derecho'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Administración de Empresas'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Psicología'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Contabilidad'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Comunicación Social'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería de Sistemas'); 
+INSERT INTO Carreras (nombre_carrera) VALUES ('Enfermería');
+GO
+INSERT INTO Modalidad (nombre_modalidad) VALUES ('Presencial');
+INSERT INTO Modalidad (nombre_modalidad) VALUES ('Semipresencial');
+INSERT INTO Modalidad (nombre_modalidad) VALUES ('Virtual');
+
+INSERT INTO Rol (nombre_rol) VALUES ('Administrador'),('Profesor'),('Estudiante');
+GO
+INSERT INTO Tipo_Trimestres (nombre_trimestre) VALUES ('Febrero-Abril'),('Mayo-Julio'),('Agosto-Octubre'),('Noviembre-Enero');
+GO
+INSERT INTO Tipos_Asignatura(nombre_tipo_asignatura) VALUES ('Ingeniería'),('Lenguas'),('Física'),('Matemática'),('Investigación'),('Laboratorio');
+GO
+
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('MAT101', 'Cálculo I', 1, 4, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('FIS101', 'Física I', 1, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('INF101', 'Introducción a la Programación', 2, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('QUI101', 'Química General', 1, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('ADM101', 'Introducción a la Administración', 2, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('PSI101', 'Psicología General', 1, 3, 1, 1);
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('CON101', 'Contabilidad Básica', 2, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('COM101', 'Comunicación Oral y Escrita', 2, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('SIS101', 'Fundamentos de Sistemas de Información', 2, 3, 1, 1); 
+INSERT INTO Asignatura (cod_asignatura, nombre_asignacion, id_tipo_asignatura, creditos, visible, id_carrera) VALUES ('ENF101', 'Anatomía y Fisiología Humana', 1, 4, 1, 1);
+
+--USUARIO INICIAL
+INSERT INTO Usuario(nombre_usuario,id_rol,matricula,fecha_nac,id_estado,email,id_carrera_est,indice_acad_est) 
+	   VALUES ('USUARIO GENERAL DE LA APP', 1,9999999,'1990-01-01 00:00:00.000',1,'emailgenerico@gmail.com',1,4);
+GO
+
+INSERT INTO Credenciales_Usuario (id_usuario,hash_contrasena)
+	   VALUES (1,'15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225');
+GO
+
+INSERT INTO Trimestres (id_tipo_trimestre,ano_trimestre,activo) VALUES (1,'2023',1);
+GO;
+
+SELECT * FROM Usuario

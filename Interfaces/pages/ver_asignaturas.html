@@ -11,9 +11,41 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
     <script src="../script/navegacion_admin.js"> </script>
+    <script src="../script/ver_asignatura.js"> </script>
+    <style>
+      .tabla-container {
+        width: 97%;
+        height: 50%;
+        overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+        position: absolute;
+        top: 28%;
+        right: 2%;
+        border-radius: 20px;
+      }
+      table {
+        width: 100%;
+        position: absolute;
+        border-collapse: collapse;        
+
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
+
+    
     <div class="macbook-air-5">
+
       <div class="macbook-air-5-child"></div>
       <div class="macbook-air-5-item"></div>
       <img class="image-1-icon6" alt="" src="../public/image-1@2x.png" />
@@ -26,8 +58,22 @@
       <img class="macbook-air-5-inner" alt="" src="../public/polygon-1.svg" />
 
       <img class="macbook-air-5-child1" alt="" src="../public/polygon-1.svg" />
+      <div class="macbook-air-5-child2" id="div_principal">
+        <div class="tabla-container">
+          <table id="tabla_asignatura">
+            <tr>
+              <th>Código</th>
+              <th>Nombre Asignatura</th>
+              <th>Tipo</th>
+              <th>Créditos</th>
+              <th>Visibilidad</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <input class="macbook-air-5-child18" type="text" maxlength minlength />
 
-      <div class="macbook-air-5-child2" id="div_principal"></div>
+      <b class="filtro2">Filtro:</b>
       <div class="rectangle-parent" id="div_agregar_asignatura">
         <div class="instance-child"></div>
         <div class="component-23" id="div_btn_agregar">
@@ -46,31 +92,6 @@
         </div>
       </div>
       <b class="asignaturas-del-sistema">Asignaturas del Sistema</b>
-      <div class="macbook-air-5-child3"></div>
-      <div class="macbook-air-5-child4"></div>
-      <div class="macbook-air-5-child5"></div>
-      <b class="codigo">Codigo</b>
-      <b class="nombre-asignatura">Nombre Asignatura</b>
-      <b class="tipo">Tipo</b>
-      <b class="creditos">Creditos</b>
-      <b class="visible">Visible</b>
-      <div class="macbook-air-5-child6"></div>
-      <div class="macbook-air-5-child7"></div>
-      <div class="macbook-air-5-child8"></div>
-      <div class="macbook-air-5-child9"></div>
-      <div class="macbook-air-5-child10"></div>
-      <div class="macbook-air-5-child11"></div>
-      <div class="macbook-air-5-child12"></div>
-      <div class="macbook-air-5-child13"></div>
-      <div class="macbook-air-5-child14"></div>
-      <div class="macbook-air-5-child15"></div>
-      <div class="macbook-air-5-child16"></div>
-      <div class="macbook-air-5-child17"></div>
-      <input class="macbook-air-5-child18" type="text" maxlength minlength />
-
-      <b class="filtro2">Filtro:</b>
-      <div class="macbook-air-5-child19"></div>
-      <div class="macbook-air-5-child20"></div>
       <div class="component-10">
         <nav class="component-10-child" id="nav_admin"></nav>
         <div class="component-10-item"></div>

@@ -6,11 +6,42 @@
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/ver_secciones.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
     <script src="../script/navegacion_admin.js"> </script>
+    <script src="../script/crear_seccion.js"> </script>
+    <script src="../script/ver_secciones.js"></script>
+    <style>
+      .tabla-container {
+        width: 97%;
+        height: 59%;
+        overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+        position: absolute;
+        top: 28%;
+        right: 2%;
+        border-radius: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        position: absolute;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <div class="macbook-air-7">
@@ -27,25 +58,20 @@
 
       <img class="macbook-air-7-child1" alt="" src="../public/polygon-1.svg" />
 
-      <div class="macbook-air-7-child2"></div>
-      <b class="secciones-del-trimestre">Secciones del Trimestre</b>
-      <div class="macbook-air-7-child3"></div>
-      <div class="macbook-air-7-child4"></div>
-      <div class="macbook-air-7-child5"></div>
-      <b class="asignatura1">Asignatura</b>
-      <b class="num-de-seccin">Num. de Sección</b>
-      <b class="docente1">Docente</b>
-      <b class="horario">Horario</b>
-      <div class="macbook-air-7-child6"></div>
-      <div class="macbook-air-7-child7"></div>
-      <div class="macbook-air-7-child8"></div>
-      <div class="macbook-air-7-child9"></div>
-      <div class="macbook-air-7-child10"></div>
-      <div class="macbook-air-7-child11"></div>
-      <div class="macbook-air-7-child12"></div>
-      <div class="macbook-air-7-child13"></div>
-      <div class="macbook-air-7-child14"></div>
-      <div class="macbook-air-7-child15"></div>
+      <div class="macbook-air-7-child2">
+        <div class="tabla-container">
+          <table id="tabla-secciones">
+            <tr>
+              <th>Asignatura</th>
+              <th>Sección</th>
+              <th>Cantidad Estudiantes</th>
+              <th>Horario</th>
+              <th>Docente</th>
+              <th>Modalidad</th>
+            </tr>
+          </table>
+        </div>
+      </div>
       <input
         class="macbook-air-7-child16"
         type="text"
@@ -54,8 +80,7 @@
         minlength
         id="txt_Filtro"
       />
-
-      <b class="filtro1">Filtro:</b>
+      <b class="secciones-del-trimestre">Secciones del Trimestre</b>
       <div class="component-28" id="div_Agregar_Seccion">
         <button class="component-28-child" id="btn_Agregar_Seccion">Agregar Sección</button>
         <img
@@ -63,14 +88,10 @@
           alt=""
           src="../public/botonagregar-1@2x.png"
         />
-
       </div>
-      <img class="image-4-icon1" alt="" src="../public/image-4@2x.png" />
-
-      <div class="macbook-air-7-child17"></div>
-      <div class="macbook-air-7-child18"></div>
+      
       <div class="component-29" id="div_Cancelar">
-        <button class="component-29-child" id="btn_Cancelar"> Cancelar</button>
+        <button class="component-29-child" id="btn_Cancelar">Eliminar</button>
         <img class="eliminar-1-icon" alt="" src="../public/eliminar-1@2x.png" />
 
       </div>
@@ -121,6 +142,9 @@
           />
         </button>
       </div>
+    </div>
+    <div id="dialog_seccion_creada" title="Seccion Creada Exitosamente" style="display: none;">
+      <p style="font-weight: bold;">La Seccion ha sido creada exitosamente. Puede Verla en la Tabla</p>
     </div>
   </body>
 </html>

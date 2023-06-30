@@ -312,6 +312,9 @@
   width: 6px;
   height: 105px;
 }
+.custom-dialog_trimestre_cambiado {
+  background: linear-gradient(265.99deg, hsl(108, 100%, 57%), hsl(147, 85%, 100%));
+}
 .component-29-child,
 .macbook-air-7-child18 {
   position: absolute;

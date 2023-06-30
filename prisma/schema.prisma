@@ -9,31 +9,31 @@ datasource db {
 
 model Asignatura {
   id_asignatura             Int                         @id(map: "PK_asignatura") @default(autoincrement())
-  cod_asignatura            String                      @unique(map: "UQ_asignatura_cod_asignatura") @db.NVarChar(6)
+  cod_asignatura            String                      @unique(map: "UQ_asignatura_cod_asignatura") @db.NVarChar(7)
   nombre_asignacion         String                      @db.NVarChar(200)
   id_tipo_asignatura        Int
   creditos                  Int
   visible                   Boolean
   fecha_creacion            DateTime                    @default(now(), map: "DF_asignatura_fecha_creacion") @db.DateTime
-  id_carrera                Int?
-  Carreras                  Carreras?                   @relation(fields: [id_carrera], references: [id_carrera], onDelete: NoAction, onUpdate: NoAction, map: "FK__Asignatur__id_ca__6EF57B66")
+  id_carrera                Int
+  Carreras                  Carreras                    @relation(fields: [id_carrera], references: [id_carrera], onUpdate: NoAction, map: "FK__Asignatur__id_ca__6EF57B66")
   Tipos_Asignatura          Tipos_Asignatura            @relation(fields: [id_tipo_asignatura], references: [id_tipo_asignatura], onUpdate: NoAction, map: "FK_asignatura_id_tipo_asignatura")
   Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
   Seccion                   Seccion[]
 }
 
 model Asignaturas_Seleccionadas {
-  id_registro           Int                   @id(map: "PK_asignaturas_seleccionadas") @default(autoincrement())
+  id_registro           Int        @id(map: "PK_asignaturas_seleccionadas") @default(autoincrement())
   id_seccion            Int
   id_asignatura         Int
   id_estudiante         Int
   id_trimestre          Int
-  fecha_creacion        DateTime              @default(now(), map: "DF_asignaturas_seleccionadas_fecha_creacion") @db.DateTime
-  calificacion_num      Decimal               @db.Decimal(4, 2)
-  Asignatura            Asignatura            @relation(fields: [id_asignatura], references: [id_asignatura], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_asignatura")
-  Usuario               Usuario               @relation(fields: [id_estudiante], references: [id_usuario], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_estudiante")
-  Seccion               Seccion               @relation(fields: [id_seccion], references: [id_seccion], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_seccion")
-  Inicio_Fin_Trimestres Inicio_Fin_Trimestres @relation(fields: [id_trimestre], references: [id_trimestre], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_trimestre")
+  fecha_creacion        DateTime   @default(now(), map: "DF_asignaturas_seleccionadas_fecha_creacion") @db.DateTime
+  calificacion_num      Decimal    @db.Decimal(4, 2)
+  Asignatura            Asignatura @relation(fields: [id_asignatura], references: [id_asignatura], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_asignatura")
+  Usuario               Usuario    @relation(fields: [id_estudiante], references: [id_usuario], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_estudiante")
+  Seccion               Seccion    @relation(fields: [id_seccion], references: [id_seccion], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_seccion")
+  Inicio_Fin_Trimestres Trimestres @relation(fields: [id_trimestre], references: [id_trimestre], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_trimestre")
 }
 
 model Carreras {
@@ -57,17 +57,6 @@ model Estado {
   nombre_estado  String    @db.NVarChar(200)
   fecha_creacion DateTime  @default(now(), map: "DF_estado_fecha_creacion") @db.DateTime
   Usuario        Usuario[]
-}
-
-model Inicio_Fin_Trimestres {
-  id_trimestre              Int                         @id(map: "PK_inicio_fin_trimestres") @default(autoincrement())
-  fecha_inicio              DateTime                    @db.DateTime
-  fecha_fin                 DateTime                    @db.DateTime
-  id_tipo_trimestre         Int
-  ano_trimestre             String                      @db.NVarChar(6)
-  fecha_creacion            DateTime                    @default(now(), map: "DF_inicio_fin_trimestres_fecha_creacion") @db.DateTime
-  Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
-  Tipo_Trimestres           Tipo_Trimestres             @relation(fields: [id_tipo_trimestre], references: [id_tipo_trimestre], onUpdate: NoAction, map: "FK_inicio_fin_trimestres_id_tipo_trimestre")
 }
 
 model Modalidad {
@@ -98,18 +87,22 @@ model Seccion {
   id_modalidad              Int
   id_profesor               Int
   num_seccion               Int                         @unique(map: "UQ_seccion_num_seccion")
+  hora_inicio               String                      @db.NVarChar(20)
+  id_trimestre              Int?
+  hora_fin                  String                      @db.NVarChar(20)
   fecha_creacion            DateTime                    @default(now(), map: "DF_seccion_fecha_creacion") @db.DateTime
   Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
   Asignatura                Asignatura                  @relation(fields: [id_asignatura], references: [id_asignatura], onUpdate: NoAction, map: "FK_seccion_id_asignatura")
   Modalidad                 Modalidad                   @relation(fields: [id_modalidad], references: [id_modalidad], onUpdate: NoAction, map: "FK_seccion_id_modalidad")
   Usuario                   Usuario                     @relation(fields: [id_profesor], references: [id_usuario], onUpdate: NoAction, map: "FK_seccion_id_profesor")
+  Inicio_Fin_Trimestres     Trimestres?                 @relation(fields: [id_trimestre], references: [id_trimestre], onDelete: NoAction, onUpdate: NoAction, map: "FK_seccion_id_trimestre")
 }
 
 model Tipo_Trimestres {
-  id_tipo_trimestre     Int                     @id(map: "PK_tipo_trimestres") @default(autoincrement())
-  nombre_trimestre      String                  @db.NVarChar(200)
-  fecha_creacion        DateTime                @default(now(), map: "DF_tipo_trimestres_fecha_creacion") @db.DateTime
-  Inicio_Fin_Trimestres Inicio_Fin_Trimestres[]
+  id_tipo_trimestre Int          @id(map: "PK_tipo_trimestres") @default(autoincrement())
+  nombre_trimestre  String       @db.NVarChar(200)
+  fecha_creacion    DateTime     @default(now(), map: "DF_tipo_trimestres_fecha_creacion") @db.DateTime
+  Trimestres        Trimestres[]
 }
 
 model Tipos_Asignatura {
@@ -136,4 +129,23 @@ model Usuario {
   Carreras                  Carreras                    @relation(fields: [id_carrera_est], references: [id_carrera], onUpdate: NoAction, map: "FK_usuario_id_carrera_est")
   Estado                    Estado                      @relation(fields: [id_estado], references: [id_estado], onUpdate: NoAction, map: "FK_usuario_id_estado")
   Rol                       Rol                         @relation(fields: [id_rol], references: [id_rol], onUpdate: NoAction, map: "FK_usuario_id_rol")
+}
+
+model Inicio_Fin_Seleccion {
+  id_seleccion   Int      @id(map: "PK_inicio_fin_trimestres") @default(autoincrement())
+  fecha_inicio   DateTime @db.DateTime
+  fecha_fin      DateTime @db.DateTime
+  id_trimestre   Int
+  fecha_creacion DateTime @default(now(), map: "DF_inicio_fin_trimestres_fecha_creacion") @db.DateTime
+}
+
+model Trimestres {
+  id_trimestre              Int                         @id(map: "PK_trimestres") @default(autoincrement())
+  id_tipo_trimestre         Int
+  ano_trimestre             String                      @db.NVarChar(6)
+  activo                    Boolean
+  fecha_creacion            DateTime                    @default(now(), map: "DF_trimestres_fecha_creacion") @db.DateTime
+  Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
+  Seccion                   Seccion[]
+  Tipo_Trimestres           Tipo_Trimestres             @relation(fields: [id_tipo_trimestre], references: [id_tipo_trimestre], onUpdate: NoAction, map: "FK_trimestres_id_tipo_trimestre")
 }

@@ -1,0 +1,509 @@
+.estudiante-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(112.67deg, #964afd, #487afd);
+  width: 1280px;
+  height: 832px;
+}
+.botn2-child,
+.estudiante-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray);
+  width: 1280px;
+  height: 104px;
+}
+.botn2-child {
+  border-radius: 12px;
+  border: 2px solid #838383;
+  box-sizing: border-box;
+  width: 127px;
+  height: 39px;
+}
+.botn2-item {
+  position: absolute;
+  top: 16px;
+  left: 102.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.trimestre {
+  position: absolute;
+  top: 8px;
+  left: 15px;
+  font-weight: 500;
+}
+.botn2 {
+  position: absolute;
+  top: 35px;
+  left: 278px;
+  width: 127px;
+  height: 39px;
+  font-size: var(--font-size-mini);
+  color: var(--color-white);
+}
+.image-1-icon {
+  position: absolute;
+  top: 25px;
+  left: 38px;
+  width: 51px;
+  height: 51px;
+  object-fit: cover;
+}
+.gradegenius {
+  position: absolute;
+  top: 35px;
+  left: 115px;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+}
+.image-2-icon,
+.image-3-icon {
+  position: absolute;
+  object-fit: cover;
+}
+.image-2-icon {
+  top: 28px;
+  left: 1095px;
+  border-radius: var(--br-351xl);
+  width: 51px;
+  height: 52px;
+}
+.image-3-icon {
+  top: 36px;
+  left: 1214px;
+  width: 31px;
+  height: 31px;
+}
+.estudiante-inner,
+.rectangle-div {
+  position: absolute;
+  top: 49px;
+  left: 1162.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.rectangle-div {
+  top: 104px;
+  left: 271px;
+  border-radius: 0 0 var(--br-xl) var(--br-xl);
+  background-color: var(--color-white);
+  box-shadow: 0 6px 9px 1px rgba(0, 0, 0, 0.13);
+  width: 959px;
+  height: 582px;
+}
+.div,
+.porcentaje-de-asignaturas {
+  position: absolute;
+  top: 537px;
+  left: 615px;
+}
+.div {
+  top: 567px;
+  font-weight: 600;
+}
+.estudiante-child1 {
+  position: absolute;
+  top: 542px;
+  left: 582px;
+  border-radius: var(--br-9xs);
+  background-color: #5da832;
+  width: 15px;
+  height: 15px;
+}
+.div1,
+.porcentaje-de-asignaturas1 {
+  position: absolute;
+  top: 598px;
+  left: 615px;
+}
+.div1 {
+  top: 628px;
+  font-weight: 600;
+}
+.estudiante-child2 {
+  position: absolute;
+  top: 603px;
+  left: 582px;
+  border-radius: var(--br-9xs);
+  background-color: #ffdb2d;
+  width: 15px;
+  height: 15px;
+}
+.consejero,
+.kendall-jenner {
+  position: absolute;
+  left: 342px;
+}
+.kendall-jenner {
+  top: 508px;
+  font-size: var(--font-size-xl);
+}
+.consejero {
+  top: 486px;
+}
+.image-6,
+.polygon-icon {
+  position: absolute;
+  top: 161px;
+  left: 302px;
+  width: 512px;
+  height: 512px;
+}
+.polygon-icon {
+  top: 795px;
+  left: 1178.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.estudiante-child3 {
+  position: absolute;
+  top: 172px;
+  left: 1004px;
+  border-radius: var(--br-xl);
+  background-color: #d9d9d9;
+  width: 174px;
+  height: 132px;
+}
+.image-10-icon {
+  position: absolute;
+  top: 155px;
+  left: 329px;
+  border-radius: var(--br-351xl);
+  width: 193px;
+  height: 197px;
+  object-fit: cover;
+}
+.benito-martnez,
+.nombre {
+  position: absolute;
+  left: 568px;
+  max-width: 500px;
+  width: 425px;
+}
+.benito-martnez {
+  top: 162px;
+  font-size: var(--font-size-xl);
+}
+.nombre {
+  top: 140px;
+}
+.crditos-cursados,
+.div2 {
+  position: absolute;
+  left: 342px;
+}
+.div2 {
+  top: 438px;
+  font-size: var(--font-size-xl);
+}
+.crditos-cursados {
+  top: 416px;
+}
+.gpa,
+.porcentaje-de-asistencia {
+  position: absolute;
+  top: 412px;
+  left: 615px;
+}
+.gpa {
+  top: 186px;
+  left: 1077px;
+}
+.div3,
+.ndice-bajo {
+  position: absolute;
+  top: 260px;
+  left: 1076px;
+  font-weight: 600;
+}
+.div3 {
+  top: 442px;
+  left: 615px;
+}
+.carrera,
+.matrcula {
+  position: absolute;
+  top: 205px;
+  left: 568px;
+}
+.carrera {
+  top: 271px;
+}
+.ingeniera-de-aseguramiento,
+.m17-0040 {
+  position: absolute;
+  top: 229px;
+  left: 568px;
+  font-size: var(--font-size-xl);
+}
+.ingeniera-de-aseguramiento {
+  top: 292px;
+  display: inline-block;
+  width: 365px;
+}
+.b,
+.image-15-icon {
+  position: absolute;
+  left: 1035px;
+}
+.b {
+  top: 206px;
+  font-size: 32px;
+}
+.image-15-icon {
+  top: 254px;
+  width: 33px;
+  height: 30px;
+  object-fit: cover;
+}
+.estudiante-child4 {
+  position: absolute;
+  top: 417px;
+  left: 582px;
+  border-radius: var(--br-9xs);
+  background-color: #e41e2f;
+  width: 15px;
+  height: 15px;
+}
+.asignaturas-retiradas,
+.div4 {
+  position: absolute;
+  top: 476px;
+  left: 615px;
+}
+.div4 {
+  top: 506px;
+  font-weight: 600;
+}
+.estudiante-child5 {
+  position: absolute;
+  top: 481px;
+  left: 582px;
+  border-radius: var(--br-9xs);
+  background-color: #0070ce;
+  width: 15px;
+  height: 15px;
+}
+.rectangle-icon {
+  position: absolute;
+  top: 165px;
+  left: 0;
+  width: 272px;
+  height: 69px;
+}
+.component-50-child,
+.component-56-child {
+  position: absolute;
+  left: 0;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.component-50-child {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+}
+.component-56-child {
+  height: 103.28%;
+  width: 93.9%;
+  top: -1.64%;
+  right: 6.1%;
+  bottom: -1.64%;
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.estudiante1 {
+  position: absolute;
+  width: 31.34%;
+  top: 31.15%;
+  left: 40.67%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+}
+.image-7-icon {
+  position: absolute;
+  height: 59.02%;
+  width: 13.43%;
+  top: 21.31%;
+  right: 77.99%;
+  bottom: 19.67%;
+  left: 8.58%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-56 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 8.52%;
+  right: 0;
+  bottom: 83.1%;
+  left: 0;
+}
+.component-56:hover {
+  border: 2px solid #d921ca;
+  box-sizing: border-box;
+}
+.calificaciones {
+  position: absolute;
+  width: 41.42%;
+  top: 31.15%;
+  left: 37.31%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+}
+.libros-3-icon {
+  position: absolute;
+  height: 61%;
+  width: 13.43%;
+  top: 19.67%;
+  right: 77.61%;
+  bottom: 19.33%;
+  left: 8.96%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-57,
+.component-57-child {
+  position: absolute;
+  width: 100%;
+  right: 0;
+  left: 0;
+}
+.component-57-child {
+  height: 103.28%;
+  top: -1.64%;
+  bottom: -1.64%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.component-57 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  height: 8.38%;
+  top: 23.21%;
+  bottom: 68.41%;
+}
+.seleccionar-asignaturas {
+  position: absolute;
+  width: 70.15%;
+  top: 31.15%;
+  left: 26.49%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+}
+.capitulo-2-icon {
+  position: absolute;
+  height: 59.02%;
+  width: 13.43%;
+  top: 21.31%;
+  right: 77.24%;
+  bottom: 19.67%;
+  left: 9.33%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-59 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 37.91%;
+  right: 0;
+  bottom: 53.71%;
+  left: 0;
+}
+.retirar-asignaturas {
+  position: absolute;
+  width: 55.22%;
+  top: 31.15%;
+  left: 33.96%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+  display: inline-block;
+}
+.gestion-de-proyectos-2-icon {
+  position: absolute;
+  height: 59.02%;
+  width: 13.43%;
+  top: 21.31%;
+  right: 76.87%;
+  bottom: 19.67%;
+  left: 9.7%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-58 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 100%;
+  top: 52.61%;
+  right: 0;
+  bottom: 39.01%;
+  left: 0;
+}
+.component-50 {
+  position: absolute;
+  top: 104px;
+  left: 0;
+  width: 268px;
+  height: 728px;
+}
+.estudiante {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-sm);
+  color: var(--color-black);
+  font-family: var(--font-poppins);
+}
