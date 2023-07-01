@@ -264,6 +264,6 @@ INSERT INTO Credenciales_Usuario (id_usuario,hash_contrasena)
 GO
 
 INSERT INTO Trimestres (id_tipo_trimestre,ano_trimestre,activo) VALUES (1,'2023',1);
-GO;
+GO
 
 SELECT * FROM Usuario
