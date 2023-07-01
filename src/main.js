@@ -85,10 +85,6 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
     }
 });
 
-app.get('/prueba',(req,res)=>{
-    console.log(USUARIO_LOGUEADO);
-});
-
 app.post('/crear-usuario',async (req,res,next)=>{
     const nombre_user = req.body.txt_Nombre_Usuario;
     const rol = req.body.cb_rol;
@@ -246,7 +242,7 @@ app.post('/crear_seccion', async(req,res, next)=>{
         res.send(`
         <script>
          localStorage.setItem('mensaje', JSON.stringify(${JSON.stringify(mensaje)}));
-         window.location.href = '/nav_admin?id=3';
+         window.location.href = 'nav_admin?id=3';
          </script>
        `);
     }else{
