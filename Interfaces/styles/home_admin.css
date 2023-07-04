@@ -268,6 +268,28 @@
   top: 17.17%;
   bottom: 74.45%;
 }
+.custom-dialog-nueva-sec {
+  background: linear-gradient(265.99deg, hsl(108, 100%, 57%), hsl(147, 85%, 100%));
+}
+.custom-dialog-cerrar-sesion,
+.ui-dialog-buttonpane,
+.ui-dialog-titlebar
+{
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+}
+.ui-widget-header{
+  border: none;
+  border-bottom: 1px solid black;
+}
+.ui-dialog-buttonpane{
+  border-top: 1px solid black;
+}
+.custom-dialog-cerrar-sesion .btn_aceptar{
+  background: linear-gradient(265.99deg, hsl(0, 78%, 66%), hsl(17, 85%, 64%));
+}
+.custom-dialog-cerrar-sesion .btn_cancelar{
+  background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
+}
 .capitulo-2-icon1 {
   position: absolute;
   height: 59.02%;
@@ -317,6 +339,11 @@
   right: 0;
   bottom: 91.62%;
   left: 0;
+}
+.p_cerrar_sesion{
+  width: 100%;
+  height: 100%;
+
 }
 .component-311 {
   top: 91.62%;

@@ -31,3 +31,58 @@ $(document).ready(function() {
   // Código jQuery adicional...
 });
 
+
+$(document).ready(function() {
+  const form = $('#form_crear_asignatura');
+  const errorDiv = $('#div_mensaje_error');
+  const labelerror = $('#label_error');
+
+  form.on('submit', function(event) {
+    event.preventDefault(); // Evitar el envío del formulario
+
+    // Obtener los valores del formulario
+    const formData = form.serializeArray();
+    const data = {};
+
+    $.each(formData, function(index, field) {
+      data[field.name] = field.value;
+    });
+
+    // Enviar los datos al backend utilizando AJAX
+    $.ajax({
+      url: '/crear-asignatura',
+      method: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      success: function(response) {
+        var mensaje = '0';
+        localStorage.setItem('mensaje', mensaje);
+        window.location.href = 'nav_admin?id=1';
+      },
+      error: function(xhr, status, error) {
+        console.log("entreeeeeeeeeeeeeeeeeeeeeeeee")
+        var resp = parseInt(xhr.responseText);
+        switch (resp) {
+          case 1:
+            labelerror.text("Código de Asignatura ya existe");
+            errorDiv.css('width',"520px");
+            errorDiv.css('left',"540px");
+            errorDiv.show();
+          break;
+            case 2:
+              labelerror.text("Error al crear la asignatura");
+              errorDiv.css('width',"700px");
+              errorDiv.css('left',"430px");
+              errorDiv.show();
+              break;
+          default:
+            console.log('Error desconocido')
+            break;
+        }
+        setTimeout(function() {
+          errorDiv.fadeOut();
+        }, 5000);
+      }
+    });
+  });
+});

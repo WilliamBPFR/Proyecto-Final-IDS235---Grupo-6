@@ -5,8 +5,6 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="./../styles/global.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="./../styles/crear_usuario.css" />
     <link
       rel="stylesheet"
@@ -21,20 +19,16 @@
       <img class="image-1-icon" alt="" src="./../public/image-1@2x.png" />
 
       <b class="gradegenius">GradeGenius</b>
-      <button style="cursor: pointer;" id="btn_perfil">
-        <img class="image-2-icon" alt="" src="./../public/image-2@2x.png" />
-      </button>
+      <img class="image-2-icon" alt="" src="./../public/image-2@2x.png" />
 
       <img class="image-3-icon" alt="" src="./../public/image-3@2x.png" />
 
-      <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
-        <img class="macbook-air-11-inner"  alt="" src="../public/polygon-1.svg" />
-      </button>
-      
+      <img class="macbook-air-11-inner" alt="" src="./../public/polygon-1.svg" />
+
       <img class="polygon-icon" alt="" src="./../public/polygon-1.svg" />
 
       <div class="rectangle-div"></div>
-      <b class="crear-usuario">Crear Usuario</b>
+      <b class="crear-usuario">Modificar Usuario</b>
       <div class="line-div"></div>
       <div class="component-35" id="div_Guardar"></div>
       <div class="component-36" id="div_Cancelar"></div>
@@ -85,7 +79,7 @@
           />
         </button>
       </div>
-      <form class="component-48" id="component-48" method="post" action="/crear-usuario">
+      <form class="component-48" id="component-48" method="post" action="/modificar-usuario">
         <b class="id-o-matrcula">ID o Matrícula</b>
         <input
           class="component-48-child"
@@ -170,21 +164,6 @@
             >Matrícula o ID ya Existente</label>
       </div>
     </div>
-    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
-      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
-        <img
-        class="img_cerrar_sesion"
-        alt=""
-        src="../public/logout.png"
-        />
-        Cerrar Sesión
-        <!-- <label class="p_cerrar_sesion"></label> -->
-      </button>
-    </div>
-    <script src="../script/cerrar_sesion.js"></script>
     <script src="./../script/cargar_crear_usuario.js"></script>
-    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
-      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
-    </div>
   </body>
 </html>

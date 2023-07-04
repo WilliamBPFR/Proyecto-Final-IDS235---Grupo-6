@@ -57,3 +57,51 @@ body {
   --br-21xl: 40px;
   --br-xs: 12px;
 }
+.cerrar_sesion {
+  position: absolute;
+  top: 85px;
+  left: 1100px;
+  background-color: rgb(223, 46, 46);
+  width: 11%;
+  height: 5.8%;
+  border-radius: 20px;
+}
+.btn_cerrar_sesion {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 91.62%;
+  left: 0;
+  border-radius: 18px;
+  padding-left: 20%;
+  font-weight: bold;
+  color: antiquewhite;
+  font-size: 16px;
+}
+.btn_cerrar_sesion:hover {
+  border: 2px solid yellow;
+  box-sizing: border-box;
+}
+/* .custom-dialog-cerrar-sesion {
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+} */
+.img_cerrar_sesion {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 22.95%;
+  right: 72.92%;
+  bottom: 18.03%;
+  left: 10.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+
+}

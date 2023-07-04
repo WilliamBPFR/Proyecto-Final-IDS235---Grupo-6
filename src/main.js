@@ -54,7 +54,7 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
                 USUARIO_LOGUEADO = usuario;
                 switch(usuario.id_rol){ 
                     case 1://Administrador
-                        res.redirect('/home_admin.html');
+                        res.redirect('/nav_admin?id=4');
                         break;
                     case 2://Profesor
                         break;
@@ -78,6 +78,8 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
             res.redirect('/iniciar_sesion.html?error=1'); // Redirige con el parámetro de error
         }
         }catch(error){
+            console.log(error);
+            // res.redirect('/iniciar_sesion.html?error=1'); // Redirige con el parámetro de error
         }
     }else{
         res.redirect('/iniciar_sesion.html?error=2'); // Redirige con el parámetro de error
@@ -86,6 +88,68 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
 });
 
 app.post('/crear-usuario',async (req,res,next)=>{
+    const nombre_user = req.body.txt_Nombre_Usuario;
+    const rol = req.body.cb_rol;
+    const matr = req.body.txt_ID;
+    const fecha_nacimiento = req.body.txt_Fecha;
+    const id_est = req.body.cb_estado;
+    const email = req.body.txt_Email;
+    const carrera_asignatura = req.body.cb_carrera;
+    const password = req.body.txt_Password;
+    const indice_academico = 4;
+    const password_encriptada = crypto.createHash('sha256').update(password).digest('hex');
+    if(matr.length === 7 && isNaN(matr) === false){
+        console.log('entre al if de la matricula');
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(regex.test(email) === true){
+            try{
+                const usuario = await prisma.usuario.findFirst({where:{matricula:parseInt(matr)}});
+                if(isNull(usuario)){
+                const new_ususario = await prisma.usuario.create({
+                    data:
+                    {                    
+                        nombre_usuario: nombre_user,
+                        id_rol: parseInt(rol),
+                        matricula: parseInt(matr),
+                        fecha_nac: new Date(fecha_nacimiento),
+                        id_estado: parseInt(id_est),
+                        email: email,
+                        id_carrera_est: parseInt(carrera_asignatura),
+                        indice_acad_est: parseFloat(indice_academico)
+                    }
+                });
+                console.log('garde usuario');
+                const new_credenciales = await prisma.Credenciales_Usuario.create({
+                    data:
+                    {
+                        id_usuario: new_ususario.id_usuario,
+                        hash_contrasena: password_encriptada
+                    }
+                });
+                console.log('guarde credenciales');
+                const usuarioss = await prisma.usuario.findMany();
+                console.log(usuarioss);
+                console.log(new_credenciales);
+                res.send('Uusario creado exitosamente');
+            }else{
+                res.status(400).send('0');
+            }
+            }catch(error){
+                console.log(error);
+                res.status(400).send('1');
+            }
+        }else{
+            console.log('entre al else del email');
+            res.status(400).send('3');
+        }
+    }else{
+        res.status(400).send('2');
+    }
+});
+
+
+app.post('/modificar-usuario',async (req,res,next)=>{
+    const id_viejo = req.body.id_viejo
     const nombre_user = req.body.txt_Nombre_Usuario;
     const rol = req.body.cb_rol;
     const matr = req.body.txt_ID;
@@ -154,14 +218,21 @@ app.get('/cargar_crear_usuario',async (req,res)=>{
         console.log(rol);
         const estados = await prisma.estado.findMany();
         console.log(estados);
-        res.send(`
-        <script>
-        localStorage.setItem('carreras', JSON.stringify(${JSON.stringify(carreras)}));
-        localStorage.setItem('roles', JSON.stringify(${JSON.stringify(rol)}));
-        localStorage.setItem('estados', JSON.stringify(${JSON.stringify(estados)}));
-        window.location.href = '/crear_usuario.html';
-        </script>
-        `);
+
+        const mensaje = {
+            carrera: carreras,
+            rol: rol,
+            estado: estados
+        };
+        res.json(mensaje);
+        // res.send(`
+        // <script>
+        // localStorage.setItem('carreras', JSON.stringify(${JSON.stringify(carreras)}));
+        // localStorage.setItem('roles', JSON.stringify(${JSON.stringify(rol)}));
+        // localStorage.setItem('estados', JSON.stringify(${JSON.stringify(estados)}));
+        // window.location.href = '/crear_usuario.html';
+        // </script>
+        // `);
     }catch(error){
     }
 });
@@ -190,13 +261,13 @@ app.post('/crear-asignatura',async (req,res,next)=>{
         });
         const asignaturas = await prisma.asignatura.findMany();
         console.log(asignaturas);
-        res.send('Asignatura creada exitosamente');
+        res.send('Asignatura Creada Exitosamente');
     }else{
-        res.send('Asignatura Con Código Ya Existente');
+        res.status(400).send('1');
     }
     }catch(error){
         console.log(error);
-        res.status(500).send('Ocurrió un error al crear la asignatura');
+        res.status(500).send('2');
     }
 });
 
@@ -212,7 +283,7 @@ app.get('/cargar_crear_asignatura',async (req,res)=>{
     `);
 });
 
-app.post('/crear_seccion', async(req,res, next)=>{
+app.post('/crear_seccion', async (req,res, next)=>{
     const asignatura = req.body.cb_Asignatura;
     const hora_inicio = req.body.cb_Hora_Inicio;
     const hora_fin = req.body.cb_Hora_Fin;
@@ -221,37 +292,50 @@ app.post('/crear_seccion', async(req,res, next)=>{
     const modalidad = req.body.cb_Modalidad;
     console.log(asignatura);
     if(parseInt(hora_inicio)<parseInt(hora_fin)){
-    try{
-        const seccion = await prisma.seccion.findFirst({where:{num_seccion:parseInt(num_seccion), id_asignatura: parseInt(asignatura)}});
-        if(isNull(seccion)){
-        const new_seccion = await prisma.seccion.create({
-            data:
-            {                    
-                id_asignatura: parseInt(asignatura),
-                id_profesor: parseInt(doc),
-                hora_inicio: hora_inicio,
-                hora_fin: hora_fin,
-                num_seccion: parseInt(num_seccion),
-                id_modalidad: parseInt(modalidad)
+        if(parseInt(num_seccion)>0 && parseInt(num_seccion)<1000){
+            try{
+                const trimestre_actual = await prisma.trimestres.findFirst({where:{activo: true}});
+                const secciones_profesor = await prisma.seccion.findMany({where:{id_profesor:parseInt(doc), id_trimestre:trimestre_actual.id_trimestre}});
+                var doc_no = false;
+                secciones_profesor.forEach(seccion => {
+                        if(parseInt(seccion.hora_inicio)<=parseInt(hora_inicio) && parseInt(hora_inicio)<parseInt(seccion.hora_fin)){
+                            console.log('Hora Inicio: ' + seccion.hora_inicio);
+                            console.log('Hora Fin: ' + seccion.hora_fin);
+                            doc_no = true;
+                        }
+                });
+                if(doc_no===false){
+                    const seccion = await prisma.seccion.findFirst({where:{num_seccion:parseInt(num_seccion), id_asignatura: parseInt(asignatura)}});
+                    if(isNull(seccion)){
+                        const new_seccion = await prisma.seccion.create({
+                            data:
+                            {                    
+                                id_asignatura: parseInt(asignatura),
+                                id_profesor: parseInt(doc),
+                                hora_inicio: hora_inicio,
+                                hora_fin: hora_fin,
+                                num_seccion: parseInt(num_seccion),
+                                id_modalidad: parseInt(modalidad),
+                                id_trimestre: trimestre_actual.id_trimestre
+                            }
+                        });
+                        res.send('AY AHORA QUE');
+                        console.log('guarde');
+                    }else{
+                        res.status(500).send('2');
+                    }
+                }else{
+                    console.log('error al elseeeeeeee');
+                    res.status(500).send('4');
+                }
+            }catch(error){
+                console.log(error);
+                res.status(500).send('Error al crear la seccion');
             }
-        });
-        const secciones = await prisma.seccion.findMany();
-        console.log(secciones);
-        var mensaje = '0';
-        console.log(JSON.stringify(mensaje));
-        res.send(`
-        <script>
-         localStorage.setItem('mensaje', JSON.stringify(${JSON.stringify(mensaje)}));
-         window.location.href = 'nav_admin?id=3';
-         </script>
-       `);
-    }else{
-        res.status(400).send('2');
-    }
-    }catch(error){
-        console.log(error);
-        res.status(500).send('Error al crear la seccion');
-    }
+        }else{
+            console.log('error al elseeeeeeee');
+            res.status(500).send('3');
+        }
 }else{  
     res.status(400).send('1');
 }
@@ -261,14 +345,12 @@ app.get('/cargar_crear_seccion',async (req,res)=>{
     const asignaturas = await prisma.asignatura.findMany();
     const docente = await prisma.usuario.findMany({where:{id_rol:2}});
     const modalidades = await prisma.modalidad.findMany();
-    res.send(`
-    <script>
-      localStorage.setItem('asignaturas', JSON.stringify(${JSON.stringify(asignaturas)}));
-      localStorage.setItem('docentes', JSON.stringify(${JSON.stringify(docente)}));
-      localStorage.setItem('modalidades', JSON.stringify(${JSON.stringify(modalidades)}));
-      window.location.href = '/crear_seccion.html';
-    </script>
-    `);
+    const mensaje = {
+        asignaturas: asignaturas,
+        docente: docente,
+        modalidades: modalidades
+    };
+    res.json(mensaje);
 });
 
 app.get('/nav_admin',async (req,res)=>{
@@ -295,16 +377,33 @@ app.get('/nav_admin',async (req,res)=>{
        `);
         break
     case 3:
+        console.log('Entre a la seccion');
         const secciones = await prisma.seccion.findMany({include:{Asignatura:true,Usuario:true,Modalidad:true}});  
         res.send(`
-     <script>
-      localStorage.setItem('secciones', JSON.stringify(${JSON.stringify(secciones)}));
-      window.location.href = '/ver_secciones.html';
-      </script>
-    `);
+            <script>
+            localStorage.setItem('secciones', JSON.stringify(${JSON.stringify(secciones)}));
+            window.location.href = '/ver_secciones.html';
+            </script>
+        `);
         break;
     case 4:
-        res.redirect('/home_admin.html');
+        const cant_usuarios = await prisma.usuario.count();
+        const cant_asignaturas = await prisma.asignatura.count();
+        const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true},include:{Tipo_Trimestres:true}});
+        const cant_secciones = await prisma.seccion.count({where:{id_trimestre:trimestre_actual.id_trimestre}});
+        var obj = {
+            cant_usuarios:cant_usuarios,
+            cant_asignaturas:cant_asignaturas,
+            cant_secciones:cant_secciones,
+            trimestre_actual:trimestre_actual
+            }
+        console.log(obj);
+        res.send(`
+            <script>
+            localStorage.setItem('info_home_admin', JSON.stringify(${JSON.stringify(obj)}));
+            window.location.href = '/home_admin.html';
+            </script>
+        `);
         break;
     case 5:
         const trimestres = await prisma.tipo_Trimestres.findMany();  
@@ -320,6 +419,9 @@ app.get('/nav_admin',async (req,res)=>{
       </script>
       `);
         break;
+    case 6:
+        res.redirect('/perfil.html');
+    break;
     }
 });
 
@@ -386,4 +488,17 @@ app.get('/modificar_fecha_sel',async (req,res)=>{
         res.status(400).send('Seleccion ya existe');
     }
     
+});
+
+app.get('/cerrar_sesion',async (req,res)=>{
+    USUARIO_LOGUEADO = null;
+    res.send(`1`);
+});
+
+app.get('/usuario_logueado',async (req,res)=>{
+    if(isNull(USUARIO_LOGUEADO)){
+        res.status(400).send(`0`);
+    }else{
+        res.send(`1`);
+    }
 });

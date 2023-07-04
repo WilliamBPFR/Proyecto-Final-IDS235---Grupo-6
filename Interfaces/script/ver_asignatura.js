@@ -35,4 +35,33 @@ $(document).ready(function() {
 
       tabla.append(fila);
     });
+
+    var mensaje = localStorage.getItem('mensaje');
+    localStorage.removeItem("mensaje");
+    console.log(mensaje);
+    msj = parseInt(JSON.parse(mensaje));
+    console.log(msj);
+    switch (msj) {
+      case 0:
+        console.log("entreeeee");
+        $("#dialog_asignatura_creada").dialog({
+          dialogClass: "custom-dialog_trimestre_cambiado",
+          buttons: {
+              "Aceptar": function() {
+                  $(this).dialog("close"); // Cierra la ventana emergente
+              }
+          }
+      });
+        break;
+      default:
+        break;
+    }
+
+      $('.tabla-container').scroll(function() {
+        var $table = $('#tabla_asignatura');
+        var $header = $table.find('th');
+        var scrollTop = $('.tabla-container').scrollTop();
+        console.log(scrollTop);
+        $header.css('transform', 'translateY(' + scrollTop + 'px)');
+      });    
   });

@@ -6,12 +6,15 @@
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="stylesheet" href="../styles/crear_seccion.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
     <script src="../script/navegacion_admin.js"> </script>
     <script src="../script/cargar_crear_seccion.js"> </script>
+    <script src="../script/cerrar_sesion.js"></script>
   </head>
   <body>
     <div class="macbook-air-8">
@@ -20,11 +23,15 @@
       <img class="image-1-icon3" alt="" src="../public/image-1@2x.png" />
 
       <b class="gradegenius3">GradeGenius</b>
-      <img class="image-2-icon3" alt="" src="../public/image-2@2x.png" />
+      <button style="cursor: pointer;" id="btn_perfil">
+        <img class="image-2-icon3" alt="" src="../public/image-2@2x.png" />
+      </button>
 
       <img class="image-3-icon3" alt="" src="../public/image-3@2x.png" />
 
-      <img class="macbook-air-8-inner" alt="" src="../public/polygon-1.svg" />
+      <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
+        <img class="macbook-air-8-inner"  alt="" src="../public/polygon-1.svg" />
+      </button>
 
       <img class="macbook-air-8-child1" alt="" src="../public/polygon-1.svg" />
 
@@ -79,7 +86,7 @@
           />
         </button>
       </div>
-      <form class="component-46" method="post" id="component-46"action="/crear_seccion">
+      <form class="component-46" method="post" id="component-46" action="/crear_seccion">
         <b class="hora-de-inicio">Hora de Inicio</b>
         <select
           class="component-46-child"
@@ -220,6 +227,20 @@
           <label class="matrcula-o-id" id="label_error"
             >Matrícula o ID ya Existente</label>
       </div>
+    </div>
+    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
+      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
+        <img
+        class="img_cerrar_sesion"
+        alt=""
+        src="../public/logout.png"
+        />
+        Cerrar Sesión
+        <!-- <label class="p_cerrar_sesion"></label> -->
+      </button>
+    </div>
+    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
   </body>
 </html>

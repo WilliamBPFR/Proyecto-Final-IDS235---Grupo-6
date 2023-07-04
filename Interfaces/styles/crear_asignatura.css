@@ -304,6 +304,62 @@
   padding-left: 20px;
   font-size: 20px;
 }
+.component-71 {
+  position: absolute;
+  top: 118px;
+  left: 540px;
+  width: 520px;
+  height: 88px;
+  font-size: 31px;
+}
+.component-71-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  background: linear-gradient(
+    92.12deg,
+    rgba(235, 11, 11, 0.9),
+    rgba(211, 114, 0, 0.9)
+  );
+}
+.custom-dialog-nueva-sec {
+  background: linear-gradient(265.99deg, hsl(108, 100%, 57%), hsl(147, 85%, 100%));
+}
+.custom-dialog-cerrar-sesion,
+.ui-dialog-buttonpane,
+.ui-dialog-titlebar
+{
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+}
+.ui-widget-header{
+  border: none;
+  border-bottom: 1px solid black;
+}
+.ui-dialog-buttonpane{
+  border-top: 1px solid black;
+}
+.custom-dialog-cerrar-sesion .btn_aceptar{
+  background: linear-gradient(265.99deg, hsl(0, 78%, 66%), hsl(17, 85%, 64%));
+}
+.custom-dialog-cerrar-sesion .btn_cancelar{
+  background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
+}
+.matrcula-o-id {
+  cursor: pointer;
+  position: absolute;
+  height: 61.36%;
+  width: 94.76%;
+  top: 21.59%;
+  left: 2.96%;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+}
 .component-50-child {
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);

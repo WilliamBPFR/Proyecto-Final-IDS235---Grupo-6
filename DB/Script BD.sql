@@ -198,7 +198,7 @@ ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_modalidad FOREIGN KEY (id_modal
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_profesor FOREIGN KEY (id_profesor) REFERENCES Usuario(id_usuario);
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_trimestre FOREIGN KEY (id_trimestre) REFERENCES Trimestres(id_trimestre);
 ALTER TABLE Seccion ADD CONSTRAINT DF_seccion_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
-ALTER TABLE Seccion ADD CONSTRAINT UQ_seccion_num_seccion UNIQUE (num_seccion);
+ALTER TABLE Seccion ADD CONSTRAINT UQ_seccion_num_seccion UNIQUE (id_asignatura,num_seccion);
 
 --Tabla Inicio_Fin_Seleccion
 ALTER TABLE Inicio_Fin_Seleccion ADD CONSTRAINT PK_inicio_fin_trimestres PRIMARY KEY (id_seleccion);

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var seccion = localStorage.getItem('secciones');
+  var seccion = localStorage.getItem('secciones');
     var secciones = JSON.parse(seccion);
     console.log(secciones)
     var datos_transformados =[];
@@ -38,16 +38,17 @@ $(document).ready(function() {
       tabla.append(fila);
     });
 
-    
+
     var mensaje = localStorage.getItem('mensaje');
     localStorage.removeItem("mensaje");
-    msj = parseInt(JSON.parse(mensaje));
+    men = (JSON.parse(mensaje));
+    msj = parseInt(men);
     console.log(msj);
     switch (msj) {
       case 0:
-        console.log("entreeeee")
+        console.log("entreeeee");
         $("#dialog_seccion_creada").dialog({
-          dialogClass: "custom-dialog_trimestre_cambiado",
+          dialogClass: "custom-dialog-nueva-sec",
           buttons: {
               "Aceptar": function() {
                   $(this).dialog("close"); // Cierra la ventana emergente
@@ -58,4 +59,11 @@ $(document).ready(function() {
       default:
         break;
     }
+    $('.tabla-container').scroll(function() {
+      var $table = $('#tabla-secciones');
+      var $header = $table.find('th');
+      var scrollTop = $('.tabla-container').scrollTop();
+      console.log(scrollTop);
+      $header.css('transform', 'translateY(' + scrollTop + 'px)');
+    });   
   });

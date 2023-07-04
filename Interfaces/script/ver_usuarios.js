@@ -28,16 +28,50 @@ $(document).ready(function() {
           }else{
             td.css('white-space','nowrap');
           }
+
+          td.on('dblclick',function() {
+            window.location.href = '/funciono';
+          });
+
           fila.append(td);
         }
       }
 
       tabla.append(fila);
     });
+    
     $("#btn_Cancelar").click(function() {
         window.location.href = '/nav_admin?id=2';
       });
     $("#btn_Agregar_Usuario").click(function() {
-        window.location.href = '/cargar_crear_usuario';
+        window.location.href = 'crear_usuario.html';
     });
+    $('.tabla-container').scroll(function() {
+      var $table = $('#tabla_usuario');
+      var $header = $table.find('th');
+      var scrollTop = $('.tabla-container').scrollTop();
+      console.log(scrollTop);
+      $header.css('transform', 'translateY(' + scrollTop + 'px)');
+    });   
+
+    var mensaje = localStorage.getItem('mensaje');
+    localStorage.removeItem("mensaje");
+    men = (JSON.parse(mensaje));
+    msj = parseInt(men);
+    console.log(msj);
+    switch (msj) {
+      case 0:
+        console.log("entreeeee");
+        $("#dialog_usuario_creado").dialog({
+          dialogClass: "custom-dialog-nuevo-user",
+          buttons: {
+              "Aceptar": function() {
+                  $(this).dialog("close"); // Cierra la ventana emergente
+              }
+          }
+      });
+        break;
+      default:
+        break;
+    }
   });

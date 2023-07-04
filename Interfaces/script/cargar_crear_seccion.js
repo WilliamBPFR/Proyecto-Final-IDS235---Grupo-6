@@ -1,44 +1,56 @@
 $(document).ready(function() {
     // Aquí va el código jQuery que deseas ejecutar al cargar la página
     console.log('La página se ha cargado completamente');
-    var asignatura = localStorage.getItem('asignaturas');
-    var docente = localStorage.getItem('docentes');
-    var modalidad = localStorage.getItem('modalidades')
-    
-    if(asignatura){
-      var asignaturas = JSON.parse(asignatura);
-      var select = $("#cb_Asignatura");
-      console.log(select);
-      asignaturas.forEach(function(asig) {
-        var value = asig.id_asignatura;
-        var text = asig.nombre_asignacion;
-        var option = $('<option></option>').val(value).text(text);
-        select.append(option);
-      });
-  }
-      if(docente){
-        var docentes = JSON.parse(docente);
-        var select = $("#cb_Docente");
-        console.log(select);
-        docentes.forEach(function(docente) {
-          var value = docente.id_usuario;
-          var text = docente.matricula + ' - '+ docente.nombre_usuario;
-          var option = $('<option></option>').val(value).text(text);
-          select.append(option);
-        });
-    }
 
-    if(modalidad){
-        var modalidades = JSON.parse(modalidad);
-        var select = $("#cb_Modalidad");
-        console.log(select);
-        modalidades.forEach(function(mod) {
-          var value = mod.id_modalidad;
-          var text = mod.nombre_modalidad;
-          var option = $('<option></option>').val(value).text(text);
-          select.append(option);
-        });
-    }
+    $.ajax({
+      url: '/cargar_crear_seccion',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {      
+        console.log(data);
+        asignaturas = data.asignaturas;
+        console.log(asignaturas);
+        docentes = data.docente;
+        modalidades = data.modalidades;
+
+        if(asignaturas){
+          var select = $("#cb_Asignatura");
+          console.log(select);
+          asignaturas.forEach(function(asig) {
+            var value = asig.id_asignatura;
+            var text = asig.nombre_asignacion;
+            var option = $('<option></option>').val(value).text(text);
+            select.append(option);
+          });
+      }
+          if(docentes){
+            var select = $("#cb_Docente");
+            console.log(select);
+            docentes.forEach(function(docente) {
+              var value = docente.id_usuario;
+              var text = docente.matricula + ' - '+ docente.nombre_usuario;
+              var option = $('<option></option>').val(value).text(text);
+              select.append(option);
+            });
+        }
+    
+        if(modalidades){
+            var select = $("#cb_Modalidad");
+            console.log(select);
+            modalidades.forEach(function(mod) {
+              var value = mod.id_modalidad;
+              var text = mod.nombre_modalidad;
+              var option = $('<option></option>').val(value).text(text);
+              select.append(option);
+            });
+        }
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+    
+    
     $("#btn_Cancelar").click(function() {
       window.location.href = '/nav_admin?id=3';
     });
@@ -71,14 +83,9 @@ $(document).ready(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(response) {
-          // Procesar la respuesta exitosa, si es necesario
-          // ...
-  
-          // Borrar los campos del formulario, si es necesario
-          // ...
-  
-          // Mostrar el div de éxito, si es necesario
-          // ...
+          var mensaje = '0';
+          localStorage.setItem('mensaje', mensaje);
+          window.location.href = 'nav_admin?id=3';
         },
         error: function(xhr, status, error) {
           console.log("entreeeeeeeeeeeeeeeeeeeeeeeee")
@@ -86,12 +93,28 @@ $(document).ready(function() {
           switch (resp) {
             case 1:
               labelerror.text("Hora de Inicio y Fin Inválidas");
+              errorDiv.css('width',"520px");
+              errorDiv.css('left',"540px");
               errorDiv.show();
               break;
               case 2:
                 labelerror.text("Número de Sección ya existe");
+                errorDiv.css('width',"520px");
+                errorDiv.css('left',"540px");
                 errorDiv.show();
                 break;
+              case 3:
+                labelerror.text("Numero de Sección Inválido");
+                errorDiv.css('width',"520px");
+                errorDiv.css('left',"540px");
+                errorDiv.show();
+                break;
+                case 4:
+                  labelerror.text("Docente No Disponible en ese Horario");
+                  errorDiv.css('width',"700px");
+                  errorDiv.css('left',"430px");
+                  errorDiv.show();
+                  break;
             default:
               console.log('Error desconocido')
               break;

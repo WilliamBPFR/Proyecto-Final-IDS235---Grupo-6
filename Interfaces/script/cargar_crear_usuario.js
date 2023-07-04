@@ -1,42 +1,59 @@
 $(document).ready(function() {
     // Aquí va el código jQuery que deseas ejecutar al cargar la página
-    console.log('La página se ha cargado completamente');
-    var carrera = localStorage.getItem('carreras');
-    var rol = localStorage.getItem('roles');
-    var estado = localStorage.getItem('estados');
-    if(carrera){
-      var carreras = JSON.parse(carrera);
-      var select = $("#cb_carrera");
-      console.log(select);
-      carreras.forEach(function(carr) {
-        var value = carr.id_carrera;
-        var text = carr.nombre_carrera;
-        var option = $('<option></option>').val(value).text(text);
-        select.append(option);
-      });
-  }
-      if(rol){
-        var rols = JSON.parse(rol);
-        var select = $("#cb_rol");
-        console.log(select);
-        rols.forEach(function(role) {
-          var value = role.id_rol;
-          var text = role.nombre_rol;
-          var option = $('<option></option>').val(value).text(text);
-          select.append(option);
-        });
-    }
-    if(estado){
-        var est = JSON.parse(estado);
-        var select = $("#cb_estado");
-        console.log(select);
-        est.forEach(function(estd) {
-          var value = estd.id_estado;
-          var text = estd.nombre_estado;
-          var option = $('<option></option>').val(value).text(text);
-          select.append(option);
-        });
-    }
+
+    $.ajax({
+      url: '/cargar_crear_usuario',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {      
+        console.log(data);
+        const carreras = data.carrera;
+        const rol = data.rol;
+        const est = data.estado;
+
+        if(carreras){
+          var select = $("#cb_carrera");
+          console.log(select);
+          carreras.forEach(function(carr) {
+            var value = carr.id_carrera;
+            var text = carr.nombre_carrera;
+            var option = $('<option></option>').val(value).text(text);
+            select.append(option);
+          });
+        }
+          if(rol){
+            var select = $("#cb_rol");
+            console.log(select);
+            rol.forEach(function(role) {
+              var value = role.id_rol;
+              var text = role.nombre_rol;
+              var option = $('<option></option>').val(value).text(text);
+              select.append(option);
+            });
+        }
+        if(est){
+            var select = $("#cb_estado");
+            console.log(select);
+            est.forEach(function(estd) {
+              var value = estd.id_estado;
+              var text = estd.nombre_estado;
+              var option = $('<option></option>').val(value).text(text);
+              select.append(option);
+            });
+        }
+
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+
+    // //AQUI ESTA LO OTRO
+    // console.log('La página se ha cargado completamente');
+    // var carrera = localStorage.getItem('carreras');
+    // var rol = localStorage.getItem('roles');
+    // var estado = localStorage.getItem('estados');
+    
     // Código jQuery adicional...
   });
   
@@ -63,8 +80,9 @@ $(document).ready(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(response) {
-          console.log(response);
-          window.location.href = '/nav_admin?id=2';
+          var mensaje = '0';
+          localStorage.setItem('mensaje', mensaje);
+          window.location.href = 'nav_admin?id=2';
         },
         error: function(xhr, status, error) {
           var resp = parseInt(xhr.responseText);
