@@ -28,15 +28,14 @@ $(document).ready(function() {
           }else{
             td.css('white-space','nowrap');
           }
-
           td.on('dblclick',function() {
-            window.location.href = '/funciono';
+            $.cookie('id_usuario',fila.value);            
+            window.location.href = 'modificar_usuarios_sistema.html';
           });
-
           fila.append(td);
         }
       }
-
+      fila.value = elemento.Matrícula_o_ID;
       tabla.append(fila);
     });
     

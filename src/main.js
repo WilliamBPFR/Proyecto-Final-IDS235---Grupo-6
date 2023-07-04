@@ -147,6 +147,35 @@ app.post('/crear-usuario',async (req,res,next)=>{
     }
 });
 
+app.get('/cargar_modificar_usuario',async (req,res,next)=>{
+    console.log(req.query.matricula);
+    const matricula = req.query.matricula;
+    try{
+        const usuario = await prisma.usuario.findFirst({
+            where:{matricula:parseInt(matricula)},
+            include:{Rol:true,Estado:true,Credenciales_Usuario:true,Carreras:true}
+        });
+        console.log(usuario);
+        res.json(usuario);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/cargar_modificar_asignatura',async (req,res,next)=>{
+    console.log(req.query.matricula);
+    const cod_asignatura = req.query.matricula;
+    try{
+        const usuario = await prisma.usuario.findFirst({
+            where:{cod_asignatura:cod_asignatura},
+            include:{Tipos_Asignatura:true,Carreras:true, asignatura_visible:true}
+        });
+        console.log(asignatura);
+        res.json(asignatura);
+    }catch(error){
+        console.log(error);
+    }
+});
 
 app.post('/modificar-usuario',async (req,res,next)=>{
     const id_viejo = req.body.id_viejo
@@ -213,11 +242,8 @@ app.get('/cargar_crear_usuario',async (req,res)=>{
     try{
         console.log('cargando')
         const carreras = await prisma.carreras.findMany();
-        console.log(carreras);
         const rol = await prisma.rol.findMany();
-        console.log(rol);
         const estados = await prisma.estado.findMany();
-        console.log(estados);
 
         const mensaje = {
             carrera: carreras,
@@ -397,7 +423,7 @@ app.get('/nav_admin',async (req,res)=>{
             cant_secciones:cant_secciones,
             trimestre_actual:trimestre_actual
             }
-        console.log(obj);
+        // console.log(obj);
         res.send(`
             <script>
             localStorage.setItem('info_home_admin', JSON.stringify(${JSON.stringify(obj)}));

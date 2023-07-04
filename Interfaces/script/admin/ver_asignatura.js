@@ -29,12 +29,19 @@ $(document).ready(function() {
           }else{
             td.css('white-space','nowrap');
           }
+          td.on('dblclick',function() {
+            $.cookie('cod_asignatura',fila.value);            
+            window.location.href = 'modificar_asignatura.html';
+          });
           fila.append(td);
         }
       }
 
+      fila.value = elemento.Código;
       tabla.append(fila);
     });
+
+
 
     var mensaje = localStorage.getItem('mensaje');
     localStorage.removeItem("mensaje");
