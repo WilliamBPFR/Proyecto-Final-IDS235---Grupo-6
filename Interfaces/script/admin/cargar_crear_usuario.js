@@ -64,7 +64,7 @@ $(document).ready(function() {
   
     form.on('submit', function(event) {
       event.preventDefault(); // Evitar el envío del formulario
-  
+      
       // Obtener los valores del formulario
       const formData = form.serializeArray();
       const data = {};
@@ -80,8 +80,9 @@ $(document).ready(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(response) {
-          var mensaje = '0';
+          var mensaje = response;
           localStorage.setItem('mensaje', mensaje);
+          console.log(response);
           window.location.href = 'nav_admin?id=2';
         },
         error: function(xhr, status, error) {

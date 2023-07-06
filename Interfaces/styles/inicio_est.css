@@ -358,8 +358,11 @@
   bottom: 83.1%;
   left: 0;
 }
-.component-56:hover {
-  border: 2px solid #d921ca;
+.component-56:hover,
+.component-57:hover,
+.component-59:hover,
+.component-58:hover {
+  border: 2px solid #ea00ff;
   box-sizing: border-box;
 }
 .calificaciones {

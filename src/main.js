@@ -20,6 +20,7 @@ app.set('views',path.join(__dirname,'Interfaces/pages'));
 app.set('view engine','html'); 
 app.use(express.static(path.join(__dirname,'./../Interfaces')));
 app.use(express.static(path.join(__dirname,'./../Interfaces/pages')));
+app.use(express.static(path.join(__dirname,'./../Interfaces/pages/estudiantes')));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -63,9 +64,9 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
                         res.send(`
                         <script>
                         localStorage.setItem('usuario', JSON.stringify(${JSON.stringify(usuario)}));
-                        window.location.href = '/inicio_est.html    ';
+                        window.location.href = '/inicio_est.html';
                         </script>
-                    `);
+                        `);
                         res.redirect('/inicio_est.html');
                         break;
                     default:
@@ -130,7 +131,7 @@ app.post('/crear-usuario',async (req,res,next)=>{
                 const usuarioss = await prisma.usuario.findMany();
                 console.log(usuarioss);
                 console.log(new_credenciales);
-                res.send('Uusario creado exitosamente');
+                res.send('10');
             }else{
                 res.status(400).send('0');
             }
@@ -155,7 +156,7 @@ app.get('/cargar_modificar_usuario',async (req,res,next)=>{
             where:{matricula:parseInt(matricula)},
             include:{Rol:true,Estado:true,Credenciales_Usuario:true,Carreras:true}
         });
-        console.log(usuario);
+        console.log('modificar usuariio');
         res.json(usuario);
     }catch(error){
         console.log(error);
@@ -178,7 +179,7 @@ app.get('/cargar_modificar_asignatura',async (req,res,next)=>{
 });
 
 app.post('/modificar-usuario',async (req,res,next)=>{
-    const id_viejo = req.body.id_viejo
+    const mtr_viejo = req.body.id_viejo
     const nombre_user = req.body.txt_Nombre_Usuario;
     const rol = req.body.cb_rol;
     const matr = req.body.txt_ID;
@@ -187,16 +188,25 @@ app.post('/modificar-usuario',async (req,res,next)=>{
     const email = req.body.txt_Email;
     const carrera_asignatura = req.body.cb_carrera;
     const password = req.body.txt_Password;
-    const indice_academico = 4;
-    const password_encriptada = crypto.createHash('sha256').update(password).digest('hex');
+    var password_encriptada;
+    if(isNull(password) === false){
+        password_encriptada = crypto.createHash('sha256').update(password).digest('hex');
+    }else{
+        password_encriptada = null;
+    }
     if(matr.length === 7 && isNaN(matr) === false){
         console.log('entre al if de la matricula');
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(regex.test(email) === true){
             try{
+                console.log('entre al try');
                 const usuario = await prisma.usuario.findFirst({where:{matricula:parseInt(matr)}});
-                if(isNull(usuario)){
-                const new_ususario = await prisma.usuario.create({
+                console.log(usuario.matricula);
+                console.log(mtr_viejo);
+                if(isNull(usuario) || usuario.matricula === parseInt(mtr_viejo)){
+                // const user_viejo = await prisma.usuario.findFirst({where:{matricula:parseInt(mtr_viejo)}});
+                const new_ususario = await prisma.usuario.update({
+                    where:{matricula:parseInt(mtr_viejo)},
                     data:
                     {                    
                         nombre_usuario: nombre_user,
@@ -205,23 +215,25 @@ app.post('/modificar-usuario',async (req,res,next)=>{
                         fecha_nac: new Date(fecha_nacimiento),
                         id_estado: parseInt(id_est),
                         email: email,
-                        id_carrera_est: parseInt(carrera_asignatura),
-                        indice_acad_est: parseFloat(indice_academico)
+                        id_carrera_est: parseInt(carrera_asignatura)
                     }
                 });
                 console.log('garde usuario');
-                const new_credenciales = await prisma.Credenciales_Usuario.create({
+                if(isNull(password_encriptada) === false){
+                const new_credenciales = await prisma.Credenciales_Usuario.update({
+                    where:{id_usuario:new_ususario.id_usuario},
                     data:
                     {
                         id_usuario: new_ususario.id_usuario,
                         hash_contrasena: password_encriptada
                     }
                 });
+            }
                 console.log('guarde credenciales');
                 const usuarioss = await prisma.usuario.findMany();
                 console.log(usuarioss);
                 console.log(new_credenciales);
-                res.send('Uusario creado exitosamente');
+                res.send('20');
             }else{
                 res.status(400).send('0');
             }
@@ -448,6 +460,14 @@ app.get('/nav_admin',async (req,res)=>{
     case 6:
         res.redirect('/perfil.html');
     break;
+    }
+});
+
+app.get('/nav_estudiante',async (req,res)=>{
+    var id = parseInt(req.query.id);
+   switch(id){
+    case 1:
+        break;
     }
 });
 

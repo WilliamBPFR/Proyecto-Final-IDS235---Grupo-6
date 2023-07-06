@@ -59,9 +59,19 @@ $(document).ready(function() {
     msj = parseInt(men);
     console.log(msj);
     switch (msj) {
-      case 0:
+      case 10:
         console.log("entreeeee");
         $("#dialog_usuario_creado").dialog({
+          dialogClass: "custom-dialog-nuevo-user",
+          buttons: {
+              "Aceptar": function() {
+                  $(this).dialog("close"); // Cierra la ventana emergente
+              }
+          }
+      });
+      case 20:
+        console.log("entreeeee");
+        $("#dialog_usuario_modificado").dialog({
           dialogClass: "custom-dialog-nuevo-user",
           buttons: {
               "Aceptar": function() {

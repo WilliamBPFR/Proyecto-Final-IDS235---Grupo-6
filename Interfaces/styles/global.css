@@ -18,45 +18,59 @@ body {
   --font-size-45xl: 64px;
   --font-size-17xl: 36px;
   --font-size-5xl: 24px;
+  --font-size-13xl: 32px; /* Agregado */
 
   /* Colors */
   --color-white: #fff;
   --color-fuchsia-100: #ea00ff;
   --color-darkslateblue: rgba(66, 35, 108, 0.3);
+  --color-gray-100: #838383; /* Cambiado */
+  --color-gray-400: rgba(255, 255, 255, 0);
   --color-gray-300: rgba(255, 255, 255, 0.25);
   --color-gray-200: rgba(255, 255, 255, 0.1);
   --color-black: #000;
-  --color-yellow: rgba(255, 246, 39, 0.78);
+  --color-silver: rgba(192, 192, 192, 0.29);
+  --color-red-1000: #f50f0f; /* Cambiado */
   --color-red-200: #fc0b0b;
+  --color-red-1100: #f50e0e; /* Agregado */
+  --color-red-1200: #fb0a0a; /* Agregado */
   --color-red-300: #f70b0b;
   --color-red-400: #f50b0b;
   --color-red-500: #f30b0b;
+  --color-red-1300: #f50909; /* Agregado */
   --color-red-600: #f50808;
-  --color-red-700: rgba(235, 0, 0, 0.68);
+  --color-red-900: #f30707; /* Agregado */
+  --color-red-100: #ff0000;
   --color-red-800: rgba(255, 39, 39, 0.78);
-  --color-silver: rgba(192, 192, 192, 0.29);
-  --color-lime: rgba(57, 255, 39, 0.78);
-  --color-darkslategray: #2f2f2f;
+  --color-red-700: rgba(235, 0, 0, 0.68);
   --color-lawngreen: rgba(75, 235, 0, 0.79);
+  --color-darkslategray: #2f2f2f;
+  --color-gainsboro-300: #e2e2e2;
   --color-gainsboro-100: rgba(217, 217, 217, 0.28);
   --color-gainsboro-200: rgba(217, 217, 217, 0);
-  --color-darkgray: #b7aeae;
+  --color-lime: rgba(57, 255, 39, 0.78);
+  --color-yellow: rgba(255, 246, 39, 0.78);
   --color-blueviolet-200: #6a31e4;
   --color-blueviolet-100: rgba(137, 44, 255, 0.15);
   --color-blueviolet-300: rgba(146, 66, 254, 0.49);
+  /* ... */
   --color-dodgerblue: rgba(99, 143, 255, 0.17);
+  --color-darkgray: #b7aeae;
 
   /* Paddings */
   --padding-xl: 20px;
 
   /* border radiuses */
-  --br-3xs: 10px;
   --br-xl: 20px;
+  --br-3xs: 10px;
   --br-351xl: 370px;
+  --br-6xl: 25px;
+  --br-xs: 12px;
+  --br-8xs: 5px;
   --br-mini: 15px;
   --br-21xl: 40px;
-  --br-xs: 12px;
 }
+
 .cerrar_sesion {
   position: absolute;
   top: 85px;
@@ -66,6 +80,7 @@ body {
   height: 5.8%;
   border-radius: 20px;
 }
+
 .btn_cerrar_sesion {
   cursor: pointer;
   border: 0;
@@ -84,13 +99,12 @@ body {
   color: antiquewhite;
   font-size: 16px;
 }
+
 .btn_cerrar_sesion:hover {
   border: 2px solid yellow;
   box-sizing: border-box;
 }
-/* .custom-dialog-cerrar-sesion {
-  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
-} */
+
 .img_cerrar_sesion {
   position: absolute;
   height: 59.02%;
@@ -103,5 +117,4 @@ body {
   overflow: hidden;
   max-height: 100%;
   object-fit: cover;
-
 }
