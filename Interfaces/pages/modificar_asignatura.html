@@ -3,13 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="./../styles/global.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="../styles/global.css" />
-    <link rel="stylesheet" href="../styles/crear_asignatura.css" />
+    <link rel="stylesheet" href="./../styles/crear_usuario.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -17,129 +15,35 @@
   </head>
   <body>
     <script src="../script/admin/navegacion_admin.js"> </script>
-    <script src="../script/cerrar_sesion.js"></script>
-    <script src="../script/admin/modifcar_asignatura.js"></script>
-    <div class="macbook-air-6">
-      <div class="macbook-air-6-child"></div>
-      <div class="macbook-air-6-item"></div>
-      <img class="image-1-icon" alt="" src="../public/image-1@2x.png" />
+    <div class="macbook-air-11">
+      <div class="macbook-air-11-child"></div>
+      <div class="macbook-air-11-item"></div>
+      <img class="image-1-icon" alt="" src="./../public/image-1@2x.png" />
 
       <b class="gradegenius">GradeGenius</b>
       <button style="cursor: pointer;" id="btn_perfil">
-        <img class="image-2-icon" alt="" src="../public/image-2@2x.png" />
+        <img class="image-2-icon" alt="" src="./../public/image-2@2x.png" />
       </button>
-
-      <img class="image-3-icon" alt="" src="../public/image-3@2x.png" />
+      <img class="image-3-icon" alt="" src="./../public/image-3@2x.png" />
 
       <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
-        <img class="macbook-air-6-inner"  alt="" src="../public/polygon-1.svg" />
+        <img class="macbook-air-11-inner"  alt="" src="../public/polygon-1.svg" />
       </button>
 
-      <img class="polygon-icon" alt="" src="../public/polygon-1.svg" />
+      <img class="polygon-icon" alt="" src="./../public/polygon-1.svg" />
 
       <div class="rectangle-div"></div>
-      <b class="crear-asignatura">Modificar Asignatura</b>
-      <div class="frame-div"></div>
+      <b class="crear-usuario">Modificar Usuario</b>
       <div class="line-div"></div>
-      <div class="macbook-air-6-child1"></div>
-      <form class="component-44" method="post" id="form_crear_asignatura" action="/crear-asignatura">
-        <b class="codigo-de-la">Codigo de la Asignatura</b>
-        <input
-          class="component-44-child"
-          type="text"
-          maxlength
-          minlength
-          id="txt_Cod_Asignatura"
-          name="txt_Cod_Asignatura"
-          required
-        />
-
-        <b class="crditos-de-la">Créditos de la Asignatura</b>
-        <input
-          class="component-44-item"
-          type="number" 
-          min="1" step="1"
-          onkeydown="filtro()"
-          id="txt_Creditos_Asignatura"
-          name="txt_Creditos_Asignatura"
-          required
-        />
-        <script>
-          function filtro()
-          {
-          var tecla = event.key;
-          if (['.','e','-','+'].includes(tecla))
-             event.preventDefault()
-          }
-        </script>
-
-        <b class="carrera-a-la">Carrera a la que Pertenece</b>
-        <b class="nombre-de-la">Nombre de la Asignatura</b>
-        <input
-          class="component-44-inner"
-          type="text"
-          maxlength
-          minlength
-          id="txt_Nombre_Asignatura"
-          name="txt_Nombre_Asignatura"
-          required
-        />
-
-        <b class="tipo-de-asignatura">Tipo de Asignatura</b>
-        <b class="asignatura-visible">Asignatura Visible</b>
-        <div class="component-26" id="div_Guardar">
-          <button class="component-26-child" id="btn_Gurdar" type="submit">Guardar</button>
-          <img
-            class="disquete-1-icon"
-            alt=""
-            src="../public/disquete-1@2x.png"
-          />
-        </div>
-        <div class="component-27" id="div_Cancelar">
-          <button class="component-27-child" id="bt_Cancelar" type="reset">Cancelar</button>
-          <img
-            class="disquete-1-icon"
-            alt=""
-            src="../public/cancelar-1-1@2x.png"
-          />
-        </div>
-
-        <div class="component-50">
-          <select class="component-50-child" type="text" name="sel_Asignatura_Tipo" id="sel_Asignatura_Tipo" required>
-            <option value="0">Seleccione</option>
-            <option value="1">Virtual</option>
-          </select>
-
-          <img class="component-50-item" alt="" src="../public/polygon-8.svg" />
-        </div>
-        <div class="component-51">
-          <select class="component-50-child" type="text" name="sel_Asignatura_Visible" required>
-            <option value="0">Seleccione</option>
-            <option value="1">Si</option>
-            <option value="0">No</option>
-          </select>
-
-          <img class="component-50-item" alt="" src="../public/polygon-8.svg" />
-        </div>
-        <div class="component-52">
-          <select class="component-50-child" type="text" name="sel_Carrera_Pertenence" id="sel_Carrera_Pertenence" aria-placeholder="Seleccione">
-          </select>
-
-          <img class="component-50-item" alt="" src="../public/polygon-8.svg" />
-        </div>
-      </form>
-      <div class="component-71" id="div_mensaje_error"style="display: none;">
-        <div class="component-71-child">
-          <label class="matrcula-o-id" id="label_error"
-            >Matrícula o ID ya Existente</label>
-        </div>
-      </div>
-      <div class="component-18">
-        <nav class="component-18-child" id="nav_admin"></nav>
-        <div class="component-18-item"></div>
+      <div class="component-35" id="div_Guardar"></div>
+      <div class="component-36" id="div_Cancelar"></div>
+      <div class="macbook-air-11-child1"></div>
+      <div class="component-22">
+        <nav class="component-22-child" id="nav_admin"></nav>
+        <div class="component-22-item"></div>
         <button class="component-5" id="manejo_asignaturas">
           <div class="manejo-de-asignaturas">Manejo de Asignaturas</div>
-          <img class="libros-3-icon" alt="" src="../public/libros-3@2x.png" />
+          <img class="libros-3-icon" alt="" src="./../public/libros-3@2x.png" />
 
           <div class="component-5-child"></div>
         </button>
@@ -149,7 +53,7 @@
           <img
             class="libros-3-icon"
             alt=""
-            src="../public/gestiondeproyectos-1@2x.png"
+            src="./../public/gestiondeproyectos-1@2x.png"
           />
         </button>
         <button class="component-7" id="manejo_seccion">
@@ -158,7 +62,7 @@
           <img
             class="capitulo-2-icon"
             alt=""
-            src="../public/capitulo-2@2x.png"
+            src="./../public/capitulo-2@2x.png"
           />
         </button>
         <button class="component-8" id="inicio_admin">
@@ -167,7 +71,7 @@
           <img
             class="capitulo-2-icon"
             alt=""
-            src="../public/paginadeinicio-3@2x.png"
+            src="./../public/paginadeinicio-3@2x.png"
           />
         </button>
         <button class="component-31" id="btn_configuracion">
@@ -176,9 +80,103 @@
           <img
             class="libros-3-icon"
             alt=""
-            src="../public/configuraciones-1-1@2x.png"
+            src="./../public/configuraciones-1-1@2x.png"
           />
         </button>
+      </div>
+      <form class="component-48" id="component-48" name="modificar" method="post" action="/modificar-asignatura">
+        <b class="id-o-matrcula">ID o Matrícula</b>
+        <input
+          class="component-48-child"
+          type="text"
+          maxlength
+          minlength
+          id="txt_ID"
+          name="txt_ID"
+        />
+
+        <b class="estado">Estado</b>
+        <b class="contrasena">Nueva Contraseña</b>
+        <input
+          class="component-48-item"
+          type="password"
+          maxlength
+          minlength
+          id="txt_Password"
+          name="txt_Password"
+        />
+
+        <b class="email">Email</b>
+        <input
+          class="component-48-inner"
+          type="email"
+          maxlength
+          minlength
+          id="txt_Email"
+          name="txt_Email"
+        />
+
+        <b class="nombre-del-usuario">Nombre del Usuario</b>
+        <input
+          class="rectangle-input"
+          type="text"
+          maxlength
+          minlength
+          id="txt_Nombre_Usuario"
+          name="txt_Nombre_Usuario"
+        />
+
+        <b class="rol">Rol</b>
+        <b class="fecha-de-nacimiento">Fecha de Nacimiento</b>
+        <input
+          class="component-48-child1"
+          type="date"
+          maxlength
+          minlength
+          id="txt_Fecha"
+          name="txt_Fecha"
+        />
+
+        <button class="rectangle-button" id="btn_Guardar">Guardar</button>
+        <img class="disquete-1-icon" alt="" src="./../public/disquete-1@2x.png" />
+
+        <button class="component-48-child2" id="btn_Cancelar" type="reset">Cancelar</button>
+        <img class="cancelar-1-1" alt="" src="./../public/cancelar-1-1@2x.png" />
+
+        <!-- Combobox Estado -->
+        <div class="component-51">
+          <select class="component-51-child" type="text" id="cb_estado" name="cb_estado">
+            <option value="opcion1">Activo</option>
+            <option value="opcion2">Inactivo</option>
+          </select>
+
+          <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
+        </div>
+        <!-- Combobbox Rol -->
+        <div class="component-52">
+          <select class="component-51-child" type="text" id="cb_rol" name="cb_rol">
+            <option value="opcion1">Estudiante</option>
+            <option value="opcion2">Profesor</option>
+            <option value="opcion3">Administrador</option>
+          </select>
+
+          <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
+        </div>
+        <b class="carrera-del-usuario">Carrera del Usuario</b>
+        <div class="component-53">
+          <select class="component-51-child" id="cb_carrera" name="cb_carrera">
+            <option value="opcion1">Ingeniería de Aseguramiento de Software</option>
+            <option value="opcion2">Rosanna Ejemplo</option>
+            <option value="opcion3">Ingeniería de Electrónica en Comunicaciones</option>
+          </select>
+          <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
+        </div>
+        
+      </form>
+      <div class="component-71" id="div_mensaje_error" style="display: none;">
+        <div class="component-71-child"></div>
+          <label class="matrcula-o-id" id="label_error"
+            >Matrícula o ID ya Existente</label>
       </div>
     </div>
     <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
@@ -192,9 +190,10 @@
         <!-- <label class="p_cerrar_sesion"></label> -->
       </button>
     </div>
+    <script src="../script/cerrar_sesion.js"></script>
+    <script src="../script/admin/modifcar_asignatura.js"></script>
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
-    <script src="../script/admin/cargar_crear_asignatura..js"></script>
   </body>
 </html>

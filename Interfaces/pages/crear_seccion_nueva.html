@@ -15,49 +15,6 @@
     <script src="../script/admin/navegacion_admin.js"> </script>
     <script src="../script/admin/cargar_crear_seccion.js"> </script>
     <script src="../script/cerrar_sesion.js"></script>
-    <style>
-        .tabla-container {
-          width: 47%;
-          height: 46%;
-          overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
-          position: absolute;
-          top: 20%;
-          left: 4%;
-          border-radius: 20px;
-          border: 1px solid #e27c7c;
-        }
-        tr:hover{
-          background-color: rgba(169, 169, 169, 0.5);
-          cursor: pointer;
-        }
-        table {
-          width: 100%;
-          border-collapse: collapse;
-          position: absolute;
-        }
-        th,
-        td {
-          padding: 8px;
-          text-align: center;          
-          color:rgb(86, 131, 123);
-          border-bottom: 1px solid #e27c7c;
-        }
-        th {
-          position: sticky;
-          background-color: #e0a4a4;
-          font-weight: bold;
-          text-align: center;
-        }
-      .combobox-column select {
-      width: 100%;
-      padding: 5px;
-      border: none;
-      border-radius: 3px;
-      background-color: #c0bebead;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      font-size: 14px;
-    }
-      </style>
   </head>
   <body>
     <div class="macbook-air-8">
@@ -71,6 +28,7 @@
       </button>
 
       <img class="image-3-icon3" alt="" src="../public/image-3@2x.png" />
+
       <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
         <img class="macbook-air-8-inner"  alt="" src="../public/polygon-1.svg" />
       </button>
@@ -129,16 +87,7 @@
         </button>
       </div>
       <form class="component-46" method="post" id="component-46" action="/crear_seccion">
-        <div class="tabla-container">
-            <table id="tabla-secciones">
-              <tr>
-                <th>Dia</th>
-                <th>Hora de Inicio</th>
-                <th>Hora de Fin</th>
-              </tr>
-            </table>
-          </div>
-        <!-- <b class="hora-de-inicio">Hora de Inicio</b>
+        <b class="hora-de-inicio">Hora de Inicio</b>
         <select
           class="component-46-child"
           type="text"
@@ -165,7 +114,7 @@
           <option value="22">22 hrs (10 p.m.)</option>
       </select>
 
-        <img class="component-46-item" alt="" src="../public/polygon-8.svg" />
+        <!-- <img class="component-46-item" alt="" src="../public/polygon-8.svg" /> -->
 
         <b class="hora-de-fin">Hora de Fin</b>
         <select
@@ -192,7 +141,7 @@
         <option value="20">20 hrs (08 p.m.)</option>
         <option value="21">21 hrs (09 p.m.)</option>
         <option value="22">22 hrs (10 p.m.)</option>
-      </select> -->
+      </select>
 
         <!-- <img class="component-46-child1" alt="" src="../public/polygon-8.svg" /> -->
 
@@ -208,32 +157,6 @@
         ></select>
 
         <b class="dias_impartirse">Dias a Impartirse</b>
-        <div id="diasSemana" class="diasSemana">
-          <label for="lunes">Lunes
-            <input type="checkbox" id="lunes" name="diaSemana" value="1">
-            <span class="checkmark"></span>
-          </label>
-          <label for="martes">Martes
-            <input type="checkbox" id="martes" name="diaSemana" value="2">
-            <span class="checkmark"></span>
-          </label>
-          <label for="miercoles">Miércoles
-            <input type="checkbox" id="miercoles" name="diaSemana" value="3">
-            <span class="checkmark"></span>
-          </label>
-          <label for="jueves">Jueves
-            <input type="checkbox" id="jueves" name="diaSemana" value="4">
-            <span class="checkmark"></span>
-          </label>
-          <label for="viernes">Viernes
-            <input type="checkbox" id="viernes" name="diaSemana" value="5">
-            <span class="checkmark"></span>
-          </label>
-          <label for="sabado">Sábado
-            <input type="checkbox" id="sabado" name="diaSemana" value="6">
-            <span class="checkmark"></span>
-          </label>
-        </div>        
 
         <!-- <img class="component-46-child3" alt="" src="../public/polygon-8.svg" /> -->
 

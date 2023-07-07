@@ -1,3 +1,4 @@
+-- SQLBook: Code
 -- Creando la Base de Datos
 USE master;
 
@@ -64,12 +65,24 @@ CREATE TABLE Seccion(
 	id_modalidad int NOT NULL,
 	id_profesor int NOT NULL,
 	num_seccion int NOT NULL,
-	hora_inicio nvarchar(20) NOT NULL,
 	id_trimestre int,
+	fecha_creacion datetime NOT NULL,
+	num_est int NULL
+);
+
+CREATE TABLE seccion_dias(
+	id_registro int identity(1,1),
+	id_seccion int NOT NULL,
+	id_dia int NOT NULL,
+	hora_inicio nvarchar(20) NOT NULL,
 	hora_fin nvarchar(20) NOT NULL,
 	fecha_creacion datetime NOT NULL
 );
-
+CREATE TABLE dias_clase(
+	id_dia int identity(1,1),
+	dia_semana nvarchar(20) NOT NULL,
+	fecha_creacion datetime NOT NULL
+);
 
 CREATE TABLE Tipos_Asignatura(
 	id_tipo_asignatura int identity(1,1),
@@ -101,7 +114,7 @@ CREATE TABLE Asignaturas_Seleccionadas(
 	id_estudiante int NOT NULL,
 	id_trimestre int NOT NULL,
 	fecha_creacion datetime NOT NULL,
-	calificacion_num decimal(4,2) NOT NULL
+	calificacion_num decimal(4,2)
 );
 
 CREATE TABLE Trimestres(
@@ -190,7 +203,6 @@ ALTER TABLE Asignatura ADD CONSTRAINT FK_asignatura_id_carrera FOREIGN KEY (id_c
 ALTER TABLE Asignatura ADD CONSTRAINT DF_asignatura_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 ALTER TABLE Asignatura ADD CONSTRAINT UQ_asignatura_cod_asignatura UNIQUE (cod_asignatura);
 
-
 --Tabla Seccion
 ALTER TABLE Seccion ADD CONSTRAINT PK_seccion PRIMARY KEY (id_seccion);
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_asignatura FOREIGN KEY (id_asignatura) REFERENCES Asignatura(id_asignatura);
@@ -200,6 +212,15 @@ ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_trimestre FOREIGN KEY (id_trime
 ALTER TABLE Seccion ADD CONSTRAINT DF_seccion_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 ALTER TABLE Seccion ADD CONSTRAINT UQ_seccion_num_seccion UNIQUE (id_asignatura,num_seccion);
 
+--Tabla dias_clase
+ALTER TABLE dias_clase ADD CONSTRAINT PK_dias_clase PRIMARY KEY (id_dia);
+ALTER TABLE dias_clase ADD CONSTRAINT DF_dias_clase_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
+
+--Tabla seccion_dias
+ALTER TABLE seccion_dias ADD CONSTRAINT PK_seccion_dias PRIMARY KEY (id_registro);
+ALTER TABLE seccion_dias ADD CONSTRAINT FK_seccion_dias_id_seccion FOREIGN KEY (id_seccion) REFERENCES Seccion(id_seccion);
+ALTER TABLE seccion_dias ADD CONSTRAINT FK_seccion_dias_id_dia FOREIGN KEY (id_dia) REFERENCES dias_clase(id_dia);
+ALTER TABLE seccion_dias ADD CONSTRAINT DF_seccion_dias_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
 --Tabla Inicio_Fin_Seleccion
 ALTER TABLE Inicio_Fin_Seleccion ADD CONSTRAINT PK_inicio_fin_trimestres PRIMARY KEY (id_seleccion);
 ALTER TABLE Inicio_Fin_Seleccion ADD CONSTRAINT DF_inicio_fin_trimestres_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
@@ -265,5 +286,23 @@ GO
 
 INSERT INTO Trimestres (id_tipo_trimestre,ano_trimestre,activo) VALUES (1,'2023',1);
 GO
+
+-- Insertar lunes
+INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Lunes', GETDATE());
+
+-- Insertar martes
+INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Martes', GETDATE());
+
+-- Insertar miércoles
+INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Miércoles', GETDATE());
+
+-- Insertar jueves
+INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Jueves', GETDATE());
+
+-- Insertar viernes
+INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Viernes', GETDATE());
+
+-- Insertar sábado
+INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Sábado', GETDATE());
 
 SELECT * FROM Usuario

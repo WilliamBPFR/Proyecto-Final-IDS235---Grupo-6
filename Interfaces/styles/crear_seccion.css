@@ -263,7 +263,7 @@
 .hora-de-inicio {
   height: 8.71%;
   width: 17.3%;
-  top: 34.27%;
+  top: 28.37%;
   left: 0;
   font-size: var(--font-size-xl);
   display: inline-block;
@@ -275,9 +275,9 @@
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);
   position: absolute;
-  height: 16.85%;
+  height: 14.85%;
   width: 28.57%;
-  top: 29.21%;
+  top: 24.21%;
   right: 52.01%;
   bottom: 53.93%;
   left: 19.42%;
@@ -285,7 +285,7 @@
   box-sizing: border-box;
 }
 .component-46-child:hover {
-  border: 1px solid #f71414;
+  border: 2px solid #f71414;
   box-sizing: border-box;
 }
 .component-46-item {
@@ -304,7 +304,7 @@
   position: absolute;
   height: 8.43%;
   width: 17.3%;
-  top: 60.39%;
+  top: 52.79%;
   left: 0;
   font-size: var(--font-size-xl);
   display: inline-block;
@@ -316,9 +316,9 @@
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);
   position: absolute;
-  height: 16.85%;
+  height: 14.85%;
   width: 28.57%;
-  top: 56.18%;
+  top: 48.38%;
   right: 52.01%;
   bottom: 26.97%;
   left: 19.42%;
@@ -326,7 +326,7 @@
   box-sizing: border-box;
 }
 .component-46-inner:hover {
-  border: 1px solid #f00808;
+  border: 2px solid #f00808;
   box-sizing: border-box;
 }
 .component-46-child1 {
@@ -345,7 +345,7 @@
   position: absolute;
   height: 8.43%;
   width: 17.3%;
-  top: 60.39%;
+  top: 52.79%;
   left: 52.01%;
   font-size: var(--font-size-xl);
   display: inline-block;
@@ -353,13 +353,98 @@
   color: var(--color-black);
   text-align: right;
 }
+.dias_impartirse {
+  position: absolute;
+  height: 8.43%;
+  width: 17.3%;
+  top: 68.79%;
+  left: 3.01%;
+  font-size: var(--font-size-xl);
+  display: inline-block;
+  font-family: var(--font-poppins);
+  color: var(--color-black);
+  text-align: right;
+}
+.diasSemana {
+  position: absolute;
+  height: 8.43%;
+  width: 36.3%;
+  top: 67.79%;
+  left: 25%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.diasSemana label {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+.diasSemana .checkmark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.diasSemana input[type="checkbox"] {
+  display: none;
+}
+
+.diasSemana .checkmark:hover,
+.diasSemana label:hover {
+  animation: blink-orange 0.5s infinite alternate;
+}
+
+.diasSemana input[type="checkbox"]:checked + .checkmark {
+  background-color: #000;
+}
+
+.diasSemana .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.diasSemana input[type="checkbox"]:checked + .checkmark:after {
+  display: block;
+}
+
+.diasSemana input[type="checkbox"]:checked + .checkmark:after {
+  content: "\2713";
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  font-size: 14px;
+  color: #fff;
+}
+
+@keyframes blink-orange {
+  0% {
+    color: black;
+  }
+  100% {
+    color: #FFA500; /* Cambiar a tu tono de naranja deseado */
+  }
+}
+
+
 .component-46-child2 {
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);
   position: absolute;
-  height: 16.85%;
+  height: 14.85%;
   width: 28.57%;
-  top: 56.18%;
+  top: 48.38%;
   right: 0;
   bottom: 26.97%;
   left: 71.43%;
@@ -398,7 +483,7 @@
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);
   position: absolute;
-  height: 16.85%;
+  height: 14.85%;
   width: 28.68%;
   top: 0;
   right: 52.01%;
@@ -439,7 +524,7 @@
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);
   position: absolute;
-  height: 16.85%;
+  height: 14.85%;
   width: 28.68%;
   top: 0;
   right: 0;
@@ -456,7 +541,7 @@
   position: absolute;
   height: 15.45%;
   width: 18.08%;
-  top: 29.21%;
+  top: 24.21%;
   left: 51.23%;
   font-size: var(--font-size-xl);
   display: inline-block;
@@ -468,9 +553,9 @@
   border: 1px solid var(--color-black);
   background-color: var(--color-silver);
   position: absolute;
-  height: 16.85%;
+  height: 14.85%;
   width: 28.68%;
-  top: 29.21%;
+  top: 24.21%;
   right: 0;
   bottom: 53.93%;
   left: 71.32%;
@@ -533,9 +618,9 @@
 .component-32,
 .component-33-child {
   position: absolute;
-  height: 16.29%;
+  height: 13.09%;
   width: 22.1%;
-  top: 83.71%;
+  top: 88%;
   right: 55.25%;
   bottom: 0;
   left: 22.66%;
@@ -621,19 +706,19 @@
 }
 .component-33 {
   position: absolute;
-  height: 16.29%;
+  height: 13.09%;
   width: 22.1%;
-  top: 83.71%;
+  top: 88%;
   right: 20.09%;
   bottom: 0;
   left: 57.81%;
 }
 .component-46 {
   position: absolute;
-  top: 348px;
+  top: 39%;
   left: 326px;
   width: 896px;
-  height: 356px;
+  height: 51%;
 }
 .macbook-air-8 {
   position: relative;

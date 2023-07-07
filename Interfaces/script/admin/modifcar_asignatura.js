@@ -1,9 +1,9 @@
 $(document).ready(function() {
     // // Asociar el controlador de eventos al botón
-    // $('#btn_Agregar_Usuario').click(function() {
+     $('#btn_Agregar_Usuario').click(function() {
     //   // Aquí puedes ejecutar la función que deseas cuando se hace clic en el botón
-    //   window.location.href = 'cargar_crear_usuario/';
-    // });
+       window.location.href = 'cargar_crear_usuario/';
+     });
     console.log('La página se ha cargado completamente');
     $.ajax({
       url: '/cargar_modificar_usuario',

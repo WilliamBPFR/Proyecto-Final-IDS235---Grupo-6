@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     datos_transformados.forEach(function(elemento) {
       var fila = $('<tr></tr>');
-
+      
       for (var propiedad in elemento) {
         if (elemento.hasOwnProperty(propiedad)) {
           var td = $('<td></td>').text(elemento[propiedad]);
@@ -31,6 +31,10 @@ $(document).ready(function() {
           }else{
             td.css('white-space','nowrap');
           }
+          td.on('dblclick',function() {
+            $.cookie('id_seccion',fila.value);            
+            window.location.href = 'modificar_seccion.html';
+          });
           fila.append(td);
         }
       }

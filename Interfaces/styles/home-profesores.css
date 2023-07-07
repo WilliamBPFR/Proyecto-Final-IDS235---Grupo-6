@@ -1,0 +1,324 @@
+.perfil-profesores-child {
+  position: absolute;
+  top: 11px;
+  left: 1px;
+  background: linear-gradient(112.67deg, #964afd, #487afd);
+  width: 1280px;
+  height: 832px;
+}
+.perfil-profesores-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-darkslategray);
+  width: 1280px;
+  height: 104px;
+}
+.image-1-icon1 {
+  position: absolute;
+  top: 25px;
+  left: 38px;
+  width: 51px;
+  height: 51px;
+  object-fit: cover;
+}
+.gradegenius1 {
+  position: absolute;
+  top: 35px;
+  left: 115px;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  text-align: left;
+}
+.image-2-icon1,
+.image-3-icon1 {
+  position: absolute;
+  object-fit: cover;
+}
+.image-2-icon1 {
+  top: 28px;
+  left: 1095px;
+  border-radius: var(--br-351xl);
+  width: 51px;
+  height: 52px;
+}
+.image-3-icon1 {
+  top: 36px;
+  left: 1214px;
+  width: 31px;
+  height: 31px;
+}
+.perfil-profesores-child1,
+.perfil-profesores-inner {
+  position: absolute;
+  top: 49px;
+  left: 1162.8px;
+  width: 10.39px;
+  height: 9px;
+}
+.perfil-profesores-child1 {
+  top: 795px;
+  left: 1178.8px;
+}
+.perfil-profesores-child2 {
+  position: absolute;
+  top: 104px;
+  left: 373px;
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  box-shadow: 12px 12px 9px 1px rgba(0, 0, 0, 0.13);
+  width: 773px;
+  height: 673px;
+}
+.perfil-profesores-child3,
+.perfil-profesores-child4,
+.perfil-profesores-child5,
+.perfil-profesores-child6 {
+  position: absolute;
+  top: 135px;
+  left: 435px;
+  border-radius: var(--br-mini);
+  background-color: var(--color-dodgerblue);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  width: 308px;
+  height: 270px;
+}
+.perfil-profesores-child4,
+.perfil-profesores-child5,
+.perfil-profesores-child6 {
+  left: 783px;
+}
+.perfil-profesores-child5,
+.perfil-profesores-child6 {
+  top: 464px;
+  left: 435px;
+}
+.perfil-profesores-child6 {
+  left: 783px;
+}
+.label {
+  cursor: pointer;
+  position: absolute;
+  top: 159px;
+  left: 506px;
+  font-size: var(--font-size-45xl);
+  font-weight: 500;
+  display: inline-block;
+  width: 173px;
+  height: 95px;
+}
+.agost-oct {
+  margin: 0;
+}
+.agost-oct-2023,
+.label1,
+.label2 {
+  cursor: pointer;
+  position: absolute;
+  top: 492px;
+  left: 786px;
+  font-size: var(--font-size-17xl);
+  font-weight: 600;
+  display: inline-block;
+  width: 311px;
+  height: 144px;
+}
+.label1,
+.label2 {
+  top: 479px;
+  left: 503px;
+  font-size: var(--font-size-45xl);
+  font-weight: 500;
+  width: 169px;
+  height: 68px;
+}
+.label2 {
+  top: 159px;
+  left: 833px;
+  width: 217px;
+  height: 176px;
+}
+.calificaciones-pendientes-por,
+.secciones-totales-de,
+.total-de-estudiantes,
+.trimestre-actual {
+  position: absolute;
+  top: 285px;
+  left: 460px;
+  display: inline-block;
+  color: var(--color-black);
+  width: 265px;
+  height: 64px;
+}
+.secciones-totales-de,
+.total-de-estudiantes,
+.trimestre-actual {
+  top: 585px;
+  left: 457px;
+}
+.total-de-estudiantes,
+.trimestre-actual {
+  top: 619px;
+  left: 809px;
+}
+.total-de-estudiantes {
+  top: 259px;
+  left: 822px;
+  width: 239px;
+}
+.perfil-profesores-child7 {
+  position: absolute;
+  height: 7.45%;
+  width: 20.94%;
+  top: 12.5%;
+  right: 78.98%;
+  bottom: 80.05%;
+  left: 0.08%;
+  background-color: var(--color-gray-300);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.component-32-child,
+.component-36-child,
+.component-36-item {
+  position: absolute;
+  right: 3.15%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
+.component-36-child {
+  margin: 0;
+  height: 100%;
+  width: 93.71%;
+  top: 0;
+  bottom: 0;
+  left: 3.15%;
+  background-color: var(--color-gray-200);
+}
+.component-32-child,
+.component-36-item {
+  height: 8.65%;
+  width: 96.85%;
+  top: 17.03%;
+  bottom: 74.31%;
+  left: 0;
+  border-top: 1px solid var(--color-darkslateblue);
+  border-bottom: 1px solid var(--color-darkslateblue);
+  box-sizing: border-box;
+}
+.component-32-child {
+  height: 103.28%;
+  width: 100%;
+  top: -1.64%;
+  right: 0;
+  bottom: -1.64%;
+}
+.inicio1 {
+  position: absolute;
+  top: 31.15%;
+  left: 45.49%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.pagina-de-inicio-3-icon1 {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 21.31%;
+  right: 72.92%;
+  bottom: 19.67%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-32 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 96.85%;
+  top: 0;
+  right: 3.15%;
+  bottom: 91.62%;
+  left: 0;
+}
+.component-321:hover,
+.component-322:hover,
+.component-32:hover {
+  border: 2px solid var(--color-fuchsia-100);
+  box-sizing: border-box;
+}
+.calificaciones {
+  position: absolute;
+  top: 31.15%;
+  left: 31.05%;
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-white);
+  text-align: left;
+}
+.component-321 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 96.85%;
+  top: 8.52%;
+  right: 3.15%;
+  bottom: 83.1%;
+  left: 0;
+}
+.capitulo-2-icon1 {
+  position: absolute;
+  height: 59.02%;
+  width: 13%;
+  top: 22.95%;
+  right: 72.92%;
+  bottom: 18.03%;
+  left: 14.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.component-322 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 8.38%;
+  width: 96.85%;
+  top: 17.03%;
+  right: 3.15%;
+  bottom: 74.59%;
+  left: 0;
+}
+.component-36 {
+  position: absolute;
+  top: 104px;
+  left: -8px;
+  width: 286px;
+  height: 728px;
+}
+.perfil-profesores {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 832px;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-6xl);
+  color: var(--color-blueviolet-200);
+  font-family: var(--font-poppins);
+}

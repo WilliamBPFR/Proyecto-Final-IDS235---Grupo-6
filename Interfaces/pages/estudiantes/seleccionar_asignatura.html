@@ -10,34 +10,85 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
+    <style>
+      .tabla-container {
+        width: 67%;
+        height: 31.5%;
+        overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+        position: absolute;
+        top: 25%;
+        left: 24.3%;
+        border-radius: 20px;
+        color:black;
+        background-color: rgba(226, 223, 226, 0.596);
+      }
+      tr:hover{
+        background-color: rgba(169, 169, 169, 0.5);
+        cursor: pointer;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        position: absolute;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        position: sticky;
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <div class="calificaciones">
       <div class="calificaciones-child"></div>
       <div class="calificaciones-item"></div>
-      <div class="botn2">
-        <div class="botn2-child"></div>
-        <img class="botn2-item" alt="" src="./public/polygon-1.svg" />
-
-        <div class="trimestre">Trimestre</div>
+      <img class="image-1-icon" alt="" src="./../../public/image-1@2x.png" />
+      <div class="tabla-container">
+        <table id="tabla-secciones-elegidas">
+          <tr>
+            <th>Asignatura</th>
+            <th>Sección</th>
+            <th>Cupos</th>
+            <th>Horario</th>
+            <th>Docente</th>
+            <th>Modalidad</th>
+            <th>Eliminar</th>
+          </tr>
+        </table>
       </div>
-      <div class="botn1">
-        <div class="botn1-child"></div>
-        <img class="botn1-item" alt="" src="./public/polygon-1.svg" />
-
-        <div class="trimestre">Asignatura</div>
-      </div>
-      <img class="image-1-icon" alt="" src="./public/image-1@2x.png" />
-
+      <h1 class="h1Principal">Seleccionar Asignatura</h1>
       <b class="gradegenius">GradeGenius</b>
-      <img class="image-2-icon" alt="" src="./public/image-2@2x.png" />
+      <img class="image-2-icon" alt="" src="./../../public/image-2@2x.png" />
 
-      <img class="image-3-icon" alt="" src="./public/image-3@2x.png" />
+      <img class="image-3-icon" alt="" src="./../../public/image-3@2x.png" />
 
-      <img class="calificaciones-inner" alt="" src="./public/polygon-1.svg" />
+      <img class="calificaciones-inner" alt="" src="./../../public/polygon-1.svg" />
 
-      <div class="rectangle-div"></div>
-      <button class="image-4" id="btn_buscar"></button>
+      <div class="component-32" id="div_Guardar">
+        <button class="component-32-child" id="btn_Guardar" type = "submit">Guardar</button>
+        <img
+          class="disquete-1-icon1"
+          alt=""
+          src="../../public/disquete-1@2x.png"
+        />
+      </div>
+      <div class="component-33" id="div_Cancelar">
+        <button class="component-33-child" id="btn_Cancelar" type="reset">Cancelar</button>
+        <img
+          class="disquete-1-icon1"
+          alt=""
+          src="../../public/cancelar-1-1@2x.png"
+        />
+      </div>
+      <div class="rectangle-div">
+        <button class="image-4" id="btn_buscar"></button>
       <input
         class="rectangle-input"
         type="text"
@@ -46,53 +97,30 @@
         minlength
         id="txt_filtro"
       />
-      <div class="image-6"></div>
-      <div class="rectangle-parent">
-        <div class="instance-child"></div>
-        <button class="component-76" id="btn_asignatura_calif">
-          <div class="component-76-child" id="btn-toggle" name="div_arriba"></div>
-          <div class="desarrollo-de-software">Desarrollo de Software III</div>
-          <div class="calificacin-general">Calificación general:</div>
-          <img class="component-76-item" alt="" src="./public/polygon-1.svg" />
-          <img class="image-10-icon" alt="" src="./public/image-10@2x.png" />
-          <img
-            class="screenshot-2023-06-23-at-1214"
-            alt=""
-            src="./public/screenshot-20230623-at-1214-1@2x.png"/>
-        </button>
       </div>
-
-      <div class="rosanna">
-        <section class="seccionToggle">
-          <div class="wrap">
-            <h4>Calificación Medio Término: 43/70</h4>
-            <h4>Calificación Final: 75/100 </h4>
-            <h4>Calificación Literal: C+</h4>
-          </div>
-        </section>
-
-        <!-- <a href="#" id="btn-toggle" class="btn-toggle">⬇️</a> -->
-
-        <div class="main">
-          <div class="wrap">
-          </div>
-        </div>
+      <div class="div_btn_Buscar" id="div_Agregar_Seccion">
+        <button class="btn_buscar" id="btn_Agregar_Seccion">Agregar Sección</button>
+        <img
+          class="boton-agregar-1-icon1"
+          alt=""
+          src="./../../public/lupa.png"
+        />
       </div>
-
+      <div class="div_asignaturaa" id="id_asignatura">
+        
       </div>
-    
-      <img class="rectangle-icon" alt="" src="./public/rectangle-7.svg" />
+      <img class="rectangle-icon" alt="" src="./../../public/rectangle-7.svg" />
 
       <div class="component-50">
         <nav class="component-50-child" id="nav_admin"></nav>
         <button class="component-56" id="btn_estudiante">
           <div class="component-56-child"></div>
           <div class="estudiante">Estudiante</div>
-          <img class="image-7-icon" alt="" src="./public/image-7@2x.png" />
+          <img class="image-7-icon" alt="" src="./../../public/image-7@2x.png" />
         </button>
         <button class="component-57" id="btn_calificaciones">
           <div class="calificaciones1">Calificaciones</div>
-          <img class="libros-3-icon" alt="" src="./public/libros-3@2x.png" />
+          <img class="libros-3-icon" alt="" src="./../../public/libros-3@2x.png" />
 
           <div class="component-57-child"></div>
         </button>
@@ -102,7 +130,7 @@
           <img
             class="capitulo-2-icon"
             alt=""
-            src="./public/capitulo-2@2x.png"
+            src="./../../public/capitulo-2@2x.png"
           />
         </button>
         <button class="component-58" id="btn_ret_asignatura">
@@ -111,11 +139,12 @@
           <img
             class="gestion-de-proyectos-2-icon"
             alt=""
-            src="./public/gestiondeproyectos-2@2x.png"
+            src="./../../public/gestiondeproyectos-2@2x.png"
           />
         </button>
       </div>
     </div>
-      <script src="./seccion.js"></script>
+    </body>
+      <script src="./../../script/estudiante/seleccionar_asignatura.js"></script>
   </body>
 </html>

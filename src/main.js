@@ -21,6 +21,8 @@ app.set('view engine','html');
 app.use(express.static(path.join(__dirname,'./../Interfaces')));
 app.use(express.static(path.join(__dirname,'./../Interfaces/pages')));
 app.use(express.static(path.join(__dirname,'./../Interfaces/pages/estudiantes')));
+app.use(express.static(path.join(__dirname,'./../Interfaces/pages/profesores')));
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -58,6 +60,7 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
                         res.redirect('/nav_admin?id=4');
                         break;
                     case 2://Profesor
+                        res.redirect('nav_profesores?id=1')
                         break;
                     case 3://Estudiante
                         const user = usuario;
@@ -147,7 +150,7 @@ app.post('/crear-usuario',async (req,res,next)=>{
         res.status(400).send('2');
     }
 });
-
+  
 app.get('/cargar_modificar_usuario',async (req,res,next)=>{
     console.log(req.query.matricula);
     const matricula = req.query.matricula;
@@ -163,20 +166,38 @@ app.get('/cargar_modificar_usuario',async (req,res,next)=>{
     }
 });
 
-app.get('/cargar_modificar_asignatura',async (req,res,next)=>{
+// app.get('/cargar_modificar_asignatura',async (req,res,next)=>{
+//     console.log(req.query.matricula);
+//     const cod_asignatura = req.query.matricula;
+//     try{
+//         const usuario = await prisma.usuario.findFirst({
+//             where:{cod_asignatura:cod_asignatura},
+//             include:{Tipos_Asignatura:true,Carreras:true, asignatura_visible:true}
+//         });
+//         console.log(asignatura);
+//         res.json(asignatura);
+//     }catch(error){
+//         console.log(error);
+//     }
+// });
+
+app.get('/cargar_modificar_asignatura', async (req, res, next) => {
     console.log(req.query.matricula);
     const cod_asignatura = req.query.matricula;
-    try{
-        const usuario = await prisma.usuario.findFirst({
-            where:{cod_asignatura:cod_asignatura},
-            include:{Tipos_Asignatura:true,Carreras:true, asignatura_visible:true}
-        });
-        console.log(asignatura);
-        res.json(asignatura);
-    }catch(error){
-        console.log(error);
+    try {
+      const Asignatura = await prisma.Asignatura.findFirst({
+        where: { cod_asignatura: cod_asignatura },
+        include: { Tipos_Asignatura: true, Carreras: true, asignatura_visible: true }
+      });
+      console.log(Asignatura);
+  
+      // Redirigir al usuario a una nueva URL con el código de la asignatura
+      res.redirect('/editar_asignatura?cod_asignatura=' + Asignatura.cod_asignatura);
+    } catch (error) {
+      console.log(error);
     }
-});
+  });
+  
 
 app.post('/modificar-usuario',async (req,res,next)=>{
     const mtr_viejo = req.body.id_viejo
@@ -323,25 +344,43 @@ app.get('/cargar_crear_asignatura',async (req,res)=>{
 
 app.post('/crear_seccion', async (req,res, next)=>{
     const asignatura = req.body.cb_Asignatura;
-    const hora_inicio = req.body.cb_Hora_Inicio;
-    const hora_fin = req.body.cb_Hora_Fin;
+    const horarios = req.body.horarios;
     const doc = req.body.cb_Docente;
     const num_seccion = req.body.txt_Num_Seccion;
     const modalidad = req.body.cb_Modalidad;
-    console.log(asignatura);
-    if(parseInt(hora_inicio)<parseInt(hora_fin)){
+    console.log(horarios);
+    var horario_valido = true;
+    horarios.forEach(horario => {
+        if(parseInt(horario.hora_inicio)>parseInt(horario.hora_fin)){
+            console.log('Hora Inicio: ' + horario.hora_inicio);
+            console.log('Hora Fin: ' + horario.hora_fin);
+            horario_valido = false;
+        }
+        });
+    if(horario_valido===true){
         if(parseInt(num_seccion)>0 && parseInt(num_seccion)<1000){
             try{
                 const trimestre_actual = await prisma.trimestres.findFirst({where:{activo: true}});
                 const secciones_profesor = await prisma.seccion.findMany({where:{id_profesor:parseInt(doc), id_trimestre:trimestre_actual.id_trimestre}});
-                var doc_no = false;
-                secciones_profesor.forEach(seccion => {
-                        if(parseInt(seccion.hora_inicio)<=parseInt(hora_inicio) && parseInt(hora_inicio)<parseInt(seccion.hora_fin)){
-                            console.log('Hora Inicio: ' + seccion.hora_inicio);
-                            console.log('Hora Fin: ' + seccion.hora_fin);
-                            doc_no = true;
-                        }
-                });
+                var hor_profesor = [];
+                for(var i=0;i<secciones_profesor.length;i++){
+                    console.log(secciones_profesor[i].id_seccion);
+                    const horarios_seccion = await prisma.seccion_dias.findMany({where:{id_seccion:secciones_profesor[i].id_seccion}});
+                    hor_profesor.push(horarios_seccion);
+                }
+                console.log(hor_profesor);
+                console.log(secciones_profesor);
+                var doc_no;
+                // Crear un array de promesas con las llamadas a verificar_horario_docente
+                const promises = secciones_profesor.map(seccion => verificar_horario_docente([seccion], horarios, hor_profesor));
+                
+                // Esperar a que todas las promesas se resuelvan
+                const resultados = await Promise.all(promises);
+                
+                // Comprobar si alguna de las promesas resolvió a true
+                doc_no = resultados.some(result => result === true);
+                
+                console.log(doc_no);
                 if(doc_no===false){
                     const seccion = await prisma.seccion.findFirst({where:{num_seccion:parseInt(num_seccion), id_asignatura: parseInt(asignatura)}});
                     if(isNull(seccion)){
@@ -350,12 +389,21 @@ app.post('/crear_seccion', async (req,res, next)=>{
                             {                    
                                 id_asignatura: parseInt(asignatura),
                                 id_profesor: parseInt(doc),
-                                hora_inicio: hora_inicio,
-                                hora_fin: hora_fin,
                                 num_seccion: parseInt(num_seccion),
                                 id_modalidad: parseInt(modalidad),
                                 id_trimestre: trimestre_actual.id_trimestre
                             }
+                        });
+                        horarios.forEach(async horario => {
+                            const new_horario = await prisma.seccion_dias.create({
+                                data:
+                                {
+                                    id_seccion: new_seccion.id_seccion,
+                                    id_dia: parseInt(horario.id_dia),
+                                    hora_inicio: horario.hora_inicio,
+                                    hora_fin: horario.hora_fin
+                                }
+                            });
                         });
                         res.send('AY AHORA QUE');
                         console.log('guarde');
@@ -391,6 +439,63 @@ app.get('/cargar_crear_seccion',async (req,res)=>{
     res.json(mensaje);
 });
 
+// app.post('/modificar-seccion', async (req, res, next) => {
+//     const asignatura = req.body.cb_Asignatura;
+//     const horarios = req.body.horarios;
+//     const doc = req.body.cb_Docente;
+//     const num_seccion = req.body.txt_Num_Seccion;
+//     const modalidad = req.body.cb_Modalidad;
+    
+//     try {
+//       const seccion = await prisma.seccion.update({
+//         where: { id_seccion: parseInt(seccionId) },
+//         data: {
+//           id_asignatura: parseInt(asignatura),
+//           id_modalidad: parseInt(modalidad),
+//           id_profesor: parseInt(doc),
+//           num_seccion: parseInt(num_seccion)
+//         }
+//       });
+//       horarios.forEach(async horario => {
+//         const horario = await prisma.seccion_dias.update({
+//             data:
+//             {
+//                 id_seccion: seccion.id_seccion,
+//                 id_dia: parseInt(horario.id_dia),
+//                 hora_inicio: horario.hora_inicio,
+//                 hora_fin: horario.hora_fin
+//             }
+//         });
+//     });
+//       res.send('20');
+//     } catch (error) {
+//       console.log(error);
+//       res.status(400).send('1');
+//     }
+// });
+
+app.get('/cargar_modificar_seccion', async (req, res, next) => {
+    console.log(req.query.seccionId);
+    const seccionId = req.query.seccionId;
+    try {
+      const seccion = await prisma.seccion.findFirst({
+        where: { id_seccion: parseInt(seccionId) },
+        include: {
+          Asignaturas_Seleccionadas: true,
+          Asignatura: true,
+          Modalidad: true,
+          Usuario: true,
+          Inicio_Fin_Trimestres: true,
+          seccion_dias: true
+        }
+      });
+      console.log('modificar seccion');
+      res.json(seccion);
+    } catch (error) {
+      console.log(error);
+    }
+});
+  
 app.get('/nav_admin',async (req,res)=>{
     var id = parseInt(req.query.id);
    switch(id){
@@ -402,7 +507,7 @@ app.get('/nav_admin',async (req,res)=>{
       window.location.href = '/ver_asignaturas.html';
       </script>
     `);
-        // res.redirect('/ver_asignaturas.html');
+        res.redirect('/ver_asignaturas.html');
         break;
     case 2:
         const usuarios = await prisma.usuario.findMany({include:{Rol:true, Estado:true}});  
@@ -466,9 +571,28 @@ app.get('/nav_admin',async (req,res)=>{
 app.get('/nav_estudiante',async (req,res)=>{
     var id = parseInt(req.query.id);
    switch(id){
-    case 1:
+    case 3:
+        res.redirect('/seleccionar_asignatura.html');
         break;
+
+    case 4:
+        res.redirect ('retirar-asignatura.html')
     }
+});
+
+app.get('/nav_profesores',async (req,res)=>{
+    var id = parseInt(req.query.id);
+   switch(id){
+    case 1:
+        res.redirect('home-profesores.html');
+        break;
+
+    case 2:
+        res.redirect ('asignar-calificaciones.html')
+        break;
+
+    }
+
 });
 
 app.get('/modificar_trimestre',async (req,res)=>{
@@ -547,4 +671,69 @@ app.get('/usuario_logueado',async (req,res)=>{
     }else{
         res.send(`1`);
     }
+});
+
+app.get('/cargar_secciones',async (req,res)=>{
+    try{
+        const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
+        const secciones = await prisma.seccion.findMany({where:{id_trimestre:trimestre_actual.id_trimestre},include:{Asignatura:true,Usuario:true,Modalidad:true,seccion_dias:true}});
+        res.json(secciones);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+function verificar_horario_docente(secciones,horarios,horarios_profesor){
+    var doc_no = false;
+    return new Promise((resolve,reject)=>{
+            horarios_profesor.forEach(horario_profesor => {
+                horario_profesor.forEach(horario_profesor => {
+                    horarios.forEach(horarios => {
+                        console.log('Dia Profesor: '+horario_profesor.id_dia);
+                        console.log('Dia Nuevo: '+horarios.id_dia);
+                        if(horario_profesor.id_dia === parseInt(horarios.id_dia)){
+                            if(parseInt(horario_profesor.hora_inicio)<=parseInt(horarios.hora_inicio) && parseInt(horarios.hora_inicio)<parseInt(horario_profesor.hora_fin)){
+                                console.log('Hora Inicio: ' + horario_profesor.hora_inicio);
+                                console.log('Hora Fin: ' + horario_profesor.hora_fin);
+                                doc_no = true;
+                            }
+                        }
+                });
+            });
+            });
+     resolve(doc_no);
+    });
+}
+
+app.get('/cargar_datos_asignar_calificaciones', async (req, res, next) => {
+    
+});
+
+app.get('/guardar_seleccion', async (req, res, next) => {
+    const secciones_seleccionadas = req.query.asignaturas;
+    const id_usuario = USUARIO_LOGUEADO.id_usuario;
+
+    try{
+        secciones_seleccionadas.forEach(seccion => {
+            const seccion_seleccionada = prisma.seccion.findFirst({where:{id_seccion:parseInt(seccion)},include:{Asignatura:true}});
+            if(seccion_seleccionada.num_est > 0){
+               const sec_actualizada = prisma.seccion.update({where:{id_seccion:parseInt(seccion)},data:{num_est:{decrement:1}}});
+                const sec_usuario = prisma.asignaturas_Seleccionadas.create({
+                    data:{
+                        id_estudiante:parseInt(id_usuario),
+                        id_seccion:parseInt(seccion),
+                        id_asignatura:parseInt(seccion_seleccionada.Asignatura.id_asignatura),
+                        id_trimestre:parseInt(seccion_seleccionada.id_trimestre),
+                    }
+                });
+            }else{
+                res.status(400).send('1');
+            }
+
+        });
+
+    }catch(error){
+        console.log(error);
+    }
+    
 });

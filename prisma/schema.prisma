@@ -29,7 +29,7 @@ model Asignaturas_Seleccionadas {
   id_estudiante         Int
   id_trimestre          Int
   fecha_creacion        DateTime   @default(now(), map: "DF_asignaturas_seleccionadas_fecha_creacion") @db.DateTime
-  calificacion_num      Decimal    @db.Decimal(4, 2)
+  calificacion_num      Decimal?   @db.Decimal(4, 2)
   Asignatura            Asignatura @relation(fields: [id_asignatura], references: [id_asignatura], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_asignatura")
   Usuario               Usuario    @relation(fields: [id_estudiante], references: [id_usuario], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_estudiante")
   Seccion               Seccion    @relation(fields: [id_seccion], references: [id_seccion], onUpdate: NoAction, map: "FK_asignaturas_seleccionadas_id_seccion")
@@ -86,16 +86,18 @@ model Seccion {
   id_asignatura             Int
   id_modalidad              Int
   id_profesor               Int
-  num_seccion               Int                         @unique(map: "UQ_seccion_num_seccion")
-  hora_inicio               String                      @db.NVarChar(20)
+  num_seccion               Int
   id_trimestre              Int?
-  hora_fin                  String                      @db.NVarChar(20)
   fecha_creacion            DateTime                    @default(now(), map: "DF_seccion_fecha_creacion") @db.DateTime
+  num_est                   Int?
   Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
   Asignatura                Asignatura                  @relation(fields: [id_asignatura], references: [id_asignatura], onUpdate: NoAction, map: "FK_seccion_id_asignatura")
   Modalidad                 Modalidad                   @relation(fields: [id_modalidad], references: [id_modalidad], onUpdate: NoAction, map: "FK_seccion_id_modalidad")
   Usuario                   Usuario                     @relation(fields: [id_profesor], references: [id_usuario], onUpdate: NoAction, map: "FK_seccion_id_profesor")
   Inicio_Fin_Trimestres     Trimestres?                 @relation(fields: [id_trimestre], references: [id_trimestre], onDelete: NoAction, onUpdate: NoAction, map: "FK_seccion_id_trimestre")
+  seccion_dias              seccion_dias[]
+
+  @@unique([id_asignatura, num_seccion], map: "UQ_seccion_num_seccion")
 }
 
 model Tipo_Trimestres {
@@ -148,4 +150,22 @@ model Trimestres {
   Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
   Seccion                   Seccion[]
   Tipo_Trimestres           Tipo_Trimestres             @relation(fields: [id_tipo_trimestre], references: [id_tipo_trimestre], onUpdate: NoAction, map: "FK_trimestres_id_tipo_trimestre")
+}
+
+model dias_clase {
+  id_dia         Int            @id(map: "PK_dias_clase") @default(autoincrement())
+  dia_semana     String         @db.NVarChar(20)
+  fecha_creacion DateTime       @default(now(), map: "DF_dias_clase_fecha_creacion") @db.DateTime
+  seccion_dias   seccion_dias[]
+}
+
+model seccion_dias {
+  id_registro    Int        @id(map: "PK_seccion_dias") @default(autoincrement())
+  id_seccion     Int
+  id_dia         Int
+  hora_inicio    String     @db.NVarChar(20)
+  hora_fin       String     @db.NVarChar(20)
+  fecha_creacion DateTime   @default(now(), map: "DF_seccion_dias_fecha_creacion") @db.DateTime
+  dias_clase     dias_clase @relation(fields: [id_dia], references: [id_dia], onUpdate: NoAction, map: "FK_seccion_dias_id_dia")
+  Seccion        Seccion    @relation(fields: [id_seccion], references: [id_seccion], onUpdate: NoAction, map: "FK_seccion_dias_id_seccion")
 }
