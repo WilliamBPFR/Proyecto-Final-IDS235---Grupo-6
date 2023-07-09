@@ -52,9 +52,24 @@ $(document).ready(function() {
                   console.log('Agregando');
                   var fila = $('<tr></tr>');
                   var col_matricula = $('<td></td>').text(est.Usuario.matricula + " - " + est.Usuario.nombre_usuario);
-                  var col_calificacion = $('<td></td>');
-                  var input = $('<input type="text">').attr('name','calificacion');
+                  var col_calificacion = $('<td></td>').css('border-left','2px solid black');
+                  var input = $('<input type="text">').attr('name','calificacion').css('background','#cbe4aa').css('font-weight','bold').css('border-radius','10px').css('height','100%').css('width','40%').css('border','2px solid black').css('text-align','center').css('font-size','20px').css('color','#000000').attr('maxlength','5').attr('min','0').attr('max','100');
                   var col_calificacion_letra = $('<td></td>').text('N/A');
+                  
+                  input.on('input', function() {
+                    var inputValue = input.val();
+                    inputValue = inputValue.replace(/[^0-9.]/g, ''); // Remover caracteres no numéricos excepto el punto decimal
+                    var decimalIndex = inputValue.indexOf('.');
+                    if (decimalIndex !== -1) {
+                      // Si hay un punto decimal, asegurarse de que no haya más de 2 dígitos después del punto
+                      var decimalDigits = inputValue.substring(decimalIndex + 1);
+                      if (decimalDigits.length > 2) {
+                        inputValue = inputValue.substring(0, decimalIndex + 3);
+                      }
+                    }
+                    input.val(inputValue);
+                  });
+                  
                   col_calificacion.append(input);
                   fila.append(col_matricula,col_calificacion,col_calificacion_letra);
                   tabla.append(fila);
@@ -108,8 +123,12 @@ $(document).ready(function() {
                     var fila = $('<tr></tr>');
                     var col_matricula = $('<td></td>').text(est.Usuario.matricula + " - " + est.Usuario.nombre_usuario);
                     var col_calificacion = $('<td></td>');
-                    var input = $('<input type="text">').attr('name','calificacion');
+                    var input = $('<input type="text">').addClass('calificacionInput').attr('name','calificacion');
                     var col_calificacion_letra = $('<td></td>').text('N/A');
+                    input.css({
+                      background: '#f00d0d',
+                      border: 'none'
+                    });
                     fila.attr('value',est.id_estudiante)
                     col_calificacion.append(input);
                     fila.append(col_matricula,col_calificacion,col_calificacion_letra);

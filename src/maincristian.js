@@ -115,7 +115,7 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
             }else{
                 res.send(`
                 <script>
-                localStorage.setItem('login_status', '0'));
+                localStorage.setItem('login_status', '0');
                 window.location.href = '/iniciar_sesion.html';
                 </script>
             `);
@@ -123,7 +123,7 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
         }else{
             res.send(`
             <script>
-            localStorage.setItem('login_status', '1'));
+            localStorage.setItem('login_status', '1');
             window.location.href = '/iniciar_sesion.html';
             </script>
         `);
@@ -135,7 +135,7 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
     }else{
         res.send(`
         <script>
-        localStorage.setItem('login_status', '2'));
+        localStorage.setItem('login_status', '2');
         window.location.href = '/iniciar_sesion.html';
         </script>
     `);
