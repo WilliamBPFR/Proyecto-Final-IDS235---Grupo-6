@@ -13,8 +13,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
   </head>
-  <body>
-    <script src="../script/admin/navegacion_admin.js"> </script>
+  <body id="body" style="display:none">
+    <script src="../../script/admin/navegacion_admin.js"> </script>
+    <script src="../../script/admin/user_logueado_admin.js"></script>
     <div class="macbook-air-11">
       <div class="macbook-air-11-child"></div>
       <div class="macbook-air-11-item"></div>
@@ -84,7 +85,7 @@
           />
         </button>
       </div>
-      <form class="component-48" id="component-48" name="modificar" method="post" action="/modificar-asignatura">
+      <form class="component-48" id="component-48" name="modificar" method="post" action="/modificar-usuario">
         <b class="id-o-matrcula">ID o Matrícula</b>
         <input
           class="component-48-child"
@@ -145,29 +146,23 @@
 
         <!-- Combobox Estado -->
         <div class="component-51">
-          <select class="component-51-child" type="text" id="cb_estado" name="cb_estado">
-            <option value="opcion1">Activo</option>
-            <option value="opcion2">Inactivo</option>
-          </select>
+          <select class="component-51-child" type="text" id="cb_estado" name="cb_estado"></select>
 
           <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
         </div>
         <!-- Combobbox Rol -->
         <div class="component-52">
-          <select class="component-51-child" type="text" id="cb_rol" name="cb_rol">
-            <option value="opcion1">Estudiante</option>
-            <option value="opcion2">Profesor</option>
-            <option value="opcion3">Administrador</option>
-          </select>
+          <select class="component-51-child" type="text" id="cb_rol" name="cb_rol"></select>
 
           <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
         </div>
         <b class="carrera-del-usuario">Carrera del Usuario</b>
         <div class="component-53">
           <select class="component-51-child" id="cb_carrera" name="cb_carrera">
-            <option value="opcion1">Ingeniería de Aseguramiento de Software</option>
-            <option value="opcion2">Rosanna Ejemplo</option>
-            <option value="opcion3">Ingeniería de Electrónica en Comunicaciones</option>
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+            <option value="opcion3">Opción 3</option>
+            <!-- Agrega más opciones aquí -->
           </select>
           <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
         </div>
@@ -179,6 +174,7 @@
             >Matrícula o ID ya Existente</label>
       </div>
     </div>
+    <script src="../../script/admin/cargar_crear_usuario.js"></script>
     <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
       <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
         <img
@@ -190,8 +186,8 @@
         <!-- <label class="p_cerrar_sesion"></label> -->
       </button>
     </div>
-    <script src="../script/cerrar_sesion.js"></script>
-    <script src="../script/admin/modifcar_asignatura.js"></script>
+    <script src="../../script/cerrar_sesion.js"></script>
+    <script src="../../script/admin/modificar_usuario.js"></script>
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>

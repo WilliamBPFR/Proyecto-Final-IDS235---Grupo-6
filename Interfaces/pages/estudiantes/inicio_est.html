@@ -4,32 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="./../../styles/global.css" />
-    <link rel="stylesheet" href="./../../styles/inicio_est.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./../../styles/inicio_est.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     />
-    <script src="../script/estudiante/navegacion_estudiante.js"> </script>
+    <script src="../../script/estudiante/navegacion_estudiante.js"> </script>
+    <script src="../../script/cerrar_sesion.js"></script>
+    <script src="../../script/estudiante/user_logueado_est.js"></script>
   </head>
-  <body>
+  <body id="body" style="display:none">
     <div class="estudiante">
       <div class="estudiante-child"></div>
       <div class="estudiante-item"></div>
-      <div class="botn2">
-        <div class="botn2-child"></div>
-        <img class="botn2-item" alt="" src="./../../public/polygon-1.svg" />
-
-        <div class="trimestre">Trimestre</div>
-      </div>
       <img class="image-1-icon" alt="" src="./../../public/image-1@2x.png" />
 
       <b class="gradegenius">GradeGenius</b>
-      <img class="image-2-icon" alt="" src="./../../public/image-2@2x.png" />
+      <button style="cursor: pointer;" id="btn_perfil">
+        <img class="image-2-icon" alt="" src="./../public/image-2@2x.png" />
+      </button>
+
 
       <img class="image-3-icon" alt="" src="./../../public/image-3@2x.png" />
 
-      <img class="estudiante-inner" alt="" src="./../../public/polygon-1.svg" />
+      <button style="cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
+        <img class="estudiante-inner" alt="" src="./../../public/polygon-1.svg" />
+      </button>
 
       <div class="rectangle-div"></div>
       <b class="porcentaje-de-asignaturas"
@@ -44,7 +47,7 @@
       <div class="estudiante-child2"></div>
       <div class="kendall-jenner">Kendall Jenner</div>
       <b class="consejero">Consejero:</b>
-      <img class="polygon-icon" alt="" src="./../../public/polygon-1.svg" />
+      <!-- <img class="polygon-icon" alt="" src="./../../public/polygon-1.svg" /> -->
 
       <div class="estudiante-child3"></div>
       <img class="image-10-icon" alt="" src="./../../public/image-10@2x.png" />
@@ -104,6 +107,20 @@
           />
         </button>
       </div>
+    </div>
+    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
+      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
+        <img
+        class="img_cerrar_sesion"
+        alt=""
+        src="../public/logout.png"
+        />
+        Cerrar Sesión
+        <!-- <label class="p_cerrar_sesion"></label> -->
+      </button>
+    </div>
+    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
     <script src="./../../script/inicio_est.js"></script>
   </body>

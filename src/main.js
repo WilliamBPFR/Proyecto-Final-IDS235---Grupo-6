@@ -8,20 +8,53 @@ const { PrismaClient } = require('@prisma/client');
 const { isNull } = require('util');
 const { Console } = require('console');
 const prisma = new PrismaClient();
+const { generateToken, verifyToken, blacklistToken } = require('./../jwt/jwtUtils'); // Ajusta la ruta según la ubicación real de tu archivo jwtUtils.js
+const cookieParser = require('cookie-parser');
 dotenv.config();
 
 //variables globales
-var USUARIO_LOGUEADO = null;
+// var USUARIO_LOGUEADO = null;
 //Creando el Servidor
 const app = express();
 
+// Middleware de verificación de acceso restringido
+const restrictAccess = (req, res, next) => {
+    console.log("restrictAccess");
+    const username = req.cookies.token; // Supongamos que el parámetro de ruta contiene el nombre de usuario
+    const decoded = verifyToken(username); // Decodifica el token y obtiene el nombre de usuario
+    if(decoded){
+        const id_rol = decoded.id_rol;
+        const requestedPath = req.path; // Ruta a la que se intenta acceder
+        console.log(requestedPath);
+    
+        // Verificar si el usuario tiene acceso a la carpeta correspondiente
+        if (id_rol === 1 && requestedPath.startsWith('/administrador')) {
+            console.log("administrador");
+        next(); // Permitir acceso
+        } else if (id_rol === 2 && requestedPath.startsWith('/profesores')) {
+        next(); // Permitir acceso
+        } else if (id_rol === 3 && requestedPath.startsWith('/estudiantes')) {
+            console.log("estudiantes");
+        next(); // Permitir acceso
+        } else if (requestedPath.startsWith('/script')){
+            
+        }else {
+        res.redirect('/iniciar_sesion.html'); // Denegar acceso
+        }
+    }else{
+        res.redirect('/iniciar_sesion.html'); // Denegar acceso
+    }
+  };
+
 //Configurando el APP
+app.use(cookieParser());
 app.set('views',path.join(__dirname,'Interfaces/pages'));
 app.set('view engine','html'); 
 app.use(express.static(path.join(__dirname,'./../Interfaces')));
 app.use(express.static(path.join(__dirname,'./../Interfaces/pages')));
 app.use(express.static(path.join(__dirname,'./../Interfaces/pages/estudiantes')));
 app.use(express.static(path.join(__dirname,'./../Interfaces/pages/profesores')));
+app.use(express.static(path.join(__dirname,'./../Interfaces/pages/administrador')));
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -54,7 +87,11 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
         // console.log(usuario.Credenciales_Usuario.hash_contrasena);
         if(usuario){
             if(usuario.Credenciales_Usuario[0].hash_contrasena === password_encriptada){
-                USUARIO_LOGUEADO = usuario;
+                // Genera el token JWT
+                const token = generateToken(usuario.id_usuario, usuario.matricula,usuario.id_rol);
+                // Guarda el token en una cookie
+                res.cookie('token', token, { maxAge: 3600000, httpOnly: true }); // Configura el tiempo de vida y otras opciones según tus necesidades
+
                 switch(usuario.id_rol){ 
                     case 1://Administrador
                         res.redirect('/nav_admin?id=4');
@@ -70,24 +107,38 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
                         window.location.href = '/inicio_est.html';
                         </script>
                         `);
-                        res.redirect('/inicio_est.html');
+                        // res.redirect('/inicio_est.html');
                         break;
                     default:
                         break;
                 }
             }else{
-                res.redirect('/iniciar_sesion.html?error=0'); // Redirige con el parámetro de error
-            }
+                res.send(`
+                <script>
+                localStorage.setItem('login_status', '0'));
+                window.location.href = '/iniciar_sesion.html';
+                </script>
+            `);
+        }
         }else{
-            res.redirect('/iniciar_sesion.html?error=1'); // Redirige con el parámetro de error
+            res.send(`
+            <script>
+            localStorage.setItem('login_status', '1'));
+            window.location.href = '/iniciar_sesion.html';
+            </script>
+        `);
         }
         }catch(error){
             console.log(error);
             // res.redirect('/iniciar_sesion.html?error=1'); // Redirige con el parámetro de error
         }
     }else{
-        res.redirect('/iniciar_sesion.html?error=2'); // Redirige con el parámetro de error
-
+        res.send(`
+        <script>
+        localStorage.setItem('login_status', '2'));
+        window.location.href = '/iniciar_sesion.html';
+        </script>
+    `);
     }
 });
 
@@ -196,7 +247,7 @@ app.get('/cargar_modificar_asignatura', async (req, res, next) => {
     } catch (error) {
       console.log(error);
     }
-  });
+});
   
 
 app.post('/modificar-usuario',async (req,res,next)=>{
@@ -391,7 +442,8 @@ app.post('/crear_seccion', async (req,res, next)=>{
                                 id_profesor: parseInt(doc),
                                 num_seccion: parseInt(num_seccion),
                                 id_modalidad: parseInt(modalidad),
-                                id_trimestre: trimestre_actual.id_trimestre
+                                id_trimestre: trimestre_actual.id_trimestre,
+                                num_est: 40
                             }
                         });
                         horarios.forEach(async horario => {
@@ -507,7 +559,7 @@ app.get('/nav_admin',async (req,res)=>{
       window.location.href = '/ver_asignaturas.html';
       </script>
     `);
-        res.redirect('/ver_asignaturas.html');
+        // res.redirect('/ver_asignaturas.html');
         break;
     case 2:
         const usuarios = await prisma.usuario.findMany({include:{Rol:true, Estado:true}});  
@@ -521,13 +573,14 @@ app.get('/nav_admin',async (req,res)=>{
         break
     case 3:
         console.log('Entre a la seccion');
-        const secciones = await prisma.seccion.findMany({include:{Asignatura:true,Usuario:true,Modalidad:true}});  
-        res.send(`
-            <script>
-            localStorage.setItem('secciones', JSON.stringify(${JSON.stringify(secciones)}));
-            window.location.href = '/ver_secciones.html';
-            </script>
-        `);
+        // const secciones = await prisma.seccion.findMany({include:{Asignatura:true,Usuario:true,Modalidad:true}});  
+        // res.send(`
+        //     <script>
+        //     localStorage.setItem('secciones', JSON.stringify(${JSON.stringify(secciones)}));
+        //     window.location.href = '/ver_secciones.html';
+        //     </script>
+        // `);
+        res.redirect('/ver_secciones.html');
         break;
     case 4:
         const cant_usuarios = await prisma.usuario.count();
@@ -571,12 +624,18 @@ app.get('/nav_admin',async (req,res)=>{
 app.get('/nav_estudiante',async (req,res)=>{
     var id = parseInt(req.query.id);
    switch(id){
+    case 1:
+        res.redirect('/inicio_est.html');
+        break;
+    case 2:
+        res.redirect('/inicio_est.html');
+        break;    
     case 3:
         res.redirect('/seleccionar_asignatura.html');
         break;
-
     case 4:
-        res.redirect ('retirar-asignatura.html')
+        res.redirect ('/retirar-asignatura.html')
+        break;
     }
 });
 
@@ -661,25 +720,112 @@ app.get('/modificar_fecha_sel',async (req,res)=>{
 });
 
 app.get('/cerrar_sesion',async (req,res)=>{
-    USUARIO_LOGUEADO = null;
+    blacklistToken(req.cookies.token);
     res.send(`1`);
 });
 
 app.get('/usuario_logueado',async (req,res)=>{
-    if(isNull(USUARIO_LOGUEADO)){
-        res.status(400).send(`0`);
+    const token = req.cookies.token;
+    const tipo_user = parseInt(req.query.param1);
+    const decoded = verifyToken(token);
+    console.log(decoded);
+    if(decoded){
+        if(tipo_user == decoded.id_rol){
+            res.send(`1`);
+        // switch(tipo_user){
+        //     case 1:
+        //         if(decoded.id_rol == 1){
+        //             res.send(`1`);
+        //         }else{
+        //             res.status(400).send(`2`);
+        //         }
+        //         break;
+        //     case 2:
+        //         if(decoded.id_rol == 2){
+        //             res.send(`1`);
+        //         }else{
+        //             res.status(400).send(`2`);
+        //         }
+        //         break;
+        //     case 3:
+        //         if(decoded.id_rol == 3){
+        //             res.send(`1`);
+        //         }else{
+        //             res.status(400).send(`2`);
+        //         }
+        //         break;
+        //     default:
+        //         break;
+        // }
+        }else{
+            res.status(400).send(`2`);
+        }
     }else{
-        res.send(`1`);
+        res.status(400).send(`0`);
+    }
+});
+
+function usuario_logueado(token){
+    const decoded = verifyToken(token);
+    if(decoded){
+        return decoded
+    }else{
+        return null
+    }
+}
+
+app.get('/cargar_secciones_retiro',async (req,res)=>{
+    try{
+        var user = usuario_logueado(req.cookies.token);
+        const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
+        const asig_actualizadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_trimestre:trimestre_actual.id_trimestre,id_estudiante:user.id},include:{Seccion:true,Asignatura:true}});
+        const response = {
+            asig_actualizadas:asig_actualizadas
+        }
+        res.json(response);
+    }catch(error){
+        console.log(error);
     }
 });
 
 app.get('/cargar_secciones',async (req,res)=>{
     try{
+        var user = usuario_logueado(req.cookies.token);
         const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
         const secciones = await prisma.seccion.findMany({where:{id_trimestre:trimestre_actual.id_trimestre},include:{Asignatura:true,Usuario:true,Modalidad:true,seccion_dias:true}});
-        res.json(secciones);
+        if(user.id_rol===1){
+            res.json(secciones);
+        }else{
+            const asig_actualizadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_trimestre:trimestre_actual.id_trimestre,id_estudiante:user.id},include:{Seccion:true,Asignatura:true}});
+            const response = {
+                secciones,
+                asig_actualizadas
+            }
+            res.json(response);
+        }
     }catch(error){
         console.log(error);
+    }
+});
+
+app.get('/retirar_asignatura',async (req,res)=>{
+    var user = usuario_logueado(req.cookies.token);
+    var id_registro = parseInt(req.query.id_registro);
+    var password_introducida = req.query.contrasena;
+    const password_encriptada = crypto.createHash('sha256').update(password_introducida).digest('hex');
+    try{
+        const usuario = await prisma.Credenciales_Usuario.findFirst({where:{id_usuario:user.id}});
+        if(usuario.hash_contrasena == password_encriptada){
+            const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
+            const asig_actualizadas = await prisma.asignaturas_Seleccionadas.update({where:{id_registro:id_registro},data:{calificacion_num:parseFloat(-1)}});
+            console.log(asig_actualizadas);
+            res.send('1');
+        }else{
+            res.status(400).send('1');
+        }
+    }catch(error){
+        console.log(error);
+        res.status(400).send('0');
     }
 });
 
@@ -706,19 +852,30 @@ function verificar_horario_docente(secciones,horarios,horarios_profesor){
 }
 
 app.get('/cargar_datos_asignar_calificaciones', async (req, res, next) => {
-    
+    try{
+        var user = usuario_logueado(req.cookies.token);
+        const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
+        const secciones = await prisma.seccion.findMany({where:{id_trimestre:trimestre_actual.id_trimestre,id_profesor:user.id},include:{Asignatura:true, Usuario:true}});
+        res.json(secciones);
+    }catch(error){
+        console.log(error);
+    }
 });
 
 app.get('/guardar_seleccion', async (req, res, next) => {
+    var user = usuario_logueado(req.cookies.token);
     const secciones_seleccionadas = req.query.asignaturas;
-    const id_usuario = USUARIO_LOGUEADO.id_usuario;
+    const id_usuario = user.id;
+    console.log(secciones_seleccionadas);
 
     try{
-        secciones_seleccionadas.forEach(seccion => {
-            const seccion_seleccionada = prisma.seccion.findFirst({where:{id_seccion:parseInt(seccion)},include:{Asignatura:true}});
+        secciones_seleccionadas.forEach(async seccion => {
+            const seccion_seleccionada = await prisma.seccion.findFirst({where:{id_seccion:parseInt(seccion)},include:{Asignatura:true}});
             if(seccion_seleccionada.num_est > 0){
-               const sec_actualizada = prisma.seccion.update({where:{id_seccion:parseInt(seccion)},data:{num_est:{decrement:1}}});
-                const sec_usuario = prisma.asignaturas_Seleccionadas.create({
+               const sec_actualizada = await prisma.seccion.update({where:{id_seccion:parseInt(seccion)},data:{num_est:{decrement:1}}});
+               console.log('sec_actualizada');
+               console.log(sec_actualizada);
+                const sec_usuario = await prisma.asignaturas_Seleccionadas.create({
                     data:{
                         id_estudiante:parseInt(id_usuario),
                         id_seccion:parseInt(seccion),
@@ -726,14 +883,49 @@ app.get('/guardar_seleccion', async (req, res, next) => {
                         id_trimestre:parseInt(seccion_seleccionada.id_trimestre),
                     }
                 });
-            }else{
-                res.status(400).send('1');
+                console.log('sec_usuario');
+                console.log(sec_usuario);
             }
-
+            console.log('seccion_no_seleccionada');
         });
-
+        // res.send('Seleccion Guardada exitosamente');
     }catch(error){
         console.log(error);
     }
     
+});
+
+app.get('/verificar_fecha_sel', async (req, res, next) => {
+    
+    try{
+        const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
+        const fecha_sel_act = await prisma.inicio_Fin_Seleccion.findFirst({where:{id_trimestre:trimestre_actual.id_trimestre}});
+        if(fecha_sel_act != null){
+        const fecha_actual = new Date();
+        if(fecha_actual >= fecha_sel_act.fecha_inicio && fecha_actual <= fecha_sel_act.fecha_fin){
+            console.log('entre la fecha')
+            res.send('1');
+        }else{
+            res.send('0');
+        }
+    }else{
+        res.send('0');
+    }
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/cargar_usuario_seccion', async (req, res, next) => {
+    const id_asignatura = parseInt(req.query.id_asignatura);
+    const id_seccion = parseInt(req.query.id_seccion);
+    console.log(id_asignatura);
+    console.log(id_seccion);
+    try{
+        const estudiantes = await prisma.asignaturas_Seleccionadas.findMany({where:{id_asignatura:id_asignatura,id_seccion:id_seccion},include:{Usuario:true}});
+        console.log(estudiantes);
+        res.json(estudiantes);
+    }catch(error){
+        console.log(error);
+    }
 });

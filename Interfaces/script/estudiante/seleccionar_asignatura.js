@@ -45,12 +45,27 @@ $(document).ready(function(){
 			}
 		  });
 		});
+	
+
 
 		if(asignaturas_estudiante == null){
-		buscar_asignaturas().then(function(data){;
-			asignaturas_elegir = data;
-			console.log(asignaturas_estudiante);
-			llenar_div_asignaturas(asignaturas_elegir);
+		buscar_asignaturas().then(function(data){
+			asignaturas_estudiante = data.asig_actualizadas;
+			asignaturas_elegir = data.secciones;
+			llenar_div_asignaturas(asignaturas_elegir,asignaturas_estudiante);
+			if(asignaturas_estudiante.length > 0){
+				asignaturas_estudiante.forEach(element => {
+					$('.component-2-inner').each(function() {
+						if($(this).attr('value') == element.id_seccion){
+							console.log($(this).prop('disabled'));
+							if($(this).prop('disabled') == false){
+								$(this).click();
+
+							}
+						}
+					});
+				});
+				}
 		});
 		}
 });
@@ -83,6 +98,7 @@ $(document).ready(function(){
 		var tabla = $('#tabla-secciones-elegidas');
 			var i = 0;
 			asignaturas_elegir.forEach(element => {
+				console.log(element);
 				var rectangleParent = $('<div>').addClass('rectangle-parent');
 				var instanceChild = $('<div>').addClass('instance-child');
 				var button = $('<button>').addClass('component-76').attr('id', 'btn_asignatura_calif');
@@ -126,22 +142,25 @@ $(document).ready(function(){
 				var labelDocente = $('<label>').addClass('label_docente').attr('id', 'label_docente').text(element.Usuario.nombre_usuario);
 				var main = $('<div>').addClass('main');
 				var wrap = $('<div>').addClass('wrap');
-
+				
 
 
 				seccionToggle.append(boton, labelHorario, labelHoraInicio, labelTituloModalidad, labelModalidad, labelTituloDocente, labelDocente);
 				main.append(wrap);
 				divSalienteAsignatura.append(seccionToggle, main);
 				button.append(btnToggle, asignatura, polygonIcon, imageIcon);
+				rectangleParent.attr('value', element.Asignatura.id_asignatura)
 				rectangleParent.append(instanceChild, button, divSalienteAsignatura);
 				rectangleParent.css('top', i * 33 + '%');
 				i++;
 				boton.click(function(){
-					
+					if(button.hasClass('active')==true){
+						button.click();
+					}
 					var fila = $('<tr></tr>');
 					var asignatura = $('<td></td>').text(element.Asignatura.cod_asignatura + " - " + element.Asignatura.nombre_asignacion);
 					var seccion = $('<td></td>').text(element.num_seccion);
-					var cupos = $('<td></td>').text('20');
+					var cupos = $('<td></td>').text(element.num_est);
 					var  horario = $('<td></td>').text(element.hora_inicio + "/" + element.hora_fin);
 					var docente = $('<td></td>').text(element.Usuario.nombre_usuario);
 					var modalidad = $('<td></td>').text(element.Modalidad.nombre_modalidad);
@@ -153,15 +172,24 @@ $(document).ready(function(){
 					eliminar.on('click', '.btn_eliminar_tabla', function() {
 						// Lógica para manejar el evento de clic del botón
 						alert('Haz hecho clic en el botón');
-						button.prop('disabled', false);
-						btnToggle.css('background-color', '#FFFFFF');
+						$('.rectangle-parent').each(function() {
+							if(parseInt($(this).attr('value')) == element.Asignatura.id_asignatura){
+								$(this).find('.component-76-child').css('background-color', '#FFFFFF');
+								$(this).find('.component-76').prop('disabled', false);
+							}
+						});
 						fila.remove();
 					  });
 					fila.append(asignatura,seccion,cupos,horario,docente,modalidad,eliminar);
 					fila.attr('value', element.id_seccion);
 					tabla.append(fila);
-					btnToggle.css('background-color', '#9aeca1d5');
-					button.click();
+					$('.rectangle-parent').each(function() {
+						if(parseInt($(this).attr('value')) == element.Asignatura.id_asignatura){
+							$(this).find('.component-76-child').css('background-color', '#9aeca1d5');
+							$(this).find('.component-76').prop('disabled', true);
+						}
+					});
+					// btnToggle.css('background-color', '#9aeca1d5');
 					button.prop('disabled', true);
 				});
 				div_asignatura.append(rectangleParent);
@@ -190,12 +218,42 @@ $(document).ready(function(){
 					},
 					contentType: 'application/json',
 					success: function(data) {  
+						alert("Secciones Guardadas Correctamente, te redigiremos al inicio");
+						windows.location.href = "/inicio_est.html";
 					},
-					error: function(error) {
-
+					error: function(xhr,error) {
+						var resp = parseInt(xhr.responseText);
+						switch(resp){
+							case 1:
+								alert("No hay Cupos Disponibles. Elija otra seccón");
+								break;
+							case 2:
+								break;
+						}
 					}
 				});
 			}	
 		});
+	});
+
+	$.ajax({
+		url: '/verificar_fecha_sel',
+		method: 'GET',
+		dataType: 'json',
+		success: function(data) {  
+			var resp = parseInt(data);
+			switch(resp){
+				case 1:
+					break;
+				case 0:
+					alert("No se encuentra en el periodo de selección de asignaturas");
+					window.location.href = "/inicio_est.html";
+				break;
+			}
+		},
+		error: function(error) {
+			console.log(error);
+			reject(error);
+		}
 	});
 	

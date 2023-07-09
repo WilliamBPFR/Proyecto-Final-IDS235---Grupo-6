@@ -437,7 +437,7 @@
   /* background-color: black */
 }
 .rectangle-icon {
-  top: 273px;
+  top: 46.6%;
   left: 0;
   width: 272px;
   height: 70px;
@@ -633,7 +633,7 @@
   padding: 0;
   background-color: transparent;
   position: absolute;
-  height: 3.38%;
+  height: 8.38%;
   width: 100%;
   top: 52.61%;
   right: 0;
@@ -920,7 +920,25 @@ btn-toggle {
   border: 2px solid #f31212;
   box-sizing: border-box;
 }
-
+.custom-dialog-cerrar-sesion,
+.ui-dialog-buttonpane,
+.ui-dialog-titlebar
+{
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+}
+.ui-widget-header{
+  border: none;
+  border-bottom: 1px solid black;
+}
+.ui-dialog-buttonpane{
+  border-top: 1px solid black;
+}
+.custom-dialog-cerrar-sesion .btn_aceptar{
+  background: linear-gradient(265.99deg, hsl(0, 78%, 66%), hsl(17, 85%, 64%));
+}
+.custom-dialog-cerrar-sesion .btn_cancelar{
+  background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
+}
 .component-33-child {
   cursor: pointer;
   border: 2px solid var(--color-black);

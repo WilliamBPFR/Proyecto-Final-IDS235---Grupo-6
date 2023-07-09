@@ -5,16 +5,16 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="./../styles/global.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="./../styles/crear_usuario.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
   </head>
-  <body>
-    <script src="../script/admin/navegacion_admin.js"> </script>
+  <body id="body" style="display:none">
+    <script src="../../script/admin/navegacion_admin.js"> </script>
     <div class="macbook-air-11">
       <div class="macbook-air-11-child"></div>
       <div class="macbook-air-11-item"></div>
@@ -24,16 +24,17 @@
       <button style="cursor: pointer;" id="btn_perfil">
         <img class="image-2-icon" alt="" src="./../public/image-2@2x.png" />
       </button>
+
       <img class="image-3-icon" alt="" src="./../public/image-3@2x.png" />
 
       <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
         <img class="macbook-air-11-inner"  alt="" src="../public/polygon-1.svg" />
       </button>
-
+      
       <img class="polygon-icon" alt="" src="./../public/polygon-1.svg" />
 
       <div class="rectangle-div"></div>
-      <b class="crear-usuario">Modificar Usuario</b>
+      <b class="crear-usuario">Crear Usuario</b>
       <div class="line-div"></div>
       <div class="component-35" id="div_Guardar"></div>
       <div class="component-36" id="div_Cancelar"></div>
@@ -84,7 +85,7 @@
           />
         </button>
       </div>
-      <form class="component-48" id="component-48" name="modificar" method="post" action="/modificar-usuario">
+      <form class="component-48" id="component-48" method="post" action="/crear-usuario">
         <b class="id-o-matrcula">ID o Matrícula</b>
         <input
           class="component-48-child"
@@ -96,7 +97,7 @@
         />
 
         <b class="estado">Estado</b>
-        <b class="contrasena">Nueva Contraseña</b>
+        <b class="contrasea">Contraseña</b>
         <input
           class="component-48-item"
           type="password"
@@ -155,17 +156,13 @@
 
           <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
         </div>
+        <!-- Combobox Carrera a la que pertene -->
         <b class="carrera-del-usuario">Carrera del Usuario</b>
         <div class="component-53">
-          <select class="component-51-child" id="cb_carrera" name="cb_carrera">
-            <option value="opcion1">Opción 1</option>
-            <option value="opcion2">Opción 2</option>
-            <option value="opcion3">Opción 3</option>
-            <!-- Agrega más opciones aquí -->
-          </select>
+          <select class="component-51-child" type="text" id="cb_carrera" name="cb_carrera"></select>
+
           <img class="component-51-item" alt="" src="./../public/polygon-8.svg" />
         </div>
-        
       </form>
       <div class="component-71" id="div_mensaje_error" style="display: none;">
         <div class="component-71-child"></div>
@@ -173,7 +170,6 @@
             >Matrícula o ID ya Existente</label>
       </div>
     </div>
-    <script src="./../script/admin/cargar_crear_usuario.js"></script>
     <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
       <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
         <img
@@ -185,8 +181,9 @@
         <!-- <label class="p_cerrar_sesion"></label> -->
       </button>
     </div>
-    <script src="../script/cerrar_sesion.js"></script>
-    <script src="../script/admin/modificar_usuario.js"></script>
+    <script src="../../script/cerrar_sesion.js"></script>
+    <script src="./../script/admin/cargar_crear_usuario.js"></script>
+    <script src="../../script/admin/user_logueado_admin.js"></script>
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>

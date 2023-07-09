@@ -4,28 +4,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="./../../styles/global.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="./../../styles/retirar-asignatura.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
+    <script src="../../script/estudiante/retirar_asignatura.js"></script>
+    <script src="../../script/estudiante/navegacion_estudiante.js"> </script>
+    <script src="../../script/cerrar_sesion.js"></script>
+    <script src="../../script/estudiante/user_logueado_est.js"></script>
   </head>
-  <body>
+  <body id="body" style="display:none">
     <div class="retirar-asignatura">
       <div class="retirar-asignatura-child"></div>
       <img class="image-1-icon1" alt="" src="./../../public/image-1@2x.png" />
 
       <b class="gradegenius1">GradeGenius</b>
-      <img class="image-2-icon1" alt="" src="./../../public/image-2@2x.png" />
+      <button style="cursor: pointer;" id="btn_perfil">
+        <img class="image-2-icon" alt="" src="./../public/image-2@2x.png"/>
+      </button>
+
 
       <img class="image-3-icon1" alt="" src="./../../public/image-3@2x.png" />
 
-      <img
-        class="retirar-asignatura-item"
-        alt=""
-        src="./../../public/polygon-1.svg"
-      />
-
+      <button style="cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
+        <img
+          class="retirar-asignatura-item"
+          alt=""
+          src="./../../public/polygon-1.svg"
+        />
+      </button>
       <div class="retirar-asignatura-inner"></div>
       <img class="image-4-icon" alt="" src="./../../public/image-4@2x.png" />
 
@@ -39,41 +50,15 @@
         id="codigo_asignatura"
       />
 
-      <div class="rectangle-parent">
-        <div class="instance-child" id="div_asignaturas_estudiante"></div>
-        <div class="image-17"></div>
-        <img class="instance-item" alt="" />
-
-        <button class="component-63" id="btn_asignatura">
-          <div class="component-63-child"></div>
-          <div class="desarrollo-de-software">Desarrollo de Software III</div>
-          <img class="image-18-icon" alt="" src="./../../public/image-18@2x.png" />
-        </button>
-        <button class="component-64" id="btn_asignatura">
-          <div class="component-63-child"></div>
-          <div class="matemtica-discreta">Matemática Discreta</div>
-          <img class="image-19-icon" alt="" src="./../../public/image-18@2x.png" />
-        </button>
-        <button class="component-65" id="btn_asignatura">
-          <div class="component-63-child"></div>
-          <div class="algoritmos-maliciosos">Algoritmos Maliciosos</div>
-          <img class="image-12-icon" alt="" src="./../../public/image-18@2x.png" />
-        </button>
-        <button class="component-66" id="btn_asignatura">
-          <div class="component-63-child"></div>
-          <div class="arquitectura-de-software">Arquitectura de Software</div>
-          <img class="image-13-icon" alt="" src="./../../public/image-18@2x.png" />
-        </button>
-        <button class="component-67" id="btn_asignatura">
-          <div class="component-63-child"></div>
-          <div class="diseo-de-software">Diseño de Software</div>
-          <img class="image-14-icon" alt="" src="./../../public/image-18@2x.png" />
-        </button>
+      <div class="rectangle-parent" id="rectangle-parent">
       </div>
       <div class="component-62">
         <div class="component-62-child"></div>
         <div class="component-62-item" id="confirmacion_retirar"></div>
-        <div class="desarrollo-de-software1">Desarrollo de Software III</div>
+        <div class="asignatura_retirar" id="div_asig_ret"  style="display:none">
+          <label style="font-weight: bold; font-size: 24px;">La asignatura a retirar es: </label><br>
+          <label class="label_asig_retirar" id="label_asig">IDS325L - Aseguramiento de la Calidad - Sec 01</label>
+        </div>
         <div class="una-vez-sea-container">
           <p class="una-vez-sea">
             Una vez sea retirada la asignatura esta dejará de formar
@@ -97,7 +82,9 @@
             id="password"
           />
 
-          <button class="component-61-item" id="boton"></button>
+          <button class="component-61-item" id="boton_confirmar">Confirmar Retiro</button>
+          <button class="btn_Cancelar" id="boton_cancelar">Cancelar</button>
+
         </div>
       </div>
       <div class="retirar-asignatura2">Retirar asignatura</div>
@@ -106,7 +93,7 @@
       <div class="component-71">
         <nav class="component-71-child" id="nav_admin"></nav>
         <div class="component-89">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_calificaciones">
             <div class="manejo-de-asignaturas1">Calificaciones</div>
             <img class="libros-3-icon1" alt="" src="./../../public/libros-3@2x.png" />
 
@@ -115,7 +102,7 @@
           </button>
         </div>
         <div class="component-891">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_sel_asignatura">
             <div class="manejo-de-asignaturas2">Seleccionar Asignaturas</div>
             <img class="libros-3-icon1" alt="" src="./../../public/libros-3@2x.png" />
 
@@ -124,7 +111,7 @@
           </button>
         </div>
         <div class="component-892">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_ret_asignatura">
             <div class="manejo-de-asignaturas3">Retirar Asignaturas</div>
             <img class="libros-3-icon1" alt="" src="./../../public/libros-3@2x.png" />
 
@@ -137,7 +124,7 @@
           />
         </div>
         <div class="component-88">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_estudiante">
             <div class="manejo-de-asignaturas1">Estudiante</div>
             <img class="libros-3-icon1" alt="" src="./../../public/libros-3@2x.png" />
 
@@ -146,6 +133,20 @@
           <img class="image-16-icon" alt="" src="./../../public/image-7@2x.png" />
         </div>
       </div>
+    </div>
+    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
+      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
+        <img
+        class="img_cerrar_sesion"
+        alt=""
+        src="../public/logout.png"
+        />
+        Cerrar Sesión
+        <!-- <label class="p_cerrar_sesion"></label> -->
+      </button>
+    </div>
+    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
   </body>
 </html>

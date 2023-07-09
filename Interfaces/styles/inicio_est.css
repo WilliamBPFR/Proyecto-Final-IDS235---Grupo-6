@@ -358,6 +358,25 @@
   bottom: 83.1%;
   left: 0;
 }
+.custom-dialog-cerrar-sesion,
+.ui-dialog-buttonpane,
+.ui-dialog-titlebar
+{
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+}
+.ui-widget-header{
+  border: none;
+  border-bottom: 1px solid black;
+}
+.ui-dialog-buttonpane{
+  border-top: 1px solid black;
+}
+.custom-dialog-cerrar-sesion .btn_aceptar{
+  background: linear-gradient(265.99deg, hsl(0, 78%, 66%), hsl(17, 85%, 64%));
+}
+.custom-dialog-cerrar-sesion .btn_cancelar{
+  background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
+}
 .component-56:hover,
 .component-57:hover,
 .component-59:hover,

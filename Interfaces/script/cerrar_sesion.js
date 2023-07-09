@@ -39,6 +39,8 @@ $(document).ready(function() {
                   window.location.href = "iniciar_sesion.html";
                 },
                 error: function(xhr, status, error) {
+                  switch (parseInt(xhr.responseText)) {
+                  }
                   console.error('Error en la solicitud:', error);
                 }
               });      
@@ -62,25 +64,3 @@ $(document).ready(function() {
   });
 });
 
-$.ajax({
-  url: '/usuario_logueado',
-  method: 'GET',
-  data: {
-  param1: 'valor1'
-  },
-  success: function(response) {
-  console.log('Usuario Logueado, Puede Pasar');
-  $('body').removeClass('overlay');
-  },
-  error: function(xhr, status, error) {
-  console.error('Error en la solicitud:', error);
-  var num = parseInt(xhr.responseText);
-  switch (num) {
-      case 0:
-      window.location.href = "iniciar_sesion.html";
-      break
-      default:
-      break
-  }
-  }
-});

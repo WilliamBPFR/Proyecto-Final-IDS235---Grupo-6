@@ -3,19 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../../styles/global.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="../styles/ver_secciones.css" />
+    <link rel="stylesheet" href="../../styles/ver_secciones.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
-    <script src="../script/admin/navegacion_admin.js"> </script>
-    <script src="../script/admin/crear_seccion.js"> </script>
-    <script src="../script/admin/ver_secciones.js"></script>
-    <script src="../script/cerrar_sesion.js"></script>
+    <script src="../../script/admin/navegacion_admin.js"> </script>
+    <script src="../../script/admin/crear_seccion.js"> </script>
+    <script src="../../script/admin/ver_secciones.js"></script>
+    <script src="../../script/cerrar_sesion.js"></script>
+    <script src="../../script/admin/user_logueado_admin.js"></script>
     <style>
       .tabla-container {
         width: 97%;
@@ -49,24 +50,24 @@
       }
     </style>
   </head>
-  <body>
+  <body id="body" style="display:none">
     <div class="macbook-air-7">
       <div class="macbook-air-7-child"></div>
       <div class="macbook-air-7-item"></div>
-      <img class="image-1-icon4" alt="" src="../public/image-1@2x.png" />
+      <img class="image-1-icon4" alt="" src="../../public/image-1@2x.png" />
 
       <b class="gradegenius4">GradeGenius</b>
       <button style="cursor: pointer;" id="btn_perfil">
-        <img class="image-2-icon4" alt="" src="../public/image-2@2x.png" />
+        <img class="image-2-icon4" alt="" src="../../public/image-2@2x.png" />
       </button>
 
-      <img class="image-3-icon4" alt="" src="../public/image-3@2x.png" />
+      <img class="image-3-icon4" alt="" src="../../public/image-3@2x.png" />
 
       <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
-        <img class="macbook-air-7-inner"  alt="" src="../public/polygon-1.svg" />
+        <img class="macbook-air-7-inner"  alt="" src="../../public/polygon-1.svg" />
       </button>
 
-      <img class="macbook-air-7-child1" alt="" src="../public/polygon-1.svg" />
+      <img class="macbook-air-7-child1" alt="" src="../../public/polygon-1.svg" />
 
       <div class="macbook-air-7-child2">
         <div class="tabla-container">
@@ -96,13 +97,13 @@
         <img
           class="boton-agregar-1-icon1"
           alt=""
-          src="../public/botonagregar-1@2x.png"
+          src="../../public/botonagregar-1@2x.png"
         />
       </div>
       
       <div class="component-29" id="div_Cancelar">
         <button class="component-29-child" id="btn_Cancelar">Eliminar</button>
-        <img class="eliminar-1-icon" alt="" src="../public/eliminar-1@2x.png" />
+        <img class="eliminar-1-icon" alt="" src="../../public/eliminar-1@2x.png" />
 
       </div>
       <div class="macbook-air-7-child19"></div>
@@ -111,7 +112,7 @@
         <div class="component-19-item"></div>
         <button class="component-54" id="manejo_asignaturas">
           <div class="manejo-de-asignaturas4">Manejo de Asignaturas</div>
-          <img class="libros-3-icon4" alt="" src="../public/libros-3@2x.png" />
+          <img class="libros-3-icon4" alt="" src="../../public/libros-3@2x.png" />
 
           <div class="component-5-child2"></div>
         </button>
@@ -121,7 +122,7 @@
           <img
             class="libros-3-icon4"
             alt=""
-            src="../public/gestiondeproyectos-1@2x.png"
+            src="../../public/gestiondeproyectos-1@2x.png"
           />
         </button>
         <button class="component-74" id="manejo_seccion">
@@ -130,7 +131,7 @@
           <img
             class="capitulo-2-icon4"
             alt=""
-            src="../public/capitulo-2@2x.png"
+            src="../../public/capitulo-2@2x.png"
           />
         </button>
         <button class="component-84" id="inicio_admin">
@@ -139,7 +140,7 @@
           <img
             class="capitulo-2-icon4"
             alt=""
-            src="../public/paginadeinicio-3@2x.png"
+            src="../../public/paginadeinicio-3@2x.png"
           />
         </button>
         <button class="component-314" id="btn_configuracion">
@@ -148,7 +149,7 @@
           <img
             class="libros-3-icon4"
             alt=""
-            src="../public/configuraciones-1-1@2x.png"
+            src="../../public/configuraciones-1-1@2x.png"
           />
         </button>
       </div>
@@ -161,7 +162,7 @@
         <img
         class="img_cerrar_sesion"
         alt=""
-        src="../public/logout.png"
+        src="../../public/logout.png"
         />
         Cerrar Sesión
         <!-- <label class="p_cerrar_sesion"></label> -->

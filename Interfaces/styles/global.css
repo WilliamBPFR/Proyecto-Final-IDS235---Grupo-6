@@ -11,12 +11,15 @@ body {
   --font-size-mini: 15px;
   --font-size-xl: 20px;
   --font-size-41xl: 60px;
+  --font-size-30xl: 49px;
+  --font-size-4xl: 23px;
   --font-size-6xl: 25px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
   --font-size-45xl: 64px;
   --font-size-17xl: 36px;
-  --font-size-base: 16px;
   --font-size-13xl: 32px;
-  --font-size-sm: 14px; /* New */
+  --font-size-sm: 14px;
   --font-size-16xl: 35px;
   --font-size-5xl: 24px;
 
@@ -36,7 +39,7 @@ body {
   --color-red-1200: #fb0a0a;
   --color-red-300: #f70b0b;
   --color-red-400: #f50b0b;
-  --color-red-1400: #f50a0a; /* New */
+  --color-red-1400: #f50a0a;
   --color-red-500: #f30b0b;
   --color-red-1300: #f50909;
   --color-red-600: #f50808;
@@ -46,16 +49,17 @@ body {
   --color-red-700: rgba(235, 0, 0, 0.68);
   --color-lawngreen: rgba(75, 235, 0, 0.79);
   --color-darkslategray: #2f2f2f;
-  --color-lime: rgba(57, 255, 39, 0.78);
+  --color-tomato: #f44848;
   --color-gainsboro-300: #e2e2e2;
-  --color-gainsboro-100: rgba(217, 217, 217, 0.28);
   --color-gainsboro-200: rgba(217, 217, 217, 0);
-  --color-mediumpurple: #af8cff; /* New */
-  --color-yellow: rgba(255, 246, 39, 0.78);
+  --color-gainsboro-100: rgba(217, 217, 217, 0.28);
   --color-darkgray: #b7aeae;
   --color-blueviolet-200: #6a31e4;
   --color-blueviolet-100: rgba(137, 44, 255, 0.15);
   --color-blueviolet-300: rgba(146, 66, 254, 0.49);
+  --color-lime: rgba(57, 255, 39, 0.78);
+  --color-mediumpurple: #af8cff;
+  --color-yellow: rgba(255, 246, 39, 0.78);
   --color-dodgerblue: rgba(99, 143, 255, 0.17);
 
   /* Paddings */
@@ -65,9 +69,9 @@ body {
   --br-xl: 20px;
   --br-3xs: 10px;
   --br-351xl: 370px;
-  --br-xs: 12px;
-  --br-21xl: 40px;
   --br-mini: 15px;
+  --br-21xl: 40px;
+  --br-xs: 12px;
   --br-6xl: 25px;
   --br-8xs: 5px;
 }
@@ -80,6 +84,20 @@ body {
   width: 11%;
   height: 5.8%;
   border-radius: 20px;
+}
+
+.image-2-icon,
+.image-3-icon {
+  position: absolute;
+  object-fit: cover;
+}
+
+.image-2-icon {
+  top: 28px;
+  left: 1095px;
+  border-radius: var(--br-351xl);
+  width: 51px;
+  height: 52px;
 }
 
 .btn_cerrar_sesion {

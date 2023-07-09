@@ -305,4 +305,13 @@ INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Viernes', GETDATE()
 -- Insertar sábado
 INSERT INTO dias_clase (dia_semana, fecha_creacion) VALUES ('Sábado', GETDATE());
 
+INSERT INTO Notas_Letras (limit_superior, limit_inferior, letra_equivalencia)
+VALUES
+    (100, 90, 'A'),
+    (80, 89, 'B'),
+    (70, 79, 'C'),
+    (60, 69, 'D'),
+    (0, 59, 'F'),
+    (-1, -1, 'R');
+
 SELECT * FROM Usuario

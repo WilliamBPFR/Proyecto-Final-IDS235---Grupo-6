@@ -137,16 +137,42 @@
   background-color: var(--color-white);
   box-shadow: 0 6px 9px 1px rgba(0, 0, 0, 0.13);
 }
-.desarrollo-de-software {
+.custom-dialog-cerrar-sesion,
+.ui-dialog-buttonpane,
+.ui-dialog-titlebar
+{
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+}
+.ui-widget-header{
+  border: none;
+  border-bottom: 1px solid black;
+}
+.ui-dialog-buttonpane{
+  border-top: 1px solid black;
+}
+.custom-dialog-cerrar-sesion .btn_aceptar{
+  background: linear-gradient(265.99deg, hsl(0, 78%, 66%), hsl(17, 85%, 64%));
+}
+.custom-dialog-cerrar-sesion .btn_cancelar{
+  background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
+}
+.clase_label_div {
   position: absolute;
-  top: 39.09%;
-  left: 30.08%;
-  font-size: var(--font-size-mini);
-  font-weight: 500;
+  top: 5.09%;
+  left: 28.58%;
+  font-size: 17px;
+  font-weight: bold;
   font-family: var(--font-poppins);
   color: var(--color-darkslategray);
+  background-color: transparent;
+  height: 90.73%;  
+  width: 63.84%;
+  display: flex;
+  align-items: center;
   text-align: left;
 }
+
+
 .image-18-icon {
   position: absolute;
   height: 51.82%;
@@ -173,6 +199,20 @@
   bottom: 88.25%;
   left: 0;
 }
+.clase_btn_general {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 13.75%;
+  width: 100%;
+  left: 0;
+}
+.clase_btn_general:hover .component-63-child {
+  border:2px solid red; /* Cambia el color de fondo según tus necesidades */
+}
+
 .matemtica-discreta {
   position: absolute;
   top: 38.83%;
@@ -319,10 +359,11 @@
 }
 .rectangle-parent {
   position: absolute;
-  top: 207px;
-  left: 270px;
-  width: 379px;
-  height: 936px;
+  top: 25%;
+  left: 21%;
+  width: 28.5%;
+  height: 74%;
+  overflow: auto;
 }
 .component-62-child,
 .component-62-item {
@@ -356,9 +397,23 @@
 }
 .una-vez-sea-container {
   position: absolute;
-  top: 23.78%;
+  top: 15.78%;
   left: 11.29%;
   font-weight: 500;
+  color: var(--color-darkslategray);
+  text-align: center;
+}
+.label_asig_retirar {
+  font-size: 18px;
+  color: #e96565;
+  font-weight: bold;
+}
+.asignatura_retirar {
+  position: absolute;
+  top: 25.78%;
+  left: 0%;
+  font-weight: 500;
+  width: 100%;
   color: var(--color-darkslategray);
   text-align: center;
 }
@@ -384,8 +439,8 @@
 .retirar-asignatura1 {
   position: absolute;
   top: 7.47%;
-  left: 32.97%;
-  font-size: var(--font-size-xl);
+  left: 23.97%;
+  font-size: 30px;
 }
 .contrasea {
   cursor: pointer;
@@ -425,12 +480,32 @@
   height: 26.14%;
   width: 55.43%;
   top: 73.86%;
-  right: 21.9%;
   bottom: 0;
-  left: 22.67%;
+  left: 5.67%;
   border-radius: var(--br-6xl);
   background: linear-gradient(265.99deg, #d289ec, #86e5f2);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: rgb(221, 17, 17);
+  font-weight: bold;
+  font-size: 30px;
+}
+.btn_Cancelar {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 26.14%;
+  width: 30.43%;
+  top: 73.86%;
+  bottom: 0;
+  left: 66.67%;
+  border-radius: var(--br-6xl);
+  background: rgb(255, 0, 0);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  color: rgb(245, 245, 245);
+  font-weight: bold;
+  font-size: 30px;
 }
 .component-61-item:hover {
   animation: 1s linear 0s infinite alternate-reverse none shadow-inset-center;
