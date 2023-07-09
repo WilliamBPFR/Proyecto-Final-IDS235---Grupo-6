@@ -4,11 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="../../styles/global.css" />
-    <link rel="stylesheet" href="../../styles/asignaturas-seleccionadas.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../styles/asignaturas-seleccionadas.css" />
+    <script src="../../script/estudiante/navegacion_estudiante.js"> </script>
+    <script src="../../script/cerrar_sesion.js"></script>
+    <script src="../../script/estudiante/user_logueado_est.js"></script>
   </head>
   <body>
     <div class="asignaturas-seleccionadas">
@@ -17,15 +23,19 @@
       <img class="image-1-icon1" alt="" src="../../public/image-1@2x.png" />
 
       <b class="gradegenius1">GradeGenius</b>
+      <button style="cursor: pointer;" id="btn_perfil">
       <img class="image-2-icon1" alt="" src="../../public/image-2@2x.png" />
+      </button>
 
       <img class="image-3-icon1" alt="" src="../../public/image-3@2x.png" />
 
-      <img
-        class="asignaturas-seleccionadas-inner"
-        alt=""
-        src="../../public/polygon-1.svg"
-      />
+      <button style="cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
+        <img
+          class="asignaturas-seleccionadas-inner"
+          alt=""
+          src="../../public/polygon-1.svg"
+        />
+      </button>
 
       <img
         class="asignaturas-seleccionadas-child1"
@@ -128,6 +138,20 @@
       <div class="crditos-acumulados">Créditos Acumulados:</div>
       <div class="div1">3.86</div>
       <div class="div2">182</div>
+    </div>
+    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
+      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
+        <img
+        class="img_cerrar_sesion"
+        alt=""
+        src="../../public/logout.png"
+        />
+        Cerrar Sesión
+        <!-- <label class="p_cerrar_sesion"></label> -->
+      </button>
+    </div>
+    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
   </body>
 </html>
