@@ -89,8 +89,15 @@
   background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
 }
 .calificacionInput{
-  background: #f7d5aed2 !important;
-  border: none;
+    background: #cbe4aa;
+    font-weight: bold;
+    border-radius: 10px;
+    height: 100%;
+    width: 40%;
+    border: 2px solid rgb(0, 0, 0);
+    text-align: center;
+    font-size: 20px;
+    color: #000000;
 }
 .asignar-calificaciones-child3 {
   position: absolute;
@@ -140,6 +147,19 @@
 .seccion {
   top: 260px;
   left: 860px;
+}
+.img_guardar {
+  position: absolute;
+  height: 70.02%;
+  width: 23%;
+  top: 14.95%;
+  right: 72.92%;
+  bottom: 18.03%;
+  left: 10.08%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
 }
 .asignar-calificaciones-child5,
 .asignar-calificaciones-child6,
@@ -277,20 +297,25 @@
   border-radius: var(--br-3xs);
   box-sizing: border-box;
   height: 54px;
+  font-size: 22px;
+  text-indent: 28%;
 }
 .rectangle-button {
-  background-color: var(--color-yellow);
-  left: 634px;
+  background-color: rgba(147, 220, 54, 0.78);
+  left: 593px;
   width: 165px;
+  font-weight: bold;
 }
 .rectangle-button:hover {
   border: 2px solid var(--color-red-1400);
   box-sizing: border-box;
 }
 .asignar-calificaciones-child18 {
-  background-color: rgba(147, 220, 54, 0.78);
-  left: 861px;
-  width: 144px;
+  background-color: #f14b4b;
+  left: 798px;
+  width: 165px;
+  color: wheat;
+  font-weight: bold;
 }
 .asignar-calificaciones-child18:hover {
   border: 2px solid #f00d0d;

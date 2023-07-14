@@ -10,6 +10,7 @@ const { Console } = require('console');
 const prisma = new PrismaClient();
 const { generateToken, verifyToken, blacklistToken } = require('./../jwt/jwtUtils'); // Ajusta la ruta según la ubicación real de tu archivo jwtUtils.js
 const cookieParser = require('cookie-parser');
+const e = require('express');
 dotenv.config();
 
 //variables globales
@@ -87,30 +88,39 @@ app.post('/iniciar-sesion', async (req,res,next)=>{
         // console.log(usuario.Credenciales_Usuario.hash_contrasena);
         if(usuario){
             if(usuario.Credenciales_Usuario[0].hash_contrasena === password_encriptada){
-                // Genera el token JWT
-                const token = generateToken(usuario.id_usuario, usuario.matricula,usuario.id_rol);
-                // Guarda el token en una cookie
-                res.cookie('token', token, { maxAge: 3600000, httpOnly: true }); // Configura el tiempo de vida y otras opciones según tus necesidades
+                if(usuario.id_estado != 2){
+                    // Genera el token JWT
+                    const token = generateToken(usuario.id_usuario, usuario.matricula,usuario.id_rol);
+                    // Guarda el token en una cookie
+                    res.cookie('token', token, { maxAge: 3600000, httpOnly: true }); // Configura el tiempo de vida y otras opciones según tus necesidades
 
-                switch(usuario.id_rol){ 
-                    case 1://Administrador
-                        res.redirect('/nav_admin?id=4');
-                        break;
-                    case 2://Profesor
-                        res.redirect('nav_profesores?id=1')
-                        break;
-                    case 3://Estudiante
-                        const user = usuario;
-                        res.send(`
-                        <script>
-                        localStorage.setItem('usuario', JSON.stringify(${JSON.stringify(usuario)}));
-                        window.location.href = '/inicio_est.html';
-                        </script>
-                        `);
-                        // res.redirect('/inicio_est.html');
-                        break;
-                    default:
-                        break;
+                    switch(usuario.id_rol){ 
+                        case 1://Administrador
+                            res.redirect('/nav_admin?id=4');
+                            break;
+                        case 2://Profesor
+                            res.redirect('nav_profesores?id=1')
+                            break;
+                        case 3://Estudiante
+                            const user = usuario;
+                            res.send(`
+                            <script>
+                            localStorage.setItem('usuario', JSON.stringify(${JSON.stringify(usuario)}));
+                            window.location.href = '/inicio_est.html';
+                            </script>
+                            `);
+                            // res.redirect('/inicio_est.html');
+                            break;
+                        default:
+                            break;
+                     }
+                }else{
+                    res.send(`
+                <script>
+                localStorage.setItem('login_status', '5');
+                window.location.href = '/iniciar_sesion.html';
+                </script>
+                `);
                 }
             }else{
                 res.send(`
@@ -157,41 +167,45 @@ app.post('/crear-usuario',async (req,res,next)=>{
         console.log('entre al if de la matricula');
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(regex.test(email) === true){
-            try{
-                const usuario = await prisma.usuario.findFirst({where:{matricula:parseInt(matr)}});
-                if(isNull(usuario)){
-                const new_ususario = await prisma.usuario.create({
-                    data:
-                    {                    
-                        nombre_usuario: nombre_user,
-                        id_rol: parseInt(rol),
-                        matricula: parseInt(matr),
-                        fecha_nac: new Date(fecha_nacimiento),
-                        id_estado: parseInt(id_est),
-                        email: email,
-                        id_carrera_est: parseInt(carrera_asignatura),
-                        indice_acad_est: parseFloat(indice_academico)
-                    }
-                });
-                console.log('garde usuario');
-                const new_credenciales = await prisma.Credenciales_Usuario.create({
-                    data:
-                    {
-                        id_usuario: new_ususario.id_usuario,
-                        hash_contrasena: password_encriptada
-                    }
-                });
-                console.log('guarde credenciales');
-                const usuarioss = await prisma.usuario.findMany();
-                console.log(usuarioss);
-                console.log(new_credenciales);
-                res.send('10');
+            if(password !== ''){
+                try{
+                    const usuario = await prisma.usuario.findFirst({where:{matricula:parseInt(matr)}});
+                    if(isNull(usuario)){
+                    const new_ususario = await prisma.usuario.create({
+                        data:
+                        {                    
+                            nombre_usuario: nombre_user,
+                            id_rol: parseInt(rol),
+                            matricula: parseInt(matr),
+                            fecha_nac: new Date(fecha_nacimiento),
+                            id_estado: parseInt(id_est),
+                            email: email,
+                            id_carrera_est: parseInt(carrera_asignatura),
+                            indice_acad_est: parseFloat(indice_academico)
+                        }
+                    });
+                    console.log('garde usuario');
+                    const new_credenciales = await prisma.Credenciales_Usuario.create({
+                        data:
+                        {
+                            id_usuario: new_ususario.id_usuario,
+                            hash_contrasena: password_encriptada
+                        }
+                    });
+                    console.log('guarde credenciales');
+                    const usuarioss = await prisma.usuario.findMany();
+                    console.log(usuarioss);
+                    console.log(new_credenciales);
+                    res.send('10');
+                }else{
+                    res.status(400).send('0');
+                }
+                }catch(error){
+                    console.log(error);
+                    res.status(400).send('1');
+                }
             }else{
-                res.status(400).send('0');
-            }
-            }catch(error){
-                console.log(error);
-                res.status(400).send('1');
+                res.status(400).send('4');
             }
         }else{
             console.log('entre al else del email');
@@ -233,17 +247,17 @@ app.get('/cargar_modificar_usuario',async (req,res,next)=>{
 // });
 
 app.get('/cargar_modificar_asignatura', async (req, res, next) => {
-    console.log(req.query.matricula);
-    const cod_asignatura = req.query.matricula;
+    console.log(req.query.cod_asig);
+    const cod_asignatura = req.query.cod_asig;
     try {
       const Asignatura = await prisma.Asignatura.findFirst({
         where: { cod_asignatura: cod_asignatura },
-        include: { Tipos_Asignatura: true, Carreras: true, asignatura_visible: true }
+        include: { Tipos_Asignatura: true, Carreras: true}
       });
       console.log(Asignatura);
   
       // Redirigir al usuario a una nueva URL con el código de la asignatura
-      res.redirect('/editar_asignatura?cod_asignatura=' + Asignatura.cod_asignatura);
+      res.json(Asignatura);
     } catch (error) {
       console.log(error);
     }
@@ -251,7 +265,11 @@ app.get('/cargar_modificar_asignatura', async (req, res, next) => {
   
 
 app.post('/modificar-usuario',async (req,res,next)=>{
-    const mtr_viejo = req.body.id_viejo
+    const user = usuario_logueado(req.cookies.token);
+    console.log(user);
+    const mtr_viejo = req.body.mat_viejo;
+    console.log("Matricula vieja:")
+    console.log(mtr_viejo);
     const nombre_user = req.body.txt_Nombre_Usuario;
     const rol = req.body.cb_rol;
     const matr = req.body.txt_ID;
@@ -260,8 +278,10 @@ app.post('/modificar-usuario',async (req,res,next)=>{
     const email = req.body.txt_Email;
     const carrera_asignatura = req.body.cb_carrera;
     const password = req.body.txt_Password;
+    console.log("Contraseña:")
+    console.log(password)
     var password_encriptada;
-    if(isNull(password) === false){
+    if(isNull(password) === false && password !== ''){
         password_encriptada = crypto.createHash('sha256').update(password).digest('hex');
     }else{
         password_encriptada = null;
@@ -292,7 +312,8 @@ app.post('/modificar-usuario',async (req,res,next)=>{
                 });
                 console.log('garde usuario');
                 if(isNull(password_encriptada) === false){
-                const new_credenciales = await prisma.Credenciales_Usuario.update({
+                    console.log('guarde credenciales');
+                const new_credenciales = await prisma.credenciales_Usuario.updateMany({
                     where:{id_usuario:new_ususario.id_usuario},
                     data:
                     {
@@ -301,10 +322,7 @@ app.post('/modificar-usuario',async (req,res,next)=>{
                     }
                 });
             }
-                console.log('guarde credenciales');
                 const usuarioss = await prisma.usuario.findMany();
-                console.log(usuarioss);
-                console.log(new_credenciales);
                 res.send('20');
             }else{
                 res.status(400).send('0');
@@ -357,23 +375,27 @@ app.post('/crear-asignatura',async (req,res,next)=>{
 
     try{
         const asignatura = await prisma.asignatura.findFirst({where:{cod_asignatura:codigo_asignatura}});
-        if(isNull(asignatura)){
-        const new_asignatura = await prisma.asignatura.create({
-            data:
-            {                    
-                cod_asignatura: codigo_asignatura,
-                creditos: parseInt(creditos_asignatura),
-                id_carrera: parseInt(carrera_asignatura),
-                nombre_asignacion: nombre_asignatura,
-                id_tipo_asignatura: parseInt(tipo_asignatura),
-                visible: asignatura_visible
-            }
-        });
-        const asignaturas = await prisma.asignatura.findMany();
-        console.log(asignaturas);
-        res.send('Asignatura Creada Exitosamente');
+        if(codigo_asignatura.length === 6){
+            if(isNull(asignatura)){
+            const new_asignatura = await prisma.asignatura.create({
+                data:
+                {                    
+                    cod_asignatura: codigo_asignatura,
+                    creditos: parseInt(creditos_asignatura),
+                    id_carrera: parseInt(carrera_asignatura),
+                    nombre_asignacion: nombre_asignatura,
+                    id_tipo_asignatura: parseInt(tipo_asignatura),
+                    visible: asignatura_visible
+                }
+            });
+            const asignaturas = await prisma.asignatura.findMany();
+            console.log(asignaturas);
+            res.send('10');
+        }else{
+            res.status(400).send('1');
+        }
     }else{
-        res.status(400).send('1');
+        res.status(400).send('3');
     }
     }catch(error){
         console.log(error);
@@ -402,7 +424,7 @@ app.post('/crear_seccion', async (req,res, next)=>{
     console.log(horarios);
     var horario_valido = true;
     horarios.forEach(horario => {
-        if(parseInt(horario.hora_inicio)>parseInt(horario.hora_fin)){
+        if(parseInt(horario.hora_inicio)>parseInt(horario.hora_fin) || parseInt(horario.hora_inicio)===parseInt(horario.hora_fin)){
             console.log('Hora Inicio: ' + horario.hora_inicio);
             console.log('Hora Fin: ' + horario.hora_fin);
             horario_valido = false;
@@ -433,7 +455,7 @@ app.post('/crear_seccion', async (req,res, next)=>{
                 
                 console.log(doc_no);
                 if(doc_no===false){
-                    const seccion = await prisma.seccion.findFirst({where:{num_seccion:parseInt(num_seccion), id_asignatura: parseInt(asignatura)}});
+                    const seccion = await prisma.seccion.findFirst({where:{num_seccion:parseInt(num_seccion), id_asignatura: parseInt(asignatura),id_trimestre:trimestre_actual.id_trimestre}});
                     if(isNull(seccion)){
                         const new_seccion = await prisma.seccion.create({
                             data:
@@ -616,7 +638,7 @@ app.get('/nav_admin',async (req,res)=>{
       `);
         break;
     case 6:
-        res.redirect('/perfil.html');
+        res.redirect('/perfil_admin.html');
     break;
     }
 });
@@ -636,6 +658,9 @@ app.get('/nav_estudiante',async (req,res)=>{
     case 4:
         res.redirect ('/retirar-asignatura.html')
         break;
+    case 5:
+        res.redirect ('/perfil_est.html')
+        break;
     }
 });
 
@@ -649,9 +674,13 @@ app.get('/nav_profesores',async (req,res)=>{
     case 2:
         res.redirect ('asignar-calificaciones.html')
         break;
-
+    case 3:
+        res.redirect ('/manejo_estudiantes.html')
+        break;
+    case 4:
+        res.redirect ('/perfil_prof.html')
+        break;
     }
-
 });
 
 app.get('/modificar_trimestre',async (req,res)=>{
@@ -797,9 +826,12 @@ app.get('/cargar_secciones',async (req,res)=>{
             res.json(secciones);
         }else{
             const asig_actualizadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_trimestre:trimestre_actual.id_trimestre,id_estudiante:user.id},include:{Seccion:true,Asignatura:true}});
+            const asig_tomadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_estudiante:user.id,calificacion_num:{gt:0}},include:{Seccion:true,Asignatura:true}});
+
             const response = {
                 secciones,
-                asig_actualizadas
+                asig_actualizadas,
+                asig_tomadas
             }
             res.json(response);
         }
@@ -855,8 +887,87 @@ app.get('/cargar_datos_asignar_calificaciones', async (req, res, next) => {
     try{
         var user = usuario_logueado(req.cookies.token);
         const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
-        const secciones = await prisma.seccion.findMany({where:{id_trimestre:trimestre_actual.id_trimestre,id_profesor:user.id},include:{Asignatura:true, Usuario:true}});
+        const secciones = await prisma.seccion.findMany({where:{id_trimestre:trimestre_actual.id_trimestre,id_profesor:user.id},include:{Asignatura:true, Usuario:true,seccion_dias:true}});
         res.json(secciones);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/cargar_timestres', async (req, res, next) => {
+    try{
+        var user = usuario_logueado(req.cookies.token);
+        const trimestre_actual = await prisma.trimestres.findFirst({where:{activo:true}});
+        const trimestres = await prisma.tipo_Trimestres.findMany();
+        const response = {
+            trimestre_actual:trimestre_actual,
+            trimestres:trimestres
+        }
+        res.json(response);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/cargar_datos_asigs_tri_estudiantes', async (req, res, next) => {
+    const id_tipo_trimestre = parseInt(req.query.id_tipo_trimestre);
+    const ano_tri = req.query.ano_tri;
+    try{
+        var user = usuario_logueado(req.cookies.token);
+        const tri_buscado = await prisma.trimestres.findFirst({where:{id_tipo_trimestre:id_tipo_trimestre,ano_trimestre:ano_tri}});
+        if(tri_buscado){
+            const asigs_seleccionadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_trimestre:tri_buscado.id_trimestre,id_estudiante:user.id},include:{Seccion:{include:{seccion_dias:true,Usuario:true}},Asignatura:true,Usuario:true}});
+            const response = {
+                asigs_seleccionadas:asigs_seleccionadas,
+                trimestre:tri_buscado
+            }
+            res.json(response);
+        }else{
+            res.status(400).send('0');
+        }
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/porcentaje_letras_est', async (req, res, next) => {
+    const id_tipo_trimestre = parseInt(req.query.id_tipo_trimestre);
+    const ano_tri = req.query.ano_tri;
+    try{
+        var user = usuario_logueado(req.cookies.token);
+        const usuario = await prisma.usuario.findFirst({where:{id_usuario:user.id}});
+        const hist_user = await prisma.asignaturas_Seleccionadas.findMany({where:{id_estudiante:user.id}});
+        console.log(hist_user);
+        var letras = {
+            A:0,
+            B:0,
+            C:0,
+            D:0,
+            F:0,
+            R:0,
+            total:0, 
+            indice_acad: usuario.indice_acad_est.toFixed(2)
+        }
+        hist_user.forEach(asig => {
+            if(asig.calificacion_num != null){
+                if(asig.calificacion_num >= 90){
+                    letras.A++;
+                }else if(asig.calificacion_num >= 80){
+                    letras.B++;
+                }else if(asig.calificacion_num >= 70){
+                    letras.C++;
+                }else if(asig.calificacion_num >= 60){
+                    letras.D++;
+                }else if(asig.calificacion_num >= 0){
+                    letras.F++;
+                }else{
+                    letras.R++;
+                }
+                letras.total++;
+            }
+        });
+        console.log(letras);
+        res.json(letras);
     }catch(error){
         console.log(error);
     }
@@ -869,31 +980,70 @@ app.get('/guardar_seleccion', async (req, res, next) => {
     console.log(secciones_seleccionadas);
 
     try{
-        secciones_seleccionadas.forEach(async seccion => {
-            const seccion_seleccionada = await prisma.seccion.findFirst({where:{id_seccion:parseInt(seccion)},include:{Asignatura:true}});
-            if(seccion_seleccionada.num_est > 0){
-               const sec_actualizada = await prisma.seccion.update({where:{id_seccion:parseInt(seccion)},data:{num_est:{decrement:1}}});
-               console.log('sec_actualizada');
-               console.log(sec_actualizada);
-                const sec_usuario = await prisma.asignaturas_Seleccionadas.create({
-                    data:{
-                        id_estudiante:parseInt(id_usuario),
-                        id_seccion:parseInt(seccion),
-                        id_asignatura:parseInt(seccion_seleccionada.Asignatura.id_asignatura),
-                        id_trimestre:parseInt(seccion_seleccionada.id_trimestre),
-                    }
-                });
-                console.log('sec_usuario');
-                console.log(sec_usuario);
-            }
-            console.log('seccion_no_seleccionada');
+        var hor_sec_ver = [];
+        for(var i=0;i<secciones_seleccionadas.length;i++){
+            const hor_sec_sel = await prisma.seccion_dias.findFirst({where:{id_seccion:parseInt(secciones_seleccionadas[i])}});
+            hor_sec_ver.push(hor_sec_sel);
+        }
+        var est_no = false;
+        // Crear un array de promesas con las llamadas a verificar_horario_docente
+        const promises = verificar_horario_estudiante(hor_sec_ver, hor_sec_ver);
+        promises.then(function(result) {
+            console.log(result);
+            est_no = result;
         });
+        console.log(est_no);
+        if(est_no===false){
+            var secs_borradas = false;
+            secciones_seleccionadas.forEach(async seccion => {
+                const seccion_seleccionada = await prisma.seccion.findFirst({where:{id_seccion:parseInt(seccion)},include:{Asignatura:true}});
+                if(secs_borradas===false){
+                    const borrar_secs = await prisma.asignaturas_Seleccionadas.deleteMany({where:{id_estudiante:parseInt(id_usuario),id_trimestre:parseInt(seccion_seleccionada.id_trimestre)}});
+                    secs_borradas = true;
+                }
+                if(seccion_seleccionada.num_est > 0){
+                const sec_actualizada = await prisma.seccion.update({where:{id_seccion:parseInt(seccion)},data:{num_est:{decrement:1}}});
+                console.log('sec_actualizada');
+                console.log(sec_actualizada);
+                    const sec_usuario = await prisma.asignaturas_Seleccionadas.create({
+                        data:{
+                            id_estudiante:parseInt(id_usuario),
+                            id_seccion:parseInt(seccion),
+                            id_asignatura:parseInt(seccion_seleccionada.Asignatura.id_asignatura),
+                            id_trimestre:parseInt(seccion_seleccionada.id_trimestre),
+                        }
+                    });
+                    console.log('sec_usuario');
+                    console.log(sec_usuario);
+                }
+                console.log('seccion_no_seleccionada');
+            });
+            res.send('0');
+    }else{
+        res.status(400).send('2');
+    }
         // res.send('Seleccion Guardada exitosamente');
     }catch(error){
         console.log(error);
     }
     
 });
+
+function verificar_horario_estudiante(horarios,horarios_profesor){
+    var est_no = false;
+    return new Promise((resolve,reject)=>{
+            horarios_profesor.forEach(horario_profesor => {
+                    horarios.forEach(horarios => {
+                        if(horario_profesor.id_dia === parseInt(horarios.id_dia) && horario_profesor.id_seccion != horarios.id_seccion){
+                            if(parseInt(horario_profesor.hora_inicio)<=parseInt(horarios.hora_inicio) && parseInt(horarios.hora_inicio)<parseInt(horario_profesor.hora_fin)){
+                                est_no = true;
+                            }
+                        }
+                });
+            });
+     resolve(est_no);
+    });
+}
 
 app.get('/verificar_fecha_sel', async (req, res, next) => {
     
@@ -925,6 +1075,193 @@ app.get('/cargar_usuario_seccion', async (req, res, next) => {
         const estudiantes = await prisma.asignaturas_Seleccionadas.findMany({where:{id_asignatura:id_asignatura,id_seccion:id_seccion},include:{Usuario:true}});
         console.log(estudiantes);
         res.json(estudiantes);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+//NNNNNNNNNNNEEEEEEEEEEEEEEWWWWWWWWWWWWWWWWWWWWWWWWWWW
+app.get('/guardar_notas_seccion', async (req, res, next) => {
+    var seccion = req.query.id_seccion;
+    console.log("AQUI LA SECCION:")
+    console.log(seccion);
+    var notas = JSON.parse(req.query.datos_notas);
+    var err = false;
+    console.log("AQUI LAS NOTAS");
+    console.log(notas);
+    for(var i=0;i<notas.notas.length;i++){
+        try{
+            const nota = await prisma.asignaturas_Seleccionadas.updateMany({
+                where: {
+                    id_estudiante: parseInt(notas.id_est[i]),
+                    id_seccion: parseInt(seccion)
+                },
+                data: {
+                  calificacion_num: parseInt(notas.notas[i])
+                }
+              });
+            if(nota != null){
+                console.log('nota_actualizada');
+                console.log(nota);
+                const sec = await prisma.seccion.update({where:{id_seccion:parseInt(seccion)},data:{notas_publicadas:true}});
+                console.log(sec);
+            }else{
+                console.log('nota_no_actualizada');
+                console.log(nota);
+                err = true;
+            }
+        }catch(error){
+            console.log(error);
+            res.status(400).send('0');
+        }
+    }
+    if(err == false){
+        res.send('1');
+    }else{
+        res.status(400).send('0');
+    }
+});
+
+
+app.post('/modificar-asignatura',async (req,res,next)=>{
+    const user = usuario_logueado(req.cookies.token);
+    const cod_viejo = req.body.cod_viejo;
+    console.log(cod_viejo);
+    const codigo_asignatura = req.body.txt_Cod_Asignatura;
+    const creditos_asignatura = req.body.txt_Creditos_Asignatura;
+    const carrera_asignatura = req.body.sel_Carrera_Pertenence;
+    const nombre_asignatura = req.body.txt_Nombre_Asignatura;
+    const tipo_asignatura = req.body.sel_Asignatura_Tipo;
+    const asignatura_visible = req.body.sel_Asignatura_Visible==='1' ? true : false;
+    console.log(codigo_asignatura);
+
+    try{
+        const asignatura = await prisma.asignatura.findFirst({where:{cod_asignatura:codigo_asignatura}});
+        if(isNull(asignatura) || cod_viejo === codigo_asignatura){
+        
+        const new_asignatura = await prisma.asignatura.update({
+            where: {cod_asignatura: cod_viejo},
+            data:
+            {                    
+                cod_asignatura: codigo_asignatura,
+                creditos: parseInt(creditos_asignatura),
+                id_carrera: parseInt(carrera_asignatura),
+                nombre_asignacion: nombre_asignatura,
+                id_tipo_asignatura: parseInt(tipo_asignatura),
+                visible: asignatura_visible
+            }
+        });
+        const asignaturas = await prisma.asignatura.findMany();
+        console.log(new_asignatura);
+        res.send('20');
+    }else{
+        res.status(400).send('1');
+    }
+    }catch(error){
+        console.log(error);
+        res.status(500).send('2');
+    }
+});
+
+app.get('/cargar-datos-perfil',async (req,res,next)=>{
+    const user = usuario_logueado(req.cookies.token);
+    try{
+        const usuario = await prisma.usuario.findFirst({where:{id_usuario:user.id},include:{Carreras:true,Rol:true}});
+        console.log(usuario);
+        res.json(usuario);
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/cambiar-contrasena',async (req,res,next)=>{
+    const user = usuario_logueado(req.cookies.token);
+    const contrasena = req.query.Nueva_Contrasena;
+    const contrasena_vieja = req.query.Contrasena_Actual;
+    const password_encriptada_vieja = crypto.createHash('sha256').update(contrasena_vieja).digest('hex');
+    const password_encriptada = crypto.createHash('sha256').update(contrasena).digest('hex');
+    try{
+        const usuario = await prisma.credenciales_Usuario.findFirst({where:{id_usuario:user.id}});
+        if(usuario.hash_contrasena === password_encriptada_vieja){
+        const new_usuario = await prisma.credenciales_Usuario.update({where:{id_registro:usuario.id_registro},data:{hash_contrasena:password_encriptada}});
+        console.log(new_usuario);
+        res.json(new_usuario);
+        }else{
+            console.error('contraseña incorrecta');
+            res.status(400).send('0');
+        }
+    }catch(error){
+        console.log(error);
+    }
+});
+
+app.get('/calcular_indices_sistema',async (req,res,next)=>{
+    const user = usuario_logueado(req.cookies.token);
+   try{
+        const estudiantes = await prisma.usuario.findMany({where:{id_rol:3,id_estado:1},include:{Carreras:true}});        
+        console.log(estudiantes);
+        estudiantes.forEach(async (estudiante)=>{
+            console.log('estudiante for');
+            console.log(estudiante);
+            const asignaturas_seleccionadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_estudiante:estudiante.id_usuario},include:{Asignatura:true}});
+            var creditos_aprobados = 0;
+            var puntos_aprobados = 0;
+
+            asignaturas_seleccionadas.forEach((asignatura)=>{
+                if(asignatura.calificacion_num >=0 && asignatura.calificacion_num !== null){
+                    creditos_aprobados += asignatura.Asignatura.creditos;
+                    if(parseFloat(asignatura.calificacion_num) >= 90){
+                        puntos_aprobados += asignatura.Asignatura.creditos*4.0;
+                    }else if(parseFloat(asignatura.calificacion_num) >= 80){
+                        puntos_aprobados += asignatura.Asignatura.creditos*3.0;
+                    }else if(parseFloat(asignatura.calificacion_num) >= 70){
+                        puntos_aprobados += asignatura.Asignatura.creditos*2.0;
+                    }else if(parseFloat(asignatura.calificacion_num) >= 60){
+                        puntos_aprobados += asignatura.Asignatura.creditos*1.0;
+                    }else{
+                        puntos_aprobados += asignatura.Asignatura.creditos*0.0;
+                    }
+                }
+            });
+            if(creditos_aprobados != 0){
+                const indice = puntos_aprobados/creditos_aprobados;
+                const new_indice = await prisma.usuario.update({where:{id_usuario:estudiante.id_usuario},data:{indice_acad_est:indice}});
+                console.log(new_indice);
+            }
+        });
+        res.send('1');
+    }catch(error){
+        console.log(error);
+        res.status(500).send('0');
+    }
+});
+
+
+app.get('/cargar-home-profesores',async (req,res,next)=>{
+    const user = usuario_logueado(req.cookies.token);
+    var usuarios_no_publicados=0;
+    var usuarios_totales = 0;
+    var secciones_totales = 0;
+      try{
+        const trimestre = await prisma.trimestres.findFirst({where:{activo:true},include:{Tipo_Trimestres:true}});
+        const secciones = await prisma.seccion.findMany({where:{id_trimestre:trimestre.id_trimestre,id_profesor:user.id}});
+        for(var i=0;i<secciones.length;i++){
+            const asignaturas_seleccionadas = await prisma.asignaturas_Seleccionadas.findMany({where:{id_seccion:secciones[i].id_seccion}});
+            console.log('entre')
+            if(secciones[i].notas_publicadas===false){
+                usuarios_no_publicados += asignaturas_seleccionadas.length;
+            }
+            usuarios_totales += asignaturas_seleccionadas.length;
+            secciones_totales += 1;
+        }
+        const resp = {
+            usuarios_no_publicados:usuarios_no_publicados,
+            usuarios_totales:usuarios_totales,
+            secciones_totales:secciones_totales,
+            trimestre:trimestre
+        }
+        console.log(resp);
+        res.json(resp);
     }catch(error){
         console.log(error);
     }

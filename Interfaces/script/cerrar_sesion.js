@@ -59,8 +59,5 @@ $(document).ready(function() {
     });
   });
 
-  $('#btn_perfil').on('click',function(){
-    window.location.href = "nav_admin?id=6";
-  });
 });
 

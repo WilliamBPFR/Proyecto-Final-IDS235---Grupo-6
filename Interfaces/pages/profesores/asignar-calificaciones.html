@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link rel="stylesheet" href="./../../styles/global.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Asignar Calificaciones</title>
@@ -133,8 +134,18 @@
       <b class="asignar-calificaciones1">Asignar Calificaciones</b>
       <b class="asignatura">Asignatura</b>
       <b class="seccion">Seccion</b>
-      <button class="rectangle-button" id="btn_Cancelar"></button>
-      <button class="asignar-calificaciones-child18" id="btn_Guardar"></button>
+      <button class="rectangle-button" id="btn_Guardar">
+        <img
+          class="img_guardar"
+          alt=""
+          src="./../../public/disquete-2@2x.png"/>
+        Guardar</button>
+      <button class="asignar-calificaciones-child18" id="btn_Cancelar">
+        <img
+        class="img_guardar"
+        alt=""
+        src="./../../public/cancelar-1-2@2x.png"/>
+        Cancelar</button>
       <div class="component-36">
         <nav class="component-36-child" id="nav_admin"></nav>
         <div class="component-36-item"></div>
@@ -191,6 +202,12 @@
     </div>
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
+    </div>
+    <div id="dialog_seccion_publicada" title="Sección Ya Publicada" style="display: none;">
+      <p style="font-weight: bold;">La sección ya ha sido publicada,<br> así que solo podrá ver las notas publicadas</p>
+    </div>
+    <div id="dialog_seccion_por_publicar" title="¿Seguro que Quieres publicar la seccion?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres publicar la nota de la sección? Ya no podrás modificarla luego de esto.</p>
     </div>
   </body>
 </html>

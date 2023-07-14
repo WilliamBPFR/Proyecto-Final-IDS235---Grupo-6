@@ -43,7 +43,7 @@ $(document).ready(function() {
     var yearSelect = $("#cb_ano");
 
     // Obtener el año actual
-    var currentYear = new Date().getFullYear();
+    var currentYear = 2023;
 
     // Número de años a mostrar
     var numberOfYears = 30; // Cambia este valor según tus necesidades
@@ -108,6 +108,7 @@ $(document).ready(function() {
                                 buttons: {
                                     "Aceptar": function() {
                                         $(this).dialog("close"); // Cierra la ventana emergente
+                                        window.location.href='/nav_admin?id=5';
                                     }
                                 }
                             });
@@ -162,6 +163,7 @@ $(document).ready(function() {
                                 buttons: {
                                     "Aceptar": function() {
                                         $(this).dialog("close"); // Cierra la ventana emergente
+                                        window.location.href='/nav_admin?id=5';
                                     }
                                 }
                             });
@@ -197,6 +199,51 @@ $(document).ready(function() {
         $("#btn_Modificar_Trimestre").prop('disabled', false);        
         $("#btn_Guardar").prop('disabled', true);
         $("#btn_Cancelar").prop('disabled', true);
+        window.location.href='/nav_admin?id=5';
     });
     
+    $("#btn_Calcular_Indice").click(function() {
+        $("#dialog_conf_calc_indice").dialog({
+            dialogClass: "custom-dialog",
+            buttons: {
+              "Aceptar": function() {
+                $.ajax({
+                    url: "/calcular_indices_sistema",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        // Aquí puedes procesar la respuesta del servidor
+                        console.log(response);
+            
+                        // Por ejemplo, podrías mostrar la respuesta en una ventana emergente
+                        $("#dialog_indices_calculados").dialog({
+                            dialogClass: "custom-dialog_trimestre_cambiado",
+                            buttons: {
+                                "Aceptar": function() {
+                                    $(this).dialog("close"); // Cierra la ventana emergente
+                                }
+                            }
+                        });
+                    },
+                    error: function(error) {
+                        $("#dialog_no_modificado_sel").dialog({
+                            dialogClass: "custom-dialog_trimestre_cambiado",
+                            buttons: {
+                                "Aceptar": function() {
+                                    $(this).dialog("close"); // Cierra la ventana emergente
+                                }
+                            }
+                        });
+                        // Si hay un error en la solicitud, puedes manejarlo aquí
+                        console.log(error);
+                    }
+                });
+                $(this).dialog("close"); // Cierra la ventana emergente
+              },
+              "Cancelar": function() {
+                $(this).dialog("close"); // Cierra la ventana emergente
+              }
+            }
+        });
+    });
 });

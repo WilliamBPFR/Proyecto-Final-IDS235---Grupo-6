@@ -52,6 +52,7 @@ $(document).ready(function(){
 		buscar_asignaturas().then(function(data){
 			asignaturas_estudiante = data.asig_actualizadas;
 			asignaturas_elegir = data.secciones;
+			asig_tomadas = data.asig_tomadas;
 			llenar_div_asignaturas(asignaturas_elegir,asignaturas_estudiante);
 			if(asignaturas_estudiante.length > 0){
 				asignaturas_estudiante.forEach(element => {
@@ -65,7 +66,17 @@ $(document).ready(function(){
 						}
 					});
 				});
-				}
+			}
+			if(asig_tomadas.length > 0){
+					asig_tomadas.forEach(element => {
+						$('.rectangle-parent').each(function() {
+							if(parseInt($(this).attr('value')) == element.id_asignatura){
+								$(this).find('.component-76-child').css('background-color', 'rgba(255, 231, 123, 0.5);');
+								$(this).find('.component-76').prop('disabled', true);
+							}
+						});
+					});
+					}
 		});
 		}
 });
@@ -108,7 +119,7 @@ $(document).ready(function(){
 				var imageIcon = $('<img>').addClass('image-10-icon').attr('src', './../../public/image-10@2x.png');
 				var divSalienteAsignatura = $('<div>').addClass('div_saliente_asignatura');
 				var seccionToggle = $('<section>').addClass('seccionToggle').attr('id', 'seccionToggle1');
-				var boton = $('<button>').addClass('component-2-inner').attr('id', 'boton').text('Seleccionar').val(element.id_seccion);
+				var boton = $('<button>').addClass('component-2-inner').attr('id', 'boton').text('Seleccionar').val(element.id_seccion).attr('name', element.Asignatura.id_asignatura);
 				var labelHorario = $('<label>').addClass('label_Horario').attr('id', 'label_Horario').text('Horario');
 				var contenido = "";
 				element.seccion_dias.forEach(element2 => {
@@ -161,7 +172,7 @@ $(document).ready(function(){
 					var asignatura = $('<td></td>').text(element.Asignatura.cod_asignatura + " - " + element.Asignatura.nombre_asignacion);
 					var seccion = $('<td></td>').text(element.num_seccion);
 					var cupos = $('<td></td>').text(element.num_est);
-					var  horario = $('<td></td>').text(element.hora_inicio + "/" + element.hora_fin);
+					var  horario = $('<td></td>').html(contenido);
 					var docente = $('<td></td>').text(element.Usuario.nombre_usuario);
 					var modalidad = $('<td></td>').text(element.Modalidad.nombre_modalidad);
 					var imagen = $('<img>').attr('src', './../../public/borrar (2).png').attr('alt', 'Botón Eliminar');
@@ -171,7 +182,6 @@ $(document).ready(function(){
 					eliminar.append(btn_eliminar);
 					eliminar.on('click', '.btn_eliminar_tabla', function() {
 						// Lógica para manejar el evento de clic del botón
-						alert('Haz hecho clic en el botón');
 						$('.rectangle-parent').each(function() {
 							if(parseInt($(this).attr('value')) == element.Asignatura.id_asignatura){
 								$(this).find('.component-76-child').css('background-color', '#FFFFFF');
@@ -197,6 +207,10 @@ $(document).ready(function(){
 	};
 
 	$(document).ready(function(){
+		$('#btn_Cancelar').click(function(){
+			alert("Se ha cancelado la selección. Recargando la página");
+			window.location.href = "/seleccionar_asignatura.html";
+		});
 		$('#btn_Guardar').click(function(){
 			console.log("hola");
 			var asignaturas = [];
@@ -219,7 +233,7 @@ $(document).ready(function(){
 					contentType: 'application/json',
 					success: function(data) {  
 						alert("Secciones Guardadas Correctamente, te redigiremos al inicio");
-						windows.location.href = "/inicio_est.html";
+						window.location.href = "/inicio_est.html";
 					},
 					error: function(xhr,error) {
 						var resp = parseInt(xhr.responseText);
@@ -228,7 +242,8 @@ $(document).ready(function(){
 								alert("No hay Cupos Disponibles. Elija otra seccón");
 								break;
 							case 2:
-								break;
+								alert("Revise la seleccion, pues hay asignaturas cuyos horarios chocan");
+							break;
 						}
 					}
 				});

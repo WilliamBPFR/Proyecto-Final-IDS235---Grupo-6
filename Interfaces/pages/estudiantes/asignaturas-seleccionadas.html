@@ -15,6 +15,45 @@
     <script src="../../script/estudiante/navegacion_estudiante.js"> </script>
     <script src="../../script/cerrar_sesion.js"></script>
     <script src="../../script/estudiante/user_logueado_est.js"></script>
+  
+    <style>
+      .tabla-container {
+        width: 91%;
+        height: 58.5%;
+        overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+        position: absolute;
+        top: 39%;
+        left: 4.3%;
+        border-radius: 20px;
+        color:black;
+        background-color: rgba(170, 152, 170, 0.596);
+      }
+      tr:hover{
+        background-color: rgba(169, 169, 169, 0.5);
+        cursor: pointer;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        position: absolute;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        position: sticky;
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+      }
+      table tr:nth-child(odd){
+        background-color: rgba(245, 245, 245, 0.596);
+      }
+    </style>
+    <script src="../../script/estudiante/asignaturas-seleccionadas.js"></script>
   </head>
   <body>
     <div class="asignaturas-seleccionadas">
@@ -43,57 +82,47 @@
         src="../../public/polygon-1.svg"
       />
 
-      <div class="asignaturas-seleccionadas-child2" id="div_principal"></div>
+      <div class="asignaturas-seleccionadas-child2" id="div_principal">
+        <div class="tabla-container">
+          <table id="tabla-secciones-elegidas">
+            <tr>
+              <th>Asignatura</th>
+              <th>Sección</th>
+              <th>Horario</th>
+              <th>Docente</th>
+              <th>Creditos</th>
+              <th>Calif. Num.</th>
+              <th>Calif. Letra</th>
+              <th>Puntos Ganados</th>
+            </tr>
+          </table>
+        </div>
+      </div>
       <b class="hoja-de-seleccin">Hoja de selección</b>
-      <div class="asignaturas-seleccionadas-child3"></div>
-      <div class="asignaturas-seleccionadas-child4"></div>
-      <div class="asignaturas-seleccionadas-child5"></div>
-      <div class="cdigo">Código</div>
-      <div class="nombre-asignatura">Nombre Asignatura</div>
-      <div class="tipo">Tipo</div>
-      <div class="crditos">Créditos</div>
-      <div class="visible">Visible</div>
-      <div class="asignaturas-seleccionadas-child6"></div>
-      <div class="asignaturas-seleccionadas-child7"></div>
-      <div class="asignaturas-seleccionadas-child8"></div>
-      <div class="asignaturas-seleccionadas-child9"></div>
-      <div class="asignaturas-seleccionadas-child10"></div>
-      <div class="asignaturas-seleccionadas-child11"></div>
-      <div class="asignaturas-seleccionadas-child12"></div>
-      <div class="asignaturas-seleccionadas-child13"></div>
-      <div class="asignaturas-seleccionadas-child14"></div>
-      <div class="asignaturas-seleccionadas-child15"></div>
-      <div class="asignaturas-seleccionadas-child16"></div>
-      <div class="asignaturas-seleccionadas-child17"></div>
-      <input
+      <div class="trimestre">Trimestre:</div>
+      <select
         class="rectangle-input"
         type="text"
         maxlength
         minlength
         id="cb_trimestre"
-      />
+      ></select>
 
-      <div class="ids345">IDS345</div>
-      <div class="desarrollo-de-software">Desarrollo de Software III</div>
-      <div class="s">Sí</div>
-      <div class="div">3</div>
-      <div class="virtual">Virtual</div>
-      <div class="trimestre">Trimestre:</div>
-      <input
+      
+      <select
         class="asignaturas-seleccionadas-child18"
         type="text"
         maxlength
         minlength
         id="cb_ano"
-      />
+      ></select>
 
       <div class="ao">Año:</div>
-      <div class="asignaturas-seleccionadas-child19"></div>
       <div class="asignaturas-seleccionadas-child20"></div>
       <div class="component-71">
         <nav class="component-71-child" id="nav_admin"></nav>
         <div class="component-89">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_calificaciones">
             <div class="manejo-de-asignaturas1">Calificaciones</div>
             <img class="libros-3-icon1" alt="" src="../../public/libros-3@2x.png" />
 
@@ -102,7 +131,7 @@
           </button>
         </div>
         <div class="component-891">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_sel_asignatura">
             <div class="manejo-de-asignaturas2">Seleccionar Asignaturas</div>
             <img class="libros-3-icon1" alt="" src="../../public/libros-3@2x.png" />
 
@@ -111,7 +140,7 @@
           </button>
         </div>
         <div class="component-892">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_ret_asignatura">
             <div class="manejo-de-asignaturas3">Retirar Asignaturas</div>
             <img class="libros-3-icon1" alt="" src="../../public/libros-3@2x.png" />
 
@@ -124,7 +153,7 @@
           />
         </div>
         <div class="component-88">
-          <button class="component-81" id="manejo_asignaturas">
+          <button class="component-81" id="btn_estudiante">
             <div class="manejo-de-asignaturas1">Estudiante</div>
             <img class="libros-3-icon1" alt="" src="../../public/libros-3@2x.png" />
 
@@ -135,9 +164,11 @@
       </div>
       <div class="asignaturas-seleccionadas-child21" id="div_info"></div>
       <div class="ndice-trimestral">Índice Trimestral:</div>
-      <div class="crditos-acumulados">Créditos Acumulados:</div>
-      <div class="div1">3.86</div>
-      <div class="div2">182</div>
+      <div class="crditos-acumulados">Créditos Trimestre:</div>
+      <div class="crditos-aprobados">Créditos Aprobados:</div>
+      <div class="div1" id="indice_trimestral">3.86</div>
+      <div class="div2" id="creditos_trimestre">82</div>
+      <div class="div3" id="creditos_aprobados">82</div>
     </div>
     <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
       <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">

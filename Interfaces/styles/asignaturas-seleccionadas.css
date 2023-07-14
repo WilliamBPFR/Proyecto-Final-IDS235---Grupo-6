@@ -517,9 +517,20 @@
   width: 801px;
   height: 74px;
 }
+.crditos-aprobados{
+  position: absolute;
+  top: 292px;
+  left: 900px;
+  width: 157px;
+  height: 63px;
+  display: inline-block;
+  font-size: var(--font-size-4xl);
+  font-weight: 600;
+}
 .crditos-acumulados,
 .div1,
 .div2,
+.div3,
 .ndice-trimestral {
   position: absolute;
   top: 292px;
@@ -532,21 +543,26 @@
 }
 .crditos-acumulados,
 .div1,
+.div3,
 .div2 {
-  left: 815px;
+  left: 675px;
   width: 157px;
 }
 .div1,
-.div2 {
+.div2,
+.div3 {
   top: 291px;
-  left: 567px;
+  left: 547px;
   font-size: var(--font-size-30xl);
   color: var(--color-tomato);
   width: 145px;
   height: 65px;
 }
 .div2 {
-  left: 979px;
+  left: 780px;
+}
+.div3 {
+  left: 1010px;
 }
 .asignaturas-seleccionadas {
   position: relative;

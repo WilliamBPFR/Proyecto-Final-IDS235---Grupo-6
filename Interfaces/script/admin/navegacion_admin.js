@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   var manejoAsignaturasBtn = document.getElementById('manejo_asignaturas');
+  var perfil = document.getElementById('btn_perfil');
   var manejoUsuariosBtn = document.getElementById('manejo_usuarios');
   var manejoSeccionBtn = document.getElementById('manejo_seccion');
   var inicioAdminBtn = document.getElementById('inicio_admin');
@@ -24,5 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btnConfiguracion.addEventListener('click', function() {
     window.location.href = 'nav_admin?id=5';
+  });
+
+  perfil.addEventListener('click', function() {
+    window.location.href = 'nav_admin?id=6';
   });
 });

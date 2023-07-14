@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="../../styles/global.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../styles/perfil.css" />
+    <link rel="stylesheet" href="./../../styles/inicio_est.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <script src="../../script/estudiante/navegacion_estudiante.js"> </script>
+    <script src="../../script/estudiante/user_logueado_est.js"></script>
+    <script src="../../script/admin/perfil.js"></script>
+    <script src="../../script/cerrar_sesion.js"></script>
+  </head>
+  <body>
+    <div class="perfil">
+      <div class="perfil-child"></div>
+      <div class="perfil-item"></div>
+      <img class="image-1-icon" alt="" src="../../public/image-1@2x.png" />
+
+      <b class="gradegenius">GradeGenius</b>
+      <button style="cursor: pointer;" id="btn_perfil">
+        <img class="image-2-icon" alt="" src="../../public/image-2@2x.png" />
+      </button>
+
+      <img class="image-3-icon" alt="" src="../../public/image-3@2x.png" />
+
+      <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
+      <img class="perfil-inner" alt="" src="../../public/polygon-1.svg" />
+      </button>
+
+      <div class="rectangle-div"></div>
+      <b class="nueva-contrasea">Nueva Contraseña:</b>
+      <b class="repetir-contrasea">Repetir Contraseña:</b>
+      <b class="contrasea-actual">Contraseña Actual:</b>
+      <input
+        class="rectangle-input"
+        type="password"
+        maxlength
+        minlength
+        id="Repetir_Contraseña"
+        disabled
+      />
+
+      <input
+        class="perfil-child1"
+        type="password"
+        maxlength
+        minlength
+        id="Nueva_Contraseña"
+        disabled
+      />
+
+      <img class="image-10-icon" alt="" src="../../public/image-10@2x.png" />
+
+      <div class="benito-martnez" id="nombre_est">Benito Martínez</div>
+      <b class="nombre">Nombre:</b>
+      <b class="matrcula">Matrícula:</b>
+      <b class="carrera">Carrera:</b>
+      <div class="m17-0040" id="matricula">M17-0040</div>
+      <div class="ingeniera-de-aseguramiento" id="carrera">
+      </div>
+      <b class="rol">Rol:</b>
+      <div class="administrador" id="rol">Administrador</div>
+
+
+      <input
+        class="perfil-child3"
+        type="password"
+        maxlength
+        minlength
+        id="Contraseña_Actual"
+        disabled
+      />
+
+      <div class="component-37" id="div_Modificar_Trimestre">
+        <button class="component-37-child" id="btn_Cambiar_Contraseña"> Cambiar Contraseña
+          <img class="editar-1-icon" alt="" src="../../public/editar-1@2x.png" />
+        </button>
+      </div>
+      <div class="component-42" id="div_Cancelar_Fecha" >
+        <button class="component-42-child" id="btn_Cancelar_Cambio" disabled>
+          <img class="cancelar-1-3" alt="" src="../../public/cancelar-1-2@2x.png" />
+        </button>
+      </div>
+      <div class="component-38" id="div_Guardar">
+        <button class="component-38-child" id="btn_Guardar_Contraseña" disabled>
+          <img class="disquete-2-icon" alt="" src="../../public/disquete-2@2x.png" />
+        </button>
+      </div>
+      <div class="line-div"></div>
+      <div class="perfil-child4"></div>
+      <b class="cambiar-contrasea">Cambiar Contraseña</b>
+      <div class="component-50">
+        <nav class="component-50-child" id="nav_admin"></nav>
+        <button class="component-56" id="btn_estudiante">
+          <div class="component-56-child"></div>
+          <div class="estudiante1">Estudiante</div>
+          <img class="image-7-icon" alt="" src="./../../public/image-7@2x.png" />
+        </button>
+        <button class="component-57" id="btn_calificaciones">
+          <div class="calificaciones">Calificaciones</div>
+          <img class="libros-3-icon" alt="" src="./../../public/libros-3@2x.png" />
+
+          <div class="component-57-child"></div>
+        </button>
+        <button class="component-59" id="btn_sel_asignatura">
+          <div class="component-57-child"></div>
+          <div class="seleccionar-asignaturas">Seleccionar Asignaturas</div>
+          <img
+            class="capitulo-2-icon"
+            alt=""
+            src="./../../public/capitulo-2@2x.png"
+          />
+        </button>
+        <button class="component-58" id="btn_ret_asignatura">
+          <div class="component-57-child"></div>
+          <div class="retirar-asignaturas">Retirar Asignaturas</div>
+          <img
+            class="gestion-de-proyectos-2-icon"
+            alt=""
+            src="./../../public/gestiondeproyectos-2@2x.png"
+          />
+        </button>
+      </div>
+    </div>
+    <div id="dialog_contrasena_modificada" title="Contraseña Modificada Exitosamente" style="display: none;">
+      <p style="font-weight: bold;">La contraseña ha sido modificada exitosamente. Ahora será utilizada para iniciar sesión.<br>!!!!Recuerdala!!!!</p>
+    </div>
+    <div id="dialog_confirmar_modificar" title="¿Seguro que quieres modificar la contraseña?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cambiar tu actual contraseña?</p>
+    </div>
+    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
+    </div>
+    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
+      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
+        <img
+        class="img_cerrar_sesion"
+        alt=""
+        src="../public/logout.png"
+        />
+        Cerrar Sesión
+        <!-- <label class="p_cerrar_sesion"></label> -->
+      </button>
+    </div>
+  </body>
+</html>

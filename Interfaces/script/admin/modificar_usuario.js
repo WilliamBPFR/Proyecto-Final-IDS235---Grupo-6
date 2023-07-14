@@ -15,6 +15,7 @@ $(document).ready(function() {
       success: function(response) {
         console.log(response);
         $('#txt_ID').val(response.matricula);
+        localStorage.setItem('mat_usuario', response.matricula);
         $('#txt_Nombre_Usuario').val(response.nombre_usuario);
         $('#txt_Email').val(response.email);
         $('#cb_rol').find('option').each(function() {

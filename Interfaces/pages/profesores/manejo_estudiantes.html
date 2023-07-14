@@ -3,17 +3,62 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="./../../styles/global.css" />
     <link rel="stylesheet" href="./../../styles/manejo_estudiantes.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     />
+    <script src="../../script/profesores/manejo-estudiantes.js"></script>
+    <style>
+       .tabla-container {
+        width: 70.5%;
+        height: 53.5%;
+        overflow: auto; /* Mostrar la barra de desplazamiento cuando sea necesario */
+        position: absolute;
+        top: 45%;
+        left: 21.3%;
+        border-radius: 20px;
+        color:black;
+        background-color: rgba(226, 223, 226, 0.87);
+      }
+      tr:hover{
+        background-color: rgba(169, 169, 169, 0.5);
+        cursor: pointer;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        position: absolute;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        position: sticky;
+        background-color: #f2f2f2;
+        font-weight: bold;
+        text-align: center;
+        font-size: 25px;
+      }
+      table tr:nth-child(odd) {
+        background-color: rgb(194, 157, 206);
+      }
+    </style>
+    <script src="../../script/profesores/navegacion_profesores.js"></script>
+    <script src="../../script/cerrar_sesion.js"></script>
   </head>
   <body>
     <div class="macbook-air-15">
       <div class="macbook-air-15-child"></div>
-      <input
+      <!-- <input
         class="macbook-air-15-item"
         type="text"
         maxlength
@@ -27,13 +72,13 @@
         maxlength
         minlength
         id="txt_buscar_asignatura"
-      />
+      /> -->
 
       <div class="macbook-air-15-child1"></div>
       <div class="component-38">
         <nav class="component-38-child" id="nav_admin"></nav>
         <div class="component-38-item"></div>
-        <button class="component-32" id="inicio_admin">
+        <button class="component-32" id="inicio_profesor">
           <div class="component-32-child"></div>
           <div class="inicio1">Inicio</div>
           <img
@@ -42,7 +87,7 @@
             src="./../../public/paginadeinicio-31@2x.png"
           />
         </button>
-        <button class="component-321" id="manejo_asignaturas">
+        <button class="component-321" id="btn_calificaciones">
           <div class="calificaciones">Calificaciones</div>
           <div class="component-32-child"></div>
           <img
@@ -51,7 +96,7 @@
             src="./../../public/libros-3@2x.png"
           />
         </button>
-        <button class="component-322" id="manejo_usuarios">
+        <button class="component-322" id="btn_manejo_secciones">
           <div class="component-32-child"></div>
           <div class="calificaciones">Manejo de Secciones</div>
           <img
@@ -61,43 +106,123 @@
           />
         </button>
       </div>
+      <div class="tabla-container" id="tabla-container">
+        <table id="tabla-secciones-elegidas">
+          <tr>
+            <th>ID Est.</Em></th>
+            <th>Nombre Est.</th>
+            <th>Calificacion</th>
+            <th>Calif. Letra</th>
+          </tr>
+        </table>
+      </div>
       <div class="macbook-air-15-child2"></div>
       <img class="image-1-icon1" alt="" src="./../../public/image-1@2x.png" />
 
       <b class="gradegenius1">GradeGenius</b>
-      <img class="image-2-icon1" alt="" src="./../../public/image-2@2x.png" />
+      <button style="cursor: pointer;" id="btn_perfil">
+        <img class="image-2-icon1" alt="" src="./../../public/image-2@2x.png" />
+      </button>
 
       <img class="image-3-icon1" alt="" src="./../../public/image-3@2x.png" />
-
-      <img class="macbook-air-15-child3" alt="" src="./../../public/polygon-1.svg" />
-
-      <img class="macbook-air-15-child4" alt="" src="./../../public/polygon-1.svg" />
-
-      <img class="macbook-air-15-child5" alt="" src="./../../public/polygon-1.svg" />
+      <button style="height: 100px; width: 100px; cursor: pointer;" id="btn_drpdwn_cerrar_sesion">
+        <img class="macbook-air-15-child3" alt="" src="./../../public/polygon-1.svg" />
+      </button>
 
       <div class="macbook-air-15-child6"></div>
-      <input
+      <select
         class="rectangle-input"
         type="text"
         maxlength
         minlength
-        id="txt_buscar_asignatura"
-      />
+        id="cb_asignatura"
+      ></select>
 
       <div class="asignatura1">Asignatura:</div>
-      <input
+      <select
         class="macbook-air-15-child7"
         type="text"
         maxlength
         minlength
-        id="txt_buscar_asignatura"
-      />
+        id="cb_seccion"
+      ></select>
 
       <div class="seccion">Seccion:</div>
-      <button class="component-90" id="btn_buscar">
+      <!-- <button class="component-90" id="btn_buscar">
         <div class="component-90-child"></div>
         <img class="image-4-icon" alt="" src="./../../public/image-4@2x.png" />
+      </button> -->
+
+      <!-- <div class="div_secciones">
+        <div class="rectangle-parent" id="asig_1">
+          <div class="instance-child"></div>
+          <button class="component-76" id="btn_asignatura_calif">
+            <div class="component-76-child" id="btn-toggle" name="div_arriba"></div>
+            <div class="asignatura">Desarrollo de Software III</div>
+            <img class="component-76-item" alt="" src="./../../public/polygon-1.svg" />
+            <img class="image-10-icon" alt="" src="./../../public/image-10@2x.png" />
+          </button>
+          <div class="div_saliente_asignatura">
+            <section class="seccionToggle" id="seccionToggle1">
+              <div class="label_seccion">Seccion:</div>
+              <div class="texto_seccion">03</div>
+              <div class="label_horario">Horario:</div>
+              <div class="texto_horario">Lunes: 18/20<br>Martes: 20/22</div>
+              <div class="label_estudiantes">Estudiantes:</div>
+              <div class="num_estudiantes">33</div>
+            </section>
+            <div class="main">
+              <div class="wrap">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rectangle-parent" id="asig_1" style="top: 23%">
+          <div class="instance-child"></div>
+          <button class="component-76" id="btn_asignatura_calif">
+            <div class="component-76-child" id="btn-toggle" name="div_arriba"></div>
+            <div class="asignatura">Desarrollo de Software III</div>
+            <img class="component-76-item" alt="" src="./../../public/polygon-1.svg" />
+            <img class="image-10-icon" alt="" src="./../../public/image-10@2x.png" />
+          </button>
+          <div class="div_saliente_asignatura">
+            <section class="seccionToggle" id="seccionToggle1">
+              <button class="component-2-inner" id="boton">Seleccionar</button>
+            </section>
+            <div class="main">
+              <div class="wrap">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> -->
+      <div class="info_secciones">
+        <div class="label_seccion">Seccion:</div>
+        <div class="texto_seccion" id="texto_seccion">N/A</div>
+        <div class="label_horario">Horario:</div>
+        <div class="texto_horario" id="texto_horario">N/A</div>
+        <div class="label_estudiantes">Estudiantes:</div>
+        <div class="num_estudiantes" id="num_estudiantes">N/A</div>
+      </div>
+    </div>
+    <div id="dialog_seccion_publicada" title="Sección Ya Publicada" style="display: none;">
+      <p style="font-weight: bold;">La sección ya ha sido publicada</p>
+    </div>
+    <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">
+      <button class="btn_cerrar_sesion" id="btn_cerrar_sesion">
+        <img
+        class="img_cerrar_sesion"
+        alt=""
+        src="../public/logout.png"
+        />
+        Cerrar Sesión
+        <!-- <label class="p_cerrar_sesion"></label> -->
       </button>
+    </div>
+    <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
   </body>
 </html>

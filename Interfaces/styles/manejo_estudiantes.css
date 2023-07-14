@@ -276,6 +276,28 @@
   top: 515px;
   left: 547.8px;
 }
+.div_secciones{
+  background-color: black;
+  height: 70%;
+  width: 70%;
+  top: 26%;
+  left: 22%;
+  position: absolute;
+  overflow: auto;
+
+}
+
+/* .div_secciones{
+    background-color: black;
+    position: absolute;
+    width: 71.4%;
+    height: 36%;
+    border-radius: 20px;
+    top: 65.1%;
+    left: 20.5%;
+    max-height: 36%;
+    overflow: auto;
+}*/ 
 .macbook-air-15-child6 {
   position: absolute;
   top: 106px;
@@ -284,6 +306,7 @@
   box-shadow: 0 6px 9px 1px rgba(0, 0, 0, 0.13);
   width: 959px;
   height: 91px;
+  border-radius: var(--br-xs);
 }
 .rectangle-input {
   border: 0;
@@ -372,4 +395,241 @@
   font-size: var(--font-size-mini);
   color: var(--color-white);
   font-family: var(--font-poppins);
+}
+
+.component-76 {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  height: 10.22%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 83.78%;
+  left: 0;
+}
+.rectangle-parent {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 180%;
+  transition: margin-top 0.3s ease;
+
+  /* background-color: black */
+}
+.component-76-child {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-gainsboro-200);
+}
+.component-76-child {
+  border-radius: var(--br-xl);
+  background-color: var(--color-white);
+  box-shadow: 0 6px 9px 1px rgba(0, 0, 0, 0.13);
+}
+.asignatura {
+  position: absolute;
+  top: 32.09%;
+  left: 11.89%;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+.component-76-item,
+.image-10-icon {
+  position: absolute;
+  height: 8.18%;
+  width: 1.08%;
+  top: 47.27%;
+  right: 4.25%;
+  bottom: 44.55%;
+  left: 94.66%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.div_saliente_asignatura{
+  position: absolute;
+  top: 15%;
+  left: 0px;
+  width: 98%;;
+  left: 1%;
+  height: 6%;
+  color: #fff2;
+  /* background-color: white; */
+}
+.seccionToggle {
+  display: none;
+  position: relative;
+  background-color: #ECECEC;
+  color: #001F3F;
+  width: 100%;
+  height: 85.8%;
+  padding: 50px 0;
+  text-align: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+ }
+  /* .seccionToggle h2 {
+    font-size: 60px;
+    margin-top: 50px; }
+  .seccionToggle p {
+    font-size: 20px;
+    margin-bottom: 50px; } 
+  .seccionToggle button {
+    background: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px 40px;
+    display: inline-block;
+    border: 5px solid #001F3F;
+    transition: 0.3s all ease; }
+    .seccionToggle button:hover {
+      border: 5px solid #0074D9;
+      color: #0074D9; } 
+
+btn-toggle {
+  height: 50px;
+  line-height: -10px;
+  font-size: 32px;
+  font-weight: lighter;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+  .btn-toggle:hover {
+    text-decoration: none;
+} */
+.label_seccion{
+  position: absolute;
+  top: 3.09%;
+  left: 1.89%;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+  /* background-color: white; */
+}
+.texto_seccion{
+  position: absolute;
+  top: 28.09%;
+  left: 6%;
+  font-size: 60px;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+.label_estudiantes{
+  position: absolute;
+  top: 3.09%;
+  left: 29.89%;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+.num_estudiantes{
+  position: absolute;
+  top: 28.09%;
+  left: 38%;
+  font-size: 60px;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+.texto_horario{
+  position: absolute;
+  top: 36.09%;
+  left: 73%;
+  font-size: 18px;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+.label_horario{
+  position: absolute;
+  top: 3.09%;
+  left: 69.89%;
+  font-size: 35px;
+  font-weight: bold;
+  font-family: var(--font-poppins);
+  color: var(--color-darkslategray);
+  text-align: left;
+}
+.div_saliente_asignatura{
+  position: absolute;
+  top: 9%;
+  left: 0px;
+  width: 98%;;
+  left: 1%;
+  height: 30%;
+  color: #fff2;
+  /* background-color: white; */
+}
+
+.component-2-inner {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  /* background-color: transparent; */
+  position: absolute;
+  position: absolute;
+  height: 45.74%;
+  width: 15.76%;
+  top: 40.26%;
+  left: 80.9%;
+  border-radius: 15px;
+  background: linear-gradient(265.99deg, #d289ec, #86e5f2);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+.component-2-inner:hover {
+  animation: 1s linear 0s infinite alternate-reverse none shadow-inset-center;
+  opacity: 1;
+}
+
+.info_secciones{
+  position: absolute;
+  top: 27%;
+  width: 66%;
+  left: 23%;
+  height: 15%;
+  border-radius: 15px;  
+  background-color: rgb(231, 229, 229);
+  /* background-color: white; */
+}
+
+.custom-dialog-cerrar-sesion,
+.custom-dialog-cerrar-sesion .ui-dialog-buttonpane,
+.custom-dialog-cerrar-sesion .ui-dialog-titlebar
+{
+  background: linear-gradient(265.99deg, hsl(12, 64%, 74%), hsl(46, 96%, 70%));
+}
+.ui-widget-header{
+  border: none;
+  border-bottom: 1px solid black;
+}
+.ui-dialog-buttonpane{
+  border-top: 1px solid black;
+}
+.custom-dialog-cerrar-sesion .btn_aceptar{
+  background: linear-gradient(265.99deg, hsl(0, 78%, 66%), hsl(17, 85%, 64%));
+}
+.custom-dialog-cerrar-sesion .btn_cancelar{
+  background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
 }

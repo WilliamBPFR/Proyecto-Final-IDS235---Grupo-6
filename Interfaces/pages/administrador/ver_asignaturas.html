@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="../styles/ver_asignaturas.css" />
+    <link rel="stylesheet" href="../../styles/ver_asignaturas.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -70,23 +70,10 @@
       
       <img class="macbook-air-5-child1" alt="" src="../public/polygon-1.svg" />
       <div class="macbook-air-5-child2" id="div_principal">
-        <div class="div_btn_search">
-          <button class="btn_search" id="btn_buscar_filtro">
-            <button
-              class="btn_search-child"
-              id="btn_buscar_filtro"
-            >Buscar</button>
-            <img
-              id="img_btn_agregar_asignatura"
-              class="boton-agregar-1-icon2"
-              alt=""
-              src="../public/lupa.png"
-            />
-          </button>
-        </div>
+
         <div class="tabla-container">
           <table id="tabla_asignatura">
-            <tr>
+            <tr id="nope">
               <th>Código</th>
               <th>Nombre Asignatura</th>
               <th>Tipo</th>
@@ -96,7 +83,7 @@
           </table>
         </div>
       </div>
-      <input class="macbook-air-5-child18" type="text" maxlength minlength />
+      <input class="macbook-air-5-child18" type="text" maxlength minlength id="input_filtro"/>
       
       <b class="filtro2">Filtro:</b>
       <div class="rectangle-parent" id="div_agregar_asignatura">
@@ -117,6 +104,7 @@
         </div>
       </div>
       <b class="asignaturas-del-sistema">Asignaturas del Sistema</b>
+      <div class="macbook-air-10-child18"></div>
       <div class="component-10">
         <nav class="component-10-child" id="nav_admin"></nav>
         <div class="component-10-item"></div>
@@ -183,6 +171,9 @@
     </div>
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
+    </div>
+    <div id="dialog_asignatura_modificada" title="Asignatura Modificada Exitosamente" style="display: none;">
+      <p style="font-weight: bold;">La Asignatura ha sido modificado exitosamente. Puede Verla en la Tabla</p>
     </div>
     <script src="../../script/admin/modifcar_asignatura.js"></script>
   </body>

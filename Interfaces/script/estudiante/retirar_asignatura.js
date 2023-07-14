@@ -24,13 +24,16 @@ $(document).ready(function(){
                 
                 button.css('top', i*16+'%');
                 i++;
-                if(element.calificacion_num != -1){
+                if(element.calificacion_num == null){
                     button.click(function(){
                         $('#label_asig').attr('value',element.id_registro);
                         $('#label_asig').text(element.Asignatura.cod_asignatura + ' - ' + element.Asignatura.nombre_asignacion + ' - Sec ' + element.Seccion.num_seccion);
                         $('#div_asig_ret').css('display', 'block');
                         divChild.css('background-color', 'rgb(238, 229, 106);');
                     });
+                }else if(element.calificacion_num>=0)
+                {
+                    divChild.css('background-color', '#8af3ea');
                 }else{
                     button.click(function(){
                         alert("La asignatura ya ha sido retirada");

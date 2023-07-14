@@ -92,45 +92,7 @@
   background-color: var(--color-white);
   box-shadow: 0 6px 9px 1px rgba(0, 0, 0, 0.13);
   width: 959px;
-  height: 582px;
-}
-.div,
-.porcentaje-de-asignaturas {
-  position: absolute;
-  top: 537px;
-  left: 615px;
-}
-.div {
-  top: 567px;
-  font-weight: 600;
-}
-.estudiante-child1 {
-  position: absolute;
-  top: 542px;
-  left: 582px;
-  border-radius: var(--br-9xs);
-  background-color: #5da832;
-  width: 15px;
-  height: 15px;
-}
-.div1,
-.porcentaje-de-asignaturas1 {
-  position: absolute;
-  top: 598px;
-  left: 615px;
-}
-.div1 {
-  top: 628px;
-  font-weight: 600;
-}
-.estudiante-child2 {
-  position: absolute;
-  top: 603px;
-  left: 582px;
-  border-radius: var(--br-9xs);
-  background-color: #ffdb2d;
-  width: 15px;
-  height: 15px;
+  height: 722px;
 }
 .consejero,
 .kendall-jenner {
@@ -202,27 +164,22 @@
 .crditos-cursados {
   top: 416px;
 }
-.gpa,
-.porcentaje-de-asistencia {
+.gpa{
   position: absolute;
-  top: 412px;
+  top: 47%;
   left: 615px;
 }
 .gpa {
   top: 186px;
-  left: 1077px;
+  left: 76%;
 }
-.div3,
 .ndice-bajo {
   position: absolute;
   top: 260px;
   left: 1076px;
   font-weight: 600;
 }
-.div3 {
-  top: 442px;
-  left: 615px;
-}
+
 .carrera,
 .matrcula {
   position: absolute;
@@ -251,41 +208,14 @@
 }
 .b {
   top: 206px;
-  font-size: 32px;
+  font-size: 50px;
+  left: 1044px;
 }
 .image-15-icon {
   top: 254px;
   width: 33px;
   height: 30px;
   object-fit: cover;
-}
-.estudiante-child4 {
-  position: absolute;
-  top: 417px;
-  left: 582px;
-  border-radius: var(--br-9xs);
-  background-color: #e41e2f;
-  width: 15px;
-  height: 15px;
-}
-.asignaturas-retiradas,
-.div4 {
-  position: absolute;
-  top: 476px;
-  left: 615px;
-}
-.div4 {
-  top: 506px;
-  font-weight: 600;
-}
-.estudiante-child5 {
-  position: absolute;
-  top: 481px;
-  left: 582px;
-  border-radius: var(--br-9xs);
-  background-color: #0070ce;
-  width: 15px;
-  height: 15px;
 }
 .rectangle-icon {
   position: absolute;
@@ -528,4 +458,193 @@
   font-size: var(--font-size-sm);
   color: var(--color-black);
   font-family: var(--font-poppins);
+}
+
+.div_letras_porcentajes{
+  position: absolute;
+  /* background-color: gray; */
+  height: 50%;
+  width: 40%;
+  top: 46%;
+  left: 7%;
+}
+
+.porcentaje-de-asistencia {
+  position: absolute;
+  top: 1%;
+  left: 10%;
+  font-size: 22px;
+}
+
+.estudiante-child4 {
+  border-radius: 12px;
+  position: absolute;
+  top: 3.5%;
+  left: 0%;
+  /* border-radius: var(--br-9xs); */
+  background-color: #e41e2f;
+  width: 25px;
+  height: 25px;
+}
+
+.div3{
+  position: absolute;
+  top: 1.5%;
+  left: 60%;
+  font-weight: 600;
+  font-size: 20px;
+}
+/*#2*/
+
+.asignaturas-retiradas{
+  position: absolute;
+  top: 17.6%;
+  left: 10%;
+  font-size: 22px;
+}
+
+.estudiante-child5 {
+  position: absolute;
+  top: 19%;
+  left: 0%;
+  border-radius: 12px;
+  background-color: #0070ce;
+  width: 25px;
+  height: 25px;
+}
+
+.div4 {
+  position: absolute;
+  top: 18%;
+  left: 60%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/*#3*/
+.porcentaje-de-asignaturas {
+  position: absolute;
+  top: 33.7%;
+  left: 10%;
+  font-size: 22px;
+}
+
+.estudiante-child1 {
+  border-radius: 12px;
+  position: absolute;
+  top: 34.5%;
+  left: 0%;
+  /* border-radius: var(--br-9xs); */
+  background-color: #5da832;
+  width: 25px;
+  height: 25px;
+}
+
+.div{
+  position: absolute;
+  top: 34.5%;
+  left: 60%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/*#4*/
+.porcentaje-de-asignaturas1 {
+  position: absolute;
+  top: 49.8%;
+  left: 10%;
+  font-size: 22px;
+}
+
+.estudiante-child2 {
+  border-radius: 12px;
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  /* border-radius: var(--br-9xs); */
+  background-color: #ffdb2d;
+  width: 25px;
+  height: 25px;
+}
+
+.div1{
+  position: absolute;
+  top: 51%;
+  left: 60%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/*#5*/
+.porcentaje-de-asignaturas_de_F {
+  position: absolute;
+  top: 65.9%;
+  left: 10%;
+  font-size: 22px;
+}
+
+.estudiante-child_de_F {
+  border-radius: 12px;
+  position: absolute;
+  top: 65.5%;
+  left: 0%;
+  /* border-radius: var(--br-9xs); */
+  background-color: #d52dff;
+  width: 25px;
+  height: 25px;
+}
+
+.div_de_F{
+  position: absolute;
+  top: 66.5%;
+  left: 60%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+/*#6*/
+.porcentaje-de-asignaturas_de_R {
+  position: absolute;
+  top: 82%;
+  left: 10%;
+  font-size: 22px;
+}
+
+.estudiante-child_de_R {
+  border-radius: 12px;
+  position: absolute;
+  top: 82.5%;
+  left: 0%;
+  /* border-radius: var(--br-9xs); */
+  background-color: #f5841a;
+  width: 25px;
+  height: 25px;
+}
+
+.div_de_R{
+  position: absolute;
+  top: 82%;
+  left: 60%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.div_grafico{
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  width: 52%;
+  height: 48%;
+  /* background-color: black; */
+  border-radius: 10px;
+}	
+
+.mycanva{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  /* background-color: black; */
+  border-radius: 10px;
 }

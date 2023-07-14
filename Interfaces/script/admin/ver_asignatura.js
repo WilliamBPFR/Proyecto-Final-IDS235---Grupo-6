@@ -19,7 +19,6 @@ $(document).ready(function() {
 
     datos_transformados.forEach(function(elemento) {
       var fila = $('<tr></tr>');
-
       for (var propiedad in elemento) {
         if (elemento.hasOwnProperty(propiedad)) {
           var td = $('<td></td>').text(elemento[propiedad]);
@@ -30,7 +29,8 @@ $(document).ready(function() {
             td.css('white-space','nowrap');
           }
           td.on('dblclick',function() {
-            $.cookie('cod_asignatura',fila.value);            
+            $.cookie('cod_asignatura',fila.value);   
+            console.log(fila.value);
             window.location.href = 'modificar_asignatura.html';
           });
           fila.append(td);
@@ -38,6 +38,7 @@ $(document).ready(function() {
       }
 
       fila.value = elemento.Código;
+      console.log(fila.value);
       tabla.append(fila);
     });
 
@@ -49,7 +50,7 @@ $(document).ready(function() {
     msj = parseInt(JSON.parse(mensaje));
     console.log(msj);
     switch (msj) {
-      case 0:
+      case 10:
         console.log("entreeeee");
         $("#dialog_asignatura_creada").dialog({
           dialogClass: "custom-dialog_trimestre_cambiado",
@@ -60,6 +61,17 @@ $(document).ready(function() {
           }
       });
         break;
+      case 20:
+          console.log("entreeeee");
+          $("#dialog_asignatura_modificada").dialog({
+            dialogClass: "custom-dialog_trimestre_cambiado",
+            buttons: {
+                "Aceptar": function() {
+                    $(this).dialog("close"); // Cierra la ventana emergente
+                }
+            }
+        });
+          break;
       default:
         break;
     }
@@ -70,5 +82,25 @@ $(document).ready(function() {
         var scrollTop = $('.tabla-container').scrollTop();
         console.log(scrollTop);
         $header.css('transform', 'translateY(' + scrollTop + 'px)');
-      });    
+      });   
+      
+      $('#input_filtro').on('input', function() {
+        console.log("aqui")
+        var filterValue = $(this).val().toLowerCase(); // Obtener el valor del input y convertirlo a minúsculas
+        
+        // Iterar sobre las filas de la tabla y mostrar u ocultar según los filtros
+        $('#tabla_asignatura tbody tr').each(function() {
+          if($(this).attr('id') != 'nope'){
+          var codigo = $(this).find('td:eq(0)').text().toLowerCase(); // Obtener el valor del código en minúsculas
+          var nombre = $(this).find('td:eq(1)').text().toLowerCase(); // Obtener el valor del nombre en minúsculas
+          
+          // Comprobar si el filtro está en blanco o si el código o el nombre coinciden con el filtro
+          if (filterValue === '' || codigo.indexOf(filterValue) > -1 || nombre.indexOf(filterValue) > -1) {
+            $(this).show(); // Mostrar la fila si coincide con el filtro o si el filtro está en blanco
+          } else {
+            $(this).hide(); // Ocultar la fila si no coincide con el filtro
+          }
+        }
+        });
+      });
   });

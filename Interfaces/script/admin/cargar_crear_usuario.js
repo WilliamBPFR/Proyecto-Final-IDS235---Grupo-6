@@ -1,5 +1,12 @@
 $(document).ready(function() {
     // Aquí va el código jQuery que deseas ejecutar al cargar la página
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = ("0" + (today.getMonth() + 1)).slice(-2);
+    var day = ("0" + today.getDate()).slice(-2);
+    var formattedDate = year + "-" + month + "-" + day;
+
+    $("#txt_Fecha").attr("max", formattedDate);
 
     $.ajax({
       url: '/cargar_crear_usuario',
@@ -68,14 +75,21 @@ $(document).ready(function() {
       // Obtener los valores del formulario
       const formData = form.serializeArray();
       const data = {};
-  
+      var url = '';
       $.each(formData, function(index, field) {
         data[field.name] = field.value;
       });
-  
+      var mat_usuario = localStorage.getItem('mat_usuario');
+      localStorage.removeItem('mat_usuario');
+      data['mat_viejo'] = parseInt(mat_usuario);
+      if(form.attr('name') ==='modificar'){
       // Enviar los datos al backend utilizando AJAX
+        url = '/modificar-usuario';
+      }else{
+        url = '/crear-usuario';
+      }
       $.ajax({
-        url: '/crear-usuario',
+        url: url,
         method: 'POST',
         data: JSON.stringify(data),
         contentType: 'application/json',
@@ -102,6 +116,10 @@ $(document).ready(function() {
               break;
             case 3:
               labelerror.text("Email Inválido");
+              errorDiv.show();
+              break;
+            case 4:
+              labelerror.text("Contraseña Vacía");
               errorDiv.show();
               break;
             default:

@@ -76,7 +76,7 @@
         </div>
       </div>
       <b class="trimestre-actual">Trimestre Actual</b>
-      <b class="calcular-ndice-acadmico">Calcular Índice Académico</b>
+      <b class="calcular-ndice-acadmico" id="calcular_indice_academico">Calcular Índice Académico</b>
       <b class="trimestre">Trimestre</b>
       <b class="ao">Año</b>
       <b class="configuraciones-del-sistema">Configuraciones del Sistema</b>
@@ -145,7 +145,7 @@
         <img class="editar-1-icon" alt="" src="./../public/editar-1@2x.png" />
       </div>
       <div class="component-83" id="div_Modificar_Fecha">
-        <button class="component-83-child" id="btn_Calcular_Indice"></button>
+        <button class="component-83-child" id="btn_Calcular_Indice">Calcular Índices del Sistema</button>
       </div>
       <div class="macbook-air-12-child5"></div>
       <div class="component-22">
@@ -208,6 +208,12 @@
     </div>
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
+    </div>
+    <div id="dialog_conf_calc_indice" title="¿Seguro que Quiere Calcular el Indice de los Estudiantes?" style="display: none;">
+      <p style="font-weight: bold;">¿Estás seguro que quieres calcular todos los indices de los estudiantes? Recuerda que es una operacion cpmpleja y tomará muchos recursos del sistema.</p>
+    </div>
+    <div id="dialog_indices_calculados" title="Todos los Índices Calculados con Éxito" style="display: none;">
+      <p style="font-weight: bold;">Todos los Índices han sido calculados con éxito</p>
     </div>
   </body>
 </html>

@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="./../styles/ver_usuarios_sistema.css" />
+    <link rel="stylesheet" href="../../styles/ver_usuarios_sistema.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -74,7 +74,7 @@
       <div class="macbook-air-10-child2">
         <div class="tabla-container">
           <table id="tabla_usuario">
-            <tr>
+            <tr id="nope">
               <th>Matrícula o ID</th>
               <th>Nombre</th>
               <th>Tipo de Usuario</th>
@@ -91,7 +91,7 @@
         placeholder="Digite el ID o nombre del usuario"
         maxlength
         minlength
-        id="txt_Filtro"
+        id="input_filtro"
       />
 
       <b class="filtro">Filtro:</b>
@@ -155,7 +155,7 @@
     <div id="dialog_usuario_creado" title="Usuario Creado Exitosamente" style="display: none;">
       <p style="font-weight: bold;">El usuario ha sido creado exitosamente. Puede Verlo en la Tabla</p>
     </div>
-    <div id="dialog_usuario_creado" title="Usuario Modificado Exitosamente" style="display: none;">
+    <div id="dialog_usuario_modificado" title="Usuario Modificado Exitosamente" style="display: none;">
       <p style="font-weight: bold;">El usuario ha sido modificado exitosamente. Puede Verlo en la Tabla</p>
     </div>
     <div class="cerrar_sesion"  id="cerrar_sesion" style="display: none;">

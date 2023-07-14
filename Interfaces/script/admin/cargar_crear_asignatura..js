@@ -36,7 +36,7 @@ $(document).ready(function() {
   const form = $('#form_crear_asignatura');
   const errorDiv = $('#div_mensaje_error');
   const labelerror = $('#label_error');
-
+  var url = '';
   form.on('submit', function(event) {
     event.preventDefault(); // Evitar el envío del formulario
 
@@ -48,16 +48,27 @@ $(document).ready(function() {
       data[field.name] = field.value;
     });
 
+    var cod_asignatura = localStorage.getItem('cod_asignatura');
+    localStorage.removeItem('cod_asignatura');
+    data['cod_viejo'] = cod_asignatura;
+
+    if(form.attr('name') ==='modificar'){
+    // Enviar los datos al backend utilizando AJAX
+      url = '/modificar-asignatura';
+    }else{
+      url = '/crear-asignatura';
+    }
     // Enviar los datos al backend utilizando AJAX
     $.ajax({
-      url: '/crear-asignatura',
+      url: url,
       method: 'POST',
       data: JSON.stringify(data),
       contentType: 'application/json',
       success: function(response) {
-        var mensaje = '0';
-        localStorage.setItem('mensaje', mensaje);
-        window.location.href = 'nav_admin?id=1';
+          var mensaje = response;
+          localStorage.setItem('mensaje', mensaje);
+          console.log(response);
+          window.location.href = 'nav_admin?id=1';
       },
       error: function(xhr, status, error) {
         console.log("entreeeeeeeeeeeeeeeeeeeeeeeee")
@@ -75,6 +86,12 @@ $(document).ready(function() {
               errorDiv.css('left',"430px");
               errorDiv.show();
               break;
+            case 2:
+                labelerror.text("Error al crear la asignatura");
+                errorDiv.css('width',"700px");
+                errorDiv.css('left',"430px");
+                errorDiv.show();
+                break;
           default:
             console.log('Error desconocido')
             break;

@@ -69,6 +69,7 @@ $(document).ready(function() {
               }
           }
       });
+      break;
       case 20:
         console.log("entreeeee");
         $("#dialog_usuario_modificado").dialog({
@@ -83,4 +84,24 @@ $(document).ready(function() {
       default:
         break;
     }
+
+    $('#input_filtro').on('input', function() {
+      console.log("aqui")
+      var filterValue = $(this).val().toLowerCase(); // Obtener el valor del input y convertirlo a minúsculas
+      
+      // Iterar sobre las filas de la tabla y mostrar u ocultar según los filtros
+      $('#tabla_usuario tbody tr').each(function() {
+        if($(this).attr('id') != 'nope'){
+        var codigo = $(this).find('td:eq(0)').text().toLowerCase(); // Obtener el valor del código en minúsculas
+        var nombre = $(this).find('td:eq(1)').text().toLowerCase(); // Obtener el valor del nombre en minúsculas
+        
+        // Comprobar si el filtro está en blanco o si el código o el nombre coinciden con el filtro
+        if (filterValue === '' || codigo.indexOf(filterValue) > -1 || nombre.indexOf(filterValue) > -1) {
+          $(this).show(); // Mostrar la fila si coincide con el filtro o si el filtro está en blanco
+        } else {
+          $(this).hide(); // Ocultar la fila si no coincide con el filtro
+        }
+      }
+      });
+    });
   });

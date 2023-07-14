@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="./../styles/crear_usuario.css" />
+    <link rel="stylesheet" href="../../styles/crear_usuario.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -85,13 +85,13 @@
           />
         </button>
       </div>
-      <form class="component-48" id="component-48" method="post" action="/crear-usuario">
+      <form class="component-48" id="component-48" name='crear' method="post" action="/crear-usuario">
         <b class="id-o-matrcula">ID o Matrícula</b>
         <input
           class="component-48-child"
           type="text"
-          maxlength
-          minlength
+          maxlength="7"
+          minlength="7"
           id="txt_ID"
           name="txt_ID"
         />
@@ -136,6 +136,7 @@
           minlength
           id="txt_Fecha"
           name="txt_Fecha"
+          required
         />
 
         <button class="rectangle-button" id="btn_Guardar">Guardar</button>

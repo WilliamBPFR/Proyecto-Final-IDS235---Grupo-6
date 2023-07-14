@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./../../styles/global.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="./../../styles/inicio_est.css" />
     <link
@@ -18,6 +19,7 @@
   </head>
   <body id="body" style="display:none">
     <div class="estudiante">
+
       <div class="estudiante-child"></div>
       <div class="estudiante-item"></div>
       <img class="image-1-icon" alt="" src="./../../public/image-1@2x.png" />
@@ -34,45 +36,53 @@
         <img class="estudiante-inner" alt="" src="./../../public/polygon-1.svg" />
       </button>
 
-      <div class="rectangle-div"></div>
-      <b class="porcentaje-de-asignaturas"
-        >Porcentaje de asignaturas reprobadas:</b
-      >
-      <div class="div">7.2%</div>
-      <div class="estudiante-child1"></div>
-      <b class="porcentaje-de-asignaturas1"
-        >Porcentaje de asignaturas aprobadas:</b
-      >
-      <div class="div1">10%</div>
-      <div class="estudiante-child2"></div>
-      <div class="kendall-jenner">Kendall Jenner</div>
-      <b class="consejero">Consejero:</b>
-      <!-- <img class="polygon-icon" alt="" src="./../../public/polygon-1.svg" /> -->
+      <div class="rectangle-div">
+        <div class="div_letras_porcentajes">
+          <b class="porcentaje-de-asistencia">Porcentaje de A:</b>
+          <div class="estudiante-child4"></div>
+          <div class="div3" id="porcentaje_A">00.00%</div>
+
+          <b class="asignaturas-retiradas">Porcentaje de B:</b>
+          <div class="estudiante-child5"></div>
+          <div class="div4" id="porcentaje_B">00.00%</div>
+
+          <b class="porcentaje-de-asignaturas">Porcentaje de C:</b>
+          <div class="estudiante-child1"></div>
+          <div class="div" id="porcentaje_C">00.00%</div>
+
+          <b class="porcentaje-de-asignaturas1">Porcentaje de D:</b>
+          <div class="estudiante-child2"></div>
+          <div class="div1" id="porcentaje_D">00.00%</div>  
+          
+          <b class="porcentaje-de-asignaturas_de_F">Porcentaje de F:</b>
+          <div class="estudiante-child_de_F"></div>
+          <div class="div_de_F" id="porcentaje_F">00.00%</div>
+          
+          <b class="porcentaje-de-asignaturas_de_R">Porcentaje de R:</b>
+          <div class="estudiante-child_de_R"></div>
+          <div class="div_de_R" id="porcentaje_R">00.00%</div>
+        </div>
+        <div class="div_grafico">
+          <canvas id="myChart" class="mycanva"></canvas>
+        </div>
+      </div>
+
+=      <!-- <img class="polygon-icon" alt="" src="./../../public/polygon-1.svg" /> -->
 
       <div class="estudiante-child3"></div>
       <img class="image-10-icon" alt="" src="./../../public/image-10@2x.png" />
 
       <div class="benito-martnez" id="nombre_est">Benito Martínez</div>
       <b class="nombre">Nombre:</b>
-      <div class="div2">48/145</div>
-      <b class="crditos-cursados">Créditos cursados:</b>
-      <b class="porcentaje-de-asistencia">Porcentaje de asistencia:</b>
-      <b class="gpa">GPA</b>
-      <div class="ndice-bajo">Índice bajo</div>
-      <div class="div3">35.6%</div>
+      <b class="gpa">Índice Académico</b>
       <b class="matrcula">Matrícula:</b>
       <b class="carrera">Carrera:</b>
       <div class="m17-0040" id="matricula">M17-0040</div>
       <div class="ingeniera-de-aseguramiento" id="carrera">
         Ingeniería de Aseguramiento de Calidad
       </div>
-      <b class="b">2.2/4.0</b>
-      <img class="image-15-icon" alt="" src="./../../public/image-15@2x.png" />
+      <b class="b" id="indice_acad">N/A</b>
 
-      <div class="estudiante-child4"></div>
-      <b class="asignaturas-retiradas">Asignaturas retiradas:</b>
-      <div class="div4">27.10%</div>
-      <div class="estudiante-child5"></div>
       <img class="rectangle-icon" alt="" src="./../../public/rectangle-7.svg" />
 
       <div class="component-50">
@@ -122,6 +132,6 @@
     <div id="dialog_cerrar_sesion" title="¿Seguro que Quiere Cerrar Sesión?" style="display: none;">
       <p style="font-weight: bold;">¿Estás seguro que quieres cerrar sesión?</p>
     </div>
-    <script src="./../../script/inicio_est.js"></script>
+    <script src="./../../script/estudiante/inicio_est.js"></script>
   </body>
 </html>

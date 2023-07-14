@@ -67,7 +67,8 @@ CREATE TABLE Seccion(
 	num_seccion int NOT NULL,
 	id_trimestre int,
 	fecha_creacion datetime NOT NULL,
-	num_est int NULL
+	num_est int NULL,
+	notas_publicadas bit NULL
 );
 
 CREATE TABLE seccion_dias(
@@ -114,7 +115,7 @@ CREATE TABLE Asignaturas_Seleccionadas(
 	id_estudiante int NOT NULL,
 	id_trimestre int NOT NULL,
 	fecha_creacion datetime NOT NULL,
-	calificacion_num decimal(4,2)
+	calificacion_num decimal(5,2)
 );
 
 CREATE TABLE Trimestres(
@@ -210,7 +211,7 @@ ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_modalidad FOREIGN KEY (id_modal
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_profesor FOREIGN KEY (id_profesor) REFERENCES Usuario(id_usuario);
 ALTER TABLE Seccion ADD CONSTRAINT FK_seccion_id_trimestre FOREIGN KEY (id_trimestre) REFERENCES Trimestres(id_trimestre);
 ALTER TABLE Seccion ADD CONSTRAINT DF_seccion_fecha_creacion DEFAULT GETDATE() FOR fecha_creacion;
-ALTER TABLE Seccion ADD CONSTRAINT UQ_seccion_num_seccion UNIQUE (id_asignatura,num_seccion);
+ALTER TABLE Seccion ADD CONSTRAINT UQ_seccion_num_seccion UNIQUE (id_asignatura,num_seccion,id_trimestre);
 
 --Tabla dias_clase
 ALTER TABLE dias_clase ADD CONSTRAINT PK_dias_clase PRIMARY KEY (id_dia);
@@ -252,7 +253,33 @@ INSERT INTO Carreras (nombre_carrera) VALUES ('Contabilidad');
 INSERT INTO Carreras (nombre_carrera) VALUES ('Comunicación Social'); 
 INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería de Sistemas'); 
 INSERT INTO Carreras (nombre_carrera) VALUES ('Enfermería');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería Industrial');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ciencias de la Computación');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería Eléctrica');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería Mecánica');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Economía');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ciencias Políticas');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Biología');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Química');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería Química');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Física');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Matemáticas');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ciencias Ambientales');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería Biomédica');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería de Telecomunicaciones');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Educación');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Artes Visuales');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Historia');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Antropología');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Sociología');
+
+INSERT INTO Carreras (nombre_carrera) VALUES ('Ingeniería de Software');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Marketing');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Diseño Gráfico');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Relaciones Internacionales');
+INSERT INTO Carreras (nombre_carrera) VALUES ('Medios y Comunicación Digital');
 GO
+
 INSERT INTO Modalidad (nombre_modalidad) VALUES ('Presencial');
 INSERT INTO Modalidad (nombre_modalidad) VALUES ('Semipresencial');
 INSERT INTO Modalidad (nombre_modalidad) VALUES ('Virtual');

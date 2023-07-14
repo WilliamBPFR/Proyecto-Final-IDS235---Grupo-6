@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     var estudiantesBtn = document.getElementById('btn_estudiante');
     var calificacionesBtn = document.getElementById('btn_calificaciones');
+    var perfil = document.getElementById('btn_perfil');
     var sel_asignaturaBtn = document.getElementById('btn_sel_asignatura');
     var ret_asignaturaBtn = document.getElementById('btn_ret_asignatura');
   
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
     ret_asignaturaBtn.addEventListener('click', function() {
       window.location.href = 'nav_estudiante?id=4';
+    });
+
+    perfil.addEventListener('click', function() {
+      window.location.href = 'nav_estudiante?id=5';
     });
   
   });

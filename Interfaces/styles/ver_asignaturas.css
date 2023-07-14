@@ -185,6 +185,18 @@
 .custom-dialog-cerrar-sesion .btn_cancelar{
   background: linear-gradient(265.99deg, hsl(61, 78%, 66%), hsl(162, 85%, 64%));
 }
+.macbook-air-10-child18 {
+  height: 7.45%;
+  width: 20.94%;
+  top: 19.99%;
+  right: 78.98%;
+  bottom: 64.9%;
+  left: 0.08%;
+  background-color: var(--color-gray-300);
+  position: absolute;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.06);
+  filter: blur(1px);
+}
 .div_btn_search {
   position: absolute;
   height: 5.5%;

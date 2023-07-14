@@ -35,6 +35,12 @@
           var errorDiv = document.getElementById("errorDiv");
           errorDiv.style.display = "block";
           break;
+        case "5":
+            var errorMSG = document.getElementById("errorMSG");
+            errorMSG.innerHTML = "Usuario Inactivo.\nNo puede entrar.";
+            var errorDiv = document.getElementById("errorDiv");
+            errorDiv.style.display = "block";
+            break;
      default:
        break;
    }

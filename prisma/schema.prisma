@@ -90,6 +90,7 @@ model Seccion {
   id_trimestre              Int?
   fecha_creacion            DateTime                    @default(now(), map: "DF_seccion_fecha_creacion") @db.DateTime
   num_est                   Int?
+  notas_publicadas          Boolean?
   Asignaturas_Seleccionadas Asignaturas_Seleccionadas[]
   Asignatura                Asignatura                  @relation(fields: [id_asignatura], references: [id_asignatura], onUpdate: NoAction, map: "FK_seccion_id_asignatura")
   Modalidad                 Modalidad                   @relation(fields: [id_modalidad], references: [id_modalidad], onUpdate: NoAction, map: "FK_seccion_id_modalidad")
@@ -97,7 +98,7 @@ model Seccion {
   Inicio_Fin_Trimestres     Trimestres?                 @relation(fields: [id_trimestre], references: [id_trimestre], onDelete: NoAction, onUpdate: NoAction, map: "FK_seccion_id_trimestre")
   seccion_dias              seccion_dias[]
 
-  @@unique([id_asignatura, num_seccion], map: "UQ_seccion_num_seccion")
+  @@unique([id_asignatura, num_seccion, id_trimestre], map: "UQ_seccion_num_seccion")
 }
 
 model Tipo_Trimestres {
