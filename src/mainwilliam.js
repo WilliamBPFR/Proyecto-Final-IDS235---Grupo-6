@@ -375,7 +375,7 @@ app.post('/crear-asignatura',async (req,res,next)=>{
 
     try{
         const asignatura = await prisma.asignatura.findFirst({where:{cod_asignatura:codigo_asignatura}});
-        if(codigo_asignatura.length === 6){
+        if(codigo_asignatura.length === 6 || codigo_asignatura.length === 7){
             if(isNull(asignatura)){
             const new_asignatura = await prisma.asignatura.create({
                 data:

@@ -67,6 +67,9 @@ $(document).ready(function(){
             console.log(error);
         }
     });
+    $('#boton_cancelar').click(function(){
+        window.location.href = '/retirar-asignatura.html';
+    });
     
         $('#boton_confirmar').click(function(){
             if($('#label_asig').attr('value') != undefined ){

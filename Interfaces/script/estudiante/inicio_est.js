@@ -45,6 +45,15 @@ $(document).ready(function() {
             });
           }
         $('#indice_acad').text(data.indice_acad);
+        if(data.indice_acad>=3.8){
+          $('#tipo_honor').text('Summa Cum Laude');
+        }else if(data.indice_acad>=3.5){
+          $('#tipo_honor').text('Magna Cum Laude');
+        }else if(data.indice_acad>=3.2){
+          $('#tipo_honor').text('Cum Laude');
+        }else{
+          $('#tipo_honor').text('No tiene honores');
+        }
       },
       error: function(error) {
           console.log(error);

@@ -189,6 +189,11 @@
 .carrera {
   top: 271px;
 }
+.tipo_honor {
+  position: absolute;
+  top: 331px;
+  left: 568px;
+}
 .ingeniera-de-aseguramiento,
 .m17-0040 {
   position: absolute;
@@ -200,6 +205,14 @@
   top: 292px;
   display: inline-block;
   width: 365px;
+}
+.div-tipo_honor {
+  position: absolute;
+  top: 346px;
+  display: inline-block;
+  width: 365px;
+  left: 568px;
+  font-size: var(--font-size-xl);
 }
 .b,
 .image-15-icon {
